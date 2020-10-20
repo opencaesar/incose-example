@@ -1,0 +1,5 @@
+vocabulary bundle <http://incose.org/pwg/s-star/power-bundle> with # as power-bundle {
+	
+	includes <http://incose.org/pwg/s-star/power-interface>
+	
+}

@@ -1,0 +1,7 @@
+description bundle <http://incose.org/pwg/s-star/power-bundle> with # as power-bundle {
+	
+	uses <http://incose.org/pwg/s-star/power-bundle>
+
+	includes <http://incose.org/pwg/s-star/power-converter>
+	
+}

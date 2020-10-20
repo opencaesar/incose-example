@@ -1,0 +1,6 @@
+description <http://incose.org/pwg/s-star/power-converter> with # as power-converter {
+	
+	uses <http://incose.org/pwg/s-star/power-interface>
+	
+	ci lpds : interface:System
+}

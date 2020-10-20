@@ -1,0 +1,214 @@
+/* 
+ * The Maven coordinates for the project artifact
+ */
+description='The INCOSE example project'
+group = 'io.opencaesar.ontologies'
+version = '1.0.0'
+
+/* 
+ * The Gradle task dependencies 
+ */
+buildscript {
+	repositories {
+		mavenLocal()
+		maven { url 'https://dl.bintray.com/opencaesar/owl-adapter' }
+		maven { url 'https://dl.bintray.com/opencaesar/owl-tools' }
+		maven { url 'https://dl.bintray.com/opencaesar/oml-tools' }
+		maven { url 'https://dl.bintray.com/opencaesar/oml' }
+		maven { url 'https://dl.bintray.com/vermeulen-mp/gradle-plugins' }
+		jcenter()
+	}
+	dependencies {
+		classpath 'io.opencaesar.owl:owl-fuseki-gradle:+'
+		classpath 'io.opencaesar.owl:owl-query-gradle:+'
+		classpath 'io.opencaesar.owl:owl-load-gradle:+'
+		classpath 'io.opencaesar.owl:owl-reason-gradle:+'
+		classpath 'io.opencaesar.owl:oml2owl-gradle:+'
+		classpath 'io.opencaesar.oml:oml-merge-gradle:+'
+		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:+'
+		// needed since gradle-bintray-plugin brings an old version of xerces
+		configurations.classpath.exclude group: 'xerces', module: 'xercesImpl'
+	}
+}
+
+/*
+ * Dependency versions
+ */
+ext { 
+	coreVocabulariesVersion = '1.+'
+}
+
+/*
+ * The configuration of OML dependencies
+ */
+configurations {
+	oml
+}
+
+/*
+ * The repositories to look up OML dependencies in
+ */
+repositories {
+	mavenLocal()
+	maven { url 'https://dl.bintray.com/opencaesar/ontologies' }
+	jcenter()
+}
+
+/*
+ * The OML dependencies
+ */
+dependencies {
+	oml "io.opencaesar.ontologies:core-vocabularies:$coreVocabulariesVersion"
+}
+
+/*
+ * A task to extract and merge the OML dependencies
+ */
+task downloadDependencies(type:io.opencaesar.oml.merge.OmlMergeTask) {
+    inputZipPaths = configurations.oml.files
+    outputCatalogFolder = file('build/oml')
+}
+
+/*
+ * A task to convert the OML catalog to OWL catalog
+ */
+task omlToOwl(type:io.opencaesar.oml2owl.Oml2OwlTask, dependsOn: downloadDependencies) {
+	// OML catalog
+	inputCatalogPath = file('catalog.xml')
+	// OWL catalog
+	outputCatalogPath = file('build/owl/catalog.xml')
+}
+
+/*
+ * A task to run the Openllet reasoner on the OWL catalog
+ */
+task owlReason(type:io.opencaesar.owl.reason.OwlReasonTask, dependsOn: omlToOwl) {
+	// OWL catalog
+	catalogPath = file('build/owl/catalog.xml')
+	// Input ontology IRI to reason on
+	inputOntologyIri = 'http://incose.org/pwg/s-star/power-bundle'
+	// Entailment statements to generate and the ontologies to persist them in
+	specs = [
+		'http://incose.org/pwg/s-star/bundle/classes = ALL_SUBCLASS',
+		'http://incose.org/pwg/s-star/bundle/properties = INVERSE_PROPERTY | ALL_SUBPROPERTY',
+		'http://incose.org/pwg/s-star/bundle/individuals = ALL_INSTANCE | DATA_PROPERTY_VALUE | OBJECT_PROPERTY_VALUE | SAME_AS'
+	]
+	// Junit error report
+	reportPath = file('build/reports/reasoning.xml')
+}
+
+/*
+ * A task to load an OWL catalog to a Fuseki dataset endpoint
+ */
+task owlLoad(type:io.opencaesar.owl.load.OwlLoadTask, dependsOn: owlReason) {
+	catalogPath = file('build/owl/catalog.xml')
+	endpointURL = 'http://localhost:3030/incose'
+    fileExtensions = ['owl', 'ttl']
+	iris = [
+		'http://incose.org/pwg/s-star/bundle/classes',
+	    'http://incose.org/pwg/s-star/bundle/properties',
+	    'http://incose.org/pwg/s-star/bundle/individuals'
+	]
+}
+
+/*
+ * A task to run a set of SPARQL queries on a Fuseki dataset endpoint
+ */
+task owlQuery(type:io.opencaesar.owl.query.OwlQueryTask, dependsOn: owlLoad) {
+	endpointURL = 'http://localhost:3030/incose'
+	queryPath = file('src/sparql')
+	resultPath = file('build/frames')
+}
+
+/*
+ * A task to build the project, which executes several tasks together
+ */
+task build() {
+	dependsOn owlReason
+}
+
+/*
+ * A task to delete the build artifacts
+ */
+task clean(type: Delete) {
+	delete 'build'
+}
+
+/*
+ * Publish to Maven spec
+ */
+apply plugin: 'maven-publish'
+
+task omlZip(type: Zip) {
+	from file('src/oml')
+	include "**/*.oml"
+	destinationDirectory = file('build/libs')
+	archiveBaseName = project.name
+	archiveVersion = project.version
+}
+
+publishToMavenLocal.dependsOn omlZip
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifact omlZip
+			pom.withXml {
+                def dependencies = asNode().appendNode('dependencies')
+                configurations.oml.allDependencies.stream().each {
+                    def dependency = dependencies.appendNode('dependency')
+                    dependency.appendNode('groupId', it.group)
+                    dependency.appendNode('artifactId', it.name)
+                    dependency.appendNode('version', it.version)
+                }
+            }
+        }
+    }
+}
+
+/*
+ * Publish to Bintrary Spec
+ */
+apply plugin: 'com.jfrog.bintray'
+
+ext.gh = [
+	dep: 'https://github.com',
+	org: 'opencaesar',
+	rep: 'ontologies'
+]
+
+bintray {
+	user = System.getenv('BINTRAY_USER')
+	key = System.getenv('BINTRAY_API_KEY')
+	publications = ['maven']
+	publish = true
+	override = true
+	pkg {
+		name = project.name
+		repo = gh.rep
+		userOrg = gh.org
+		desc = project.description
+		licenses = ['Apache-2.0']
+		websiteUrl = gh.dep+'/'+gh.org+'/'+gh.rep
+        issueTrackerUrl = gh.dep+'/'+gh.org+'/'+gh.rep+'/issues'
+		vcsUrl = gh.dep+'/'+gh.org+'/'+gh.rep+'.git'
+		version {
+			name = project.version
+			desc = project.version
+			released  = new Date()
+		}
+	}
+
+}
+
+/*
+ * Start and stop the Fuseki server
+ */
+task startFuseki(type: io.opencaesar.owl.fuseki.StartFusekiTask) {
+	configurationPath = file('.fuseki.ttl')
+	outputFolderPath = file('.fuseki')
+}
+
+task stopFuseki(type: io.opencaesar.owl.fuseki.StopFusekiTask) {
+	outputFolderPath = file('.fuseki')
+}
