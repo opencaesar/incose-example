@@ -2,5 +2,49 @@ description <http://incose.org/pwg/s-star/power-converter> with # as power-conve
 	
 	uses <http://incose.org/pwg/s-star/power-interface>
 	
-	ci lpds : interface:System
+	ci lpds: interface:System
+	ci ipc: interface:System
+	ci epd: interface:System
+	ci dcu: interface:System
+	ci le: interface:System
+	
+	ci lpds_po: power-interface:PowerOutputInterface
+	
+	ci ipc_pi: power-interface:PowerInputInterface
+	ci ipc_po: power-interface:PowerOutputInterface
+	
+	ci epd_pi: power-interface:PowerInputInterface
+	
+	ci lpds_ipc: interface:SystemOfAccess
+	ci ipc_epd: interface:SystemOfAccess
+	
+	ref ci lpds [
+		interface:providesInterface lpds_po
+	]
+	
+	ref ci ipc [
+		interface:providesInterface ipc_pi
+		interface:providesInterface ipc_po
+	]
+	
+	ref ci epd [
+		interface:providesInterface epd_pi
+	]
+	
+	ref ci lpds_po [
+		interface:permitsSOA lpds_ipc
+	]
+	
+	ref ci ipc_pi [
+		interface:permitsSOA lpds_ipc
+	]
+	
+	ref ci ipc_po [
+		interface:permitsSOA ipc_epd
+	]
+	
+	ref ci epd_pi [
+		interface:permitsSOA ipc_epd
+	]
+	
 }
