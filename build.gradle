@@ -23,8 +23,8 @@ buildscript {
 		classpath 'io.opencaesar.owl:owl-query-gradle:+'
 		classpath 'io.opencaesar.owl:owl-load-gradle:+'
 		classpath 'io.opencaesar.owl:owl-reason-gradle:+'
-		classpath 'io.opencaesar.owl:oml2owl-gradle:+'
-		classpath 'io.opencaesar.oml:oml-merge-gradle:+'
+		classpath 'io.opencaesar.owl:oml2owl-gradle:0.7.+'
+		classpath 'io.opencaesar.oml:oml-merge-gradle:0.7.+'
 		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:+'
 		// needed since gradle-bintray-plugin brings an old version of xerces
 		configurations.classpath.exclude group: 'xerces', module: 'xercesImpl'
