@@ -1,7 +1,8 @@
 @dc:title "S*Metamodel Interface Pattern"
 
 vocabulary <http://incose.org/pwg/s-star/interface> with # as interface {
-
+    // This is Maged and this is Steve
+    // This is Steve
     extends <http://www.w3.org/2001/XMLSchema.oml>
 
     @dc:^description "An Interface is an association of Input/Outputs, Functional Interactions, Systems of Access (SOAs), and Architectural Relationships through which a system interacts with other systems. Each interface is owned by that system."
