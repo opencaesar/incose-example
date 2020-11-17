@@ -1,0 +1,5 @@
+tasks:
+  - init: ./gradlew build
+vscode:
+  extensions:
+    - JPL.oml-luxor@0.8.2:MGF2nKZca24bPa6XUhEFeQ==
