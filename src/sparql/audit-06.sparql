@@ -6,6 +6,6 @@ prefix interface: <http://incose.org/pwg/s-star/interface#>
 select distinct ?if ?io ?ok
 where {
 	?if a interface:Interface ; interface:permitsInputOutput ?io .
-	bind ("false"^^xsd:boolean as ?ok)
+	bind ("false"^^xsd:boolean as ?ok) # relation from input/output to system of access?
 }
 	
