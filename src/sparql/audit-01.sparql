@@ -1,0 +1,10 @@
+# An S*Interface must have at least one associated S*System
+
+prefix interface: <http://incose.org/pwg/s-star/interface#>
+
+select distinct ?if ?ok
+where {
+	?if a interface:Interface
+	bind(exists { [ a interface:System ] interface:providesInterface ?if . } as ?ok)
+}
+	

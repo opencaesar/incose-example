@@ -1,0 +1,10 @@
+# An S*Interface must have at least one associated S*System of Access
+
+prefix interface: <http://incose.org/pwg/s-star/interface#>
+
+select distinct ?if ?ok
+where {
+	?if a interface:Interface
+	bind(exists { ?if interface:permitsSOA [ a interface:SystemOfAccess ] } as ?ok)
+}
+	

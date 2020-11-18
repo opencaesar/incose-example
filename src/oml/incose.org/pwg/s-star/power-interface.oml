@@ -10,4 +10,14 @@ vocabulary <http://incose.org/pwg/s-star/power-interface> with # as power-interf
 	concept HandlingInterface :> interface:Interface
 	
 	concept EnvironmentalInterface :> interface:Interface
+	
+	concept PowerInputOutput :> interface:InputOutput
+	
+	concept PowerFunctionalInteraction :> interface:FunctionalInteraction
+	concept TransferElectricalPower :> PowerFunctionalInteraction
+	
+	ref concept PowerInterface [
+		restricts all relation interface:permitsInputOutput to PowerInputOutput
+		restricts all relation interface:permitsFunctionalInteraction to PowerFunctionalInteraction
+	]
 }

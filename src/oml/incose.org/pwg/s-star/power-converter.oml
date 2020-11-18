@@ -1,22 +1,53 @@
 description <http://incose.org/pwg/s-star/power-converter> with # as power-converter {
 	
+	uses <http://www.w3.org/2000/01/rdf-schema>
+	
 	uses <http://incose.org/pwg/s-star/power-interface>
 	
+	@rdfs:label "Local Power Distribution System"
 	ci lpds: interface:System
+	
+	@rdfs:label "International Power Converter"
 	ci ipc: interface:System
+	
+	@rdfs:label "Externally-Powered Device"
 	ci epd: interface:System
+	
+	@rdfs:label "Device and Converter User"
 	ci dcu: interface:System
+	
+	@rdfs:label "Local Environment"
 	ci le: interface:System
 	
+	@rdfs:label "Local Power Output Interface"
 	ci lpds_po: power-interface:PowerOutputInterface
 	
+	@rdfs:label "International Power Converter Power Input Interface"
 	ci ipc_pi: power-interface:PowerInputInterface
+	
+	@rdfs:label "International Power Converter Power Output Interface"
 	ci ipc_po: power-interface:PowerOutputInterface
 	
+	@rdfs:label "Externally Powered Device Power Input Interface"
 	ci epd_pi: power-interface:PowerInputInterface
 	
+	@rdfs:label "Local Power to Converter SOA"
 	ci lpds_ipc: interface:SystemOfAccess
+	
+	@rdfs:label "Converter to Externally-Powered Device SOA"
 	ci ipc_epd: interface:SystemOfAccess
+	
+	@rdfs:label "Input Power"
+	ci ip: power-interface:PowerInputOutput
+	
+	@rdfs:label "Output Power"
+	ci op: power-interface:PowerInputOutput
+	
+	@rdfs:label "Transfer Input Electrical Power"
+	ci tip: power-interface:TransferElectricalPower
+	
+	@rdfs:label "Transfer Output Electrical Power"
+	ci top: power-interface:TransferElectricalPower
 	
 	ref ci lpds [
 		interface:providesInterface lpds_po
@@ -32,19 +63,27 @@ description <http://incose.org/pwg/s-star/power-converter> with # as power-conve
 	]
 	
 	ref ci lpds_po [
+		interface:permitsInputOutput ip
 		interface:permitsSOA lpds_ipc
+		interface:permitsFunctionalInteraction tip
 	]
 	
 	ref ci ipc_pi [
+		interface:permitsInputOutput ip
 		interface:permitsSOA lpds_ipc
+		interface:permitsFunctionalInteraction tip
 	]
 	
 	ref ci ipc_po [
+		interface:permitsInputOutput op
 		interface:permitsSOA ipc_epd
+		interface:permitsFunctionalInteraction top
 	]
 	
 	ref ci epd_pi [
+		interface:permitsInputOutput op
 		interface:permitsSOA ipc_epd
+		interface:permitsFunctionalInteraction top
 	]
 	
 }
