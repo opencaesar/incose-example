@@ -20,28 +20,28 @@ description <http://incose.org/pwg/s-star/power-converter> with # as power-conve
 	ci le: interface:System
 	
 	@rdfs:label "Local Power Output Interface"
-	ci lpds_po: power-interface:PowerOutputInterface
+	ci lpds_po: power-interface:ElectricalPowerOutputInterface
 	
 	@rdfs:label "International Power Converter Power Input Interface"
-	ci ipc_pi: power-interface:PowerInputInterface
+	ci ipc_pi: power-interface:ElectricalPowerInputInterface
 	
 	@rdfs:label "International Power Converter Power Output Interface"
-	ci ipc_po: power-interface:PowerOutputInterface
+	ci ipc_po: power-interface:ElectricalPowerOutputInterface
 	
 	@rdfs:label "Externally Powered Device Power Input Interface"
-	ci epd_pi: power-interface:PowerInputInterface
+	ci epd_pi: power-interface:ElectricalPowerInputInterface
 	
 	@rdfs:label "Local Power to Converter SOA"
-	ci lpds_ipc: interface:SystemOfAccess
+	ci lpds_ipc: power-interface:PowerDistributionSystemOfAccess
 	
 	@rdfs:label "Converter to Externally-Powered Device SOA"
-	ci ipc_epd: interface:SystemOfAccess
+	ci ipc_epd: power-interface:PowerDistributionSystemOfAccess
 	
 	@rdfs:label "Input Power"
-	ci ip: power-interface:PowerInputOutput
+	ci ip: power-interface:ElectricalPower
 	
 	@rdfs:label "Output Power"
-	ci op: power-interface:PowerInputOutput
+	ci op: power-interface:ElectricalPower
 	
 	@rdfs:label "Transfer Input Electrical Power"
 	ci tip: power-interface:TransferElectricalPower

@@ -4,7 +4,7 @@ vocabulary <http://incose.org/pwg/s-star/diagram1> with # as diagram1 {
 
     ref concept interface:Interface
 
-    ref concept power-interface:PowerInterface
+    ref concept power-interface:ElectricalPowerInterface
 
     ref concept interface:System
 

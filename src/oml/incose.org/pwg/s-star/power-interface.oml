@@ -2,22 +2,25 @@ vocabulary <http://incose.org/pwg/s-star/power-interface> with # as power-interf
 	
 	extends <http://incose.org/pwg/s-star/interface>
 	
-	concept PowerInterface :> interface:Interface
-	concept PowerInputInterface :> PowerInterface
-	concept PowerOutputInterface :> PowerInterface
+	concept ElectricalPowerInterface :> interface:Interface
+	concept ElectricalPowerInputInterface :> ElectricalPowerInterface
+	concept ElectricalPowerOutputInterface :> ElectricalPowerInterface
 	
 	concept ConfigurationAndInformationInterface :> interface:Interface
 	concept HandlingInterface :> interface:Interface
 	
 	concept EnvironmentalInterface :> interface:Interface
 	
-	concept PowerInputOutput :> interface:InputOutput
+	concept ElectricalPower :> interface:InputOutput
 	
 	concept PowerFunctionalInteraction :> interface:FunctionalInteraction
 	concept TransferElectricalPower :> PowerFunctionalInteraction
 	
-	ref concept PowerInterface [
-		restricts all relation interface:permitsInputOutput to PowerInputOutput
+	concept PowerDistributionSystemOfAccess :> interface:SystemOfAccess
+	
+	ref concept ElectricalPowerInterface [
+		restricts all relation interface:permitsInputOutput to ElectricalPower
 		restricts all relation interface:permitsFunctionalInteraction to PowerFunctionalInteraction
+		restricts all relation interface:permitsSOA to PowerDistributionSystemOfAccess
 	]
 }
