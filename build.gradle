@@ -120,7 +120,7 @@ task owlLoad(type:io.opencaesar.owl.load.OwlLoadTask, dependsOn: owlReason) {
 		'http://incose.org/pwg/s-star/bundle/classes',
 	    'http://incose.org/pwg/s-star/bundle/properties',
 	    'http://incose.org/pwg/s-star/bundle/individuals'
-	]
+ 	]
 }
 
 /*

@@ -1,10 +1,11 @@
 # An S*Interface must have at least one associated S*Functional Interaction
 
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix interface: <http://incose.org/pwg/s-star/interface#>
 
-select distinct ?if ?ok
+select distinct ?if ?if_l ?ok
 where {
-	?if a interface:Interface
+	?if a interface:Interface ; rdfs:label ?if_l .
 	bind(exists { ?if interface:permitsFunctionalInteraction [ a interface:FunctionalInteraction ] } as ?ok)
 }
 	

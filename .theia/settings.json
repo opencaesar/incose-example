@@ -1,4 +1,5 @@
 {
     "editor.autoSave": "on",
-    "editor.autoSaveDelay": 100
+    "editor.autoSaveDelay": 100,
+    "java.configuration.updateBuildConfiguration": "automatic"
 }

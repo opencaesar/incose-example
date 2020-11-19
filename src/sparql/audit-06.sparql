@@ -1,11 +1,13 @@
 # Each S*Input/Output associated with an S*Interface must be associated with one S*System of Access also associated with that S*Interface
 
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix interface: <http://incose.org/pwg/s-star/interface#>
 
-select distinct ?if ?io ?ok
+select distinct ?if ?if_l ?io ?io_l ?ok
 where {
-	?if a interface:Interface ; interface:permitsInputOutput ?io .
+	?if a interface:Interface ; rdfs:label ?if_l ; interface:permitsInputOutput ?io .
+    ?io rdfs:label ?io_l .
 	bind ("false"^^xsd:boolean as ?ok) # relation from input/output to system of access?
 }
 	
