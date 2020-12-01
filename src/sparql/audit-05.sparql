@@ -8,6 +8,10 @@ select distinct ?if ?if_l ?io ?io_l ?ok
 where {
 	?if a interface:Interface ; rdfs:label ?if_l ; interface:permitsInputOutput ?io .
     ?io rdfs:label ?io_l .
-	bind ("false"^^xsd:boolean as ?ok) # relation from input/output to functional interaction?
+	bind (exists {
+        ?if interface:permitsFunctionalInteraction ?fi .
+        ?fi interface:isUsedDuring ?po .
+        { ?po interface:sends ?io } union { ?po interface:receives ?io }
+    } as ?ok)
 }
 	
