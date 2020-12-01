@@ -173,6 +173,13 @@ vocabulary <http://incose.org/pwg/s-star/interface> with # as interface {
         forward isFacilitatedByExternally
     ]
 
+   @dc:^description "The Is Facilitated By Internally relationship links a Port to the System of Access that it uses inside of the System boundary."
+    relation entity IsFacilitatedByInternally [
+        from Port
+        to SystemOfAccess
+        forward isFacilitatedByInternally
+    ]
+
     @dc:^description "The Is Linked By Externally relationship links a Port to the Architectural Relationship that it uses outside of the System boundary."
     relation entity IsLinkedByExternally [
         from Port

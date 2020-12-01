@@ -8,6 +8,10 @@ select distinct ?if ?if_l ?io ?io_l ?ok
 where {
 	?if a interface:Interface ; rdfs:label ?if_l ; interface:permitsInputOutput ?io .
     ?io rdfs:label ?io_l .
-	bind ("false"^^xsd:boolean as ?ok) # relation from input/output to system of access?
+	bind ( exists {
+        ?if interface:permitsSOA ?soa .
+        { ?po interface:isFacilitatedByExternally ?soa } union { ?po interface:isFacilitatedByInternally ?soa }
+        { ?po interface:sends ?io } union { ?po interface:receives ?io }
+    } as ?ok) # relation from input/output to system of access?
 }
 	
