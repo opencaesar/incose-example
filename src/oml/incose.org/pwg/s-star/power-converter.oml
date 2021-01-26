@@ -124,13 +124,11 @@ description <http://incose.org/pwg/s-star/power-converter> with # as power-conve
 	
 	ref ci pi_1 [
 		interface:receives ip
-		interface:sends ip
 		interface:isUsedDuring tip
 		interface:isFacilitatedByInternally lpds_ipc
 	]
 	
 	ref ci po_1 [
-		interface:receives op
 		interface:sends op
 		interface:isUsedDuring top
 		interface:isFacilitatedByInternally ipc_epd

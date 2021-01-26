@@ -14,10 +14,10 @@ vocabulary <http://incose.org/pwg/s-star/interface> with # as interface {
     concept InputOutput
 
     @dc:^description ""
-    concept ExternalInputOutput :> InputOutput
+//    concept ExternalInputOutput :> InputOutput
 
     @dc:^description ""
-    concept InternalInputOutput :> InputOutput
+//    concept InternalInputOutput :> InputOutput
 
     @dc:^description "A Functional Interaction is an interaction of two or more Systems.  Interaction means that one system affects the state of another system.  All interactions are relationships between systems, expressing the externally visible behavioral outcome (requirement) of the interactions.  A Functional Interaction is also sometimes called a Collaboration."
     concept FunctionalInteraction
@@ -33,18 +33,6 @@ vocabulary <http://incose.org/pwg/s-star/interface> with # as interface {
 
     @dc:^description "A Port is the coincidence of an Input/Output and System border.  A Port is a specific relationship between a received and sent Input/Output, internal and external Systems of Access (SOAs), internal and external Architectural Relationship, and a Functional Interaction."
     concept Port
-
-    @dc:^description ""
-    concept InputPort :> Port [
-        restricts all relation sends to InternalInputOutput
-        restricts all relation receives to ExternalInputOutput
-    ]
-
-    @dc:^description ""
-    concept OutputPort :> Port [
-        restricts all relation sends to ExternalInputOutput
-        restricts all relation receives to InternalInputOutput
-   ]
 
     @dc:^description "A Domain is an environmental system.  The components and relationships of this system establish an overall environment (domain) for a subject system.  A domain establishes the domain knowledge relevant to a subject system."
     concept Domain
