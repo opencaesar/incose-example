@@ -13,4 +13,5 @@ where {
         { ?po interface:isFacilitatedByExternally ?soa } union { ?po interface:isFacilitatedByInternally ?soa }
         { ?po interface:sends ?io } union { ?po interface:receives ?io }
     } as ?ok)
+}
 	

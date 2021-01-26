@@ -4,6 +4,8 @@ description <http://incose.org/pwg/s-star/power-converter> with # as power-conve
 	
 	uses <http://incose.org/pwg/s-star/power-interface>
 	
+	// Systems
+	
 	@rdfs:label "Local Power Distribution System"
 	ci lpds: interface:System
 	
@@ -19,6 +21,8 @@ description <http://incose.org/pwg/s-star/power-converter> with # as power-conve
 	@rdfs:label "Local Environment"
 	ci le: interface:System
 	
+	// Interfaces
+	
 	@rdfs:label "Local Power Output Interface"
 	ci lpds_po: power-interface:ElectricalPowerOutputInterface
 	
@@ -31,11 +35,7 @@ description <http://incose.org/pwg/s-star/power-converter> with # as power-conve
 	@rdfs:label "Externally Powered Device Power Input Interface"
 	ci epd_pi: power-interface:ElectricalPowerInputInterface
 	
-	@rdfs:label "Local Power to Converter SOA"
-	ci lpds_ipc: power-interface:PowerDistributionSystemOfAccess
-	
-	@rdfs:label "Converter to Externally-Powered Device SOA"
-	ci ipc_epd: power-interface:PowerDistributionSystemOfAccess
+	// Input/Outputs
 	
 	@rdfs:label "Input Power"
 	ci ip: power-interface:ElectricalPower
@@ -43,47 +43,96 @@ description <http://incose.org/pwg/s-star/power-converter> with # as power-conve
 	@rdfs:label "Output Power"
 	ci op: power-interface:ElectricalPower
 	
+	// Interactions
+	
 	@rdfs:label "Transfer Input Electrical Power"
 	ci tip: power-interface:TransferElectricalPower
 	
 	@rdfs:label "Transfer Output Electrical Power"
 	ci top: power-interface:TransferElectricalPower
 	
+	// Systems of Access
+	
+	@rdfs:label "Local Power to Converter SOA"
+	ci lpds_ipc: power-interface:PowerDistributionSystemOfAccess
+	
+	@rdfs:label "Converter to Externally-Powered Device SOA"
+	ci ipc_epd: power-interface:PowerDistributionSystemOfAccess
+	
+	// Ports
+	
+	@rdfs:label "PI.1"
+	ci pi_1: interface:Port
+	
+	@rdfs:label "PO.1"
+	ci po_1: interface:Port
+	
+	// System relations
+	
 	ref ci lpds [
 		interface:providesInterface lpds_po
+		interface:interactsThrough pi_1
 	]
 	
 	ref ci ipc [
 		interface:providesInterface ipc_pi
 		interface:providesInterface ipc_po
+		interface:interactsThrough pi_1
+		interface:interactsThrough po_1
 	]
 	
 	ref ci epd [
 		interface:providesInterface epd_pi
+		interface:interactsThrough po_1
 	]
+	
+	// Interface relations
 	
 	ref ci lpds_po [
 		interface:permitsInputOutput ip
 		interface:permitsSOA lpds_ipc
 		interface:permitsFunctionalInteraction tip
+		interface:groups pi_1
 	]
 	
 	ref ci ipc_pi [
 		interface:permitsInputOutput ip
 		interface:permitsSOA lpds_ipc
 		interface:permitsFunctionalInteraction tip
+		interface:groups pi_1
 	]
 	
 	ref ci ipc_po [
 		interface:permitsInputOutput op
 		interface:permitsSOA ipc_epd
 		interface:permitsFunctionalInteraction top
+		interface:groups po_1
 	]
 	
 	ref ci epd_pi [
 		interface:permitsInputOutput op
 		interface:permitsSOA ipc_epd
 		interface:permitsFunctionalInteraction top
+		interface:groups po_1
 	]
 	
+	// Input/output relations
+	
+	// Interaction relations
+	
+	// Port relations
+	
+	ref ci pi_1 [
+		interface:receives ip
+		interface:sends ip
+		interface:isUsedDuring tip
+		interface:isFacilitatedByInternally lpds_ipc
+	]
+	
+	ref ci po_1 [
+		interface:receives op
+		interface:sends op
+		interface:isUsedDuring top
+		interface:isFacilitatedByInternally ipc_epd
+	]
 }
