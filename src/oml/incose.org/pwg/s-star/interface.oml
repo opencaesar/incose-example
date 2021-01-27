@@ -111,7 +111,7 @@ vocabulary <http://incose.org/pwg/s-star/interface> with # as interface {
         forward hasSubject
     ]
 
-    @dc:^description "The Allocated To relationship assigns a Class to a Modeled Relationship Role in a Molded Relationship."
+    @dc:^description "The Allocated To relationship assigns a Class to a Modeled Relationship Role in a Modeled Relationship."
 //    relation entity AllocatedTo [
 //        from ?
 //        to ?
@@ -120,15 +120,15 @@ vocabulary <http://incose.org/pwg/s-star/interface> with # as interface {
 
     @dc:^description "The Exemplifies relationship links an Architectural Relationship to its Input/Outputs that are used to refer to the full set of Input/Outputs summarized by the Architectural Relationship."
     relation entity Exemplifies [
-        from InputOutput
-        to ArchitecturalRelationship
+        from ArchitecturalRelationship
+        to InputOutput
         forward exemplifies
     ]
 
     @dc:^description "The Emerges From relationship links an Architectural Relationship with its summarized Input/Outputs."
     relation entity EmergesFrom [
-        from InputOutput // summarized?
-        to ArchitecturalRelationship
+        from ArchitecturalRelationship
+        to InputOutput // summarized?
         forward emergesFrom
     ]
 
@@ -181,15 +181,22 @@ vocabulary <http://incose.org/pwg/s-star/interface> with # as interface {
         forward isFacilitatedByInternally
     ]
 
+    @dc:^description "The Is Linked By relationship links a Port to the Architectural Relationship that it uses inside or outside of the System boundary."
+    relation entity IsLinkedBy [
+        from Port
+        to ArchitecturalRelationship
+        forward isLinkedBy
+    ]
+
     @dc:^description "The Is Linked By Externally relationship links a Port to the Architectural Relationship that it uses outside of the System boundary."
-    relation entity IsLinkedByExternally [
+    relation entity IsLinkedByExternally :> IsLinkedBy [
         from Port
         to ArchitecturalRelationship
         forward isLinkedByExternally
     ]
 
     @dc:^description "The Is Linked By Internally relationship links a Port to the Architectural Relationship that it uses inside of the System boundary."
-    relation entity IsLinkedByInternally [
+    relation entity IsLinkedByInternally :> IsLinkedBy [
         from Port
         to ArchitecturalRelationship
         forward isLinkedByInternally

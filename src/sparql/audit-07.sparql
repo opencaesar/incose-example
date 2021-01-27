@@ -1,0 +1,16 @@
+# Each S*Architectural Relationship associated with an S*Interface must be associated with one S*Input/Output also associated with that S*Interface
+
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix interface: <http://incose.org/pwg/s-star/interface#>
+
+select distinct ?if ?if_l ?ar ?ar_l ?ok
+where {
+	?if a interface:Interface ; rdfs:label ?if_l ; interface:permitsArchitecturalRelationship ?ar .
+    ?ar rdfs:label ?ar_l .
+	bind ( exists {
+        ?if interface:permitsInputOutput ?io .
+        { ?io interface:exemplifies ?ar } union { ?ar interface:emergesFrom ?io }
+    } as ?ok)
+}
+	
