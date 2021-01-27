@@ -132,15 +132,22 @@ vocabulary <http://incose.org/pwg/s-star/interface> with # as interface {
         forward emergesFrom
     ]
 
+    @dc:^description "The Exchanges relationship links an external Input/Output to an output Port or an internal Input/Output to an input Port."
+    relation entity Exchanges [
+        from Port
+        to InputOutput
+        forward exchanges
+    ]
+
     @dc:^description "The Sends relationship links an external Input/Output to an output Port or an internal Input/Output to an input Port."
-    relation entity Sends [
+    relation entity Sends :> Exchanges [
         from Port
         to InputOutput
         forward sends
     ]
 
     @dc:^description "The Receives relationship links an internal Input/Output to an output Port or an external Input/Output to an input Port."
-    relation entity Receives [
+    relation entity Receives :> Exchanges [
         from Port
         to InputOutput
         forward receives
@@ -153,15 +160,22 @@ vocabulary <http://incose.org/pwg/s-star/interface> with # as interface {
         forward isUsedDuring
     ]
 
+    @dc:^description "The Is Facilitated By relationship links a Port to the System of Access that it uses inside or outside of the System boundary."
+    relation entity IsFacilitatedBy [
+        from Port
+        to SystemOfAccess
+        forward isFacilitatedBy
+    ]
+
     @dc:^description "The Is Facilitated By Externally relationship links a Port to the System of Access that it uses outside of the System boundary."
-    relation entity IsFacilitatedByExternally [
+    relation entity IsFacilitatedByExternally :> IsFacilitatedBy [
         from Port
         to SystemOfAccess
         forward isFacilitatedByExternally
     ]
 
    @dc:^description "The Is Facilitated By Internally relationship links a Port to the System of Access that it uses inside of the System boundary."
-    relation entity IsFacilitatedByInternally [
+    relation entity IsFacilitatedByInternally :> IsFacilitatedBy [
         from Port
         to SystemOfAccess
         forward isFacilitatedByInternally

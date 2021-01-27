@@ -10,8 +10,8 @@ where {
     ?io rdfs:label ?io_l .
 	bind (exists {
         ?if interface:permitsFunctionalInteraction ?fi .
-        ?po interface:isUsedDuring ?fi .
-        { ?po interface:sends ?io } union { ?po interface:receives ?io }
+        ?po interface:isUsedDuring ?fi ;
+            interface:exchanges ?io .
     } as ?ok)
 }
 	

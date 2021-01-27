@@ -10,8 +10,8 @@ where {
     ?io rdfs:label ?io_l .
 	bind ( exists {
         ?if interface:permitsSOA ?soa .
-        { ?po interface:isFacilitatedByExternally ?soa } union { ?po interface:isFacilitatedByInternally ?soa }
-        { ?po interface:sends ?io } union { ?po interface:receives ?io }
+        ?po interface:isFacilitatedBy ?soa ;
+            interface:exchanges ?io .
     } as ?ok)
 }
 	
