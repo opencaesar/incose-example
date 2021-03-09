@@ -1,6 +1,6 @@
 description bundle <http://incose.org/pwg/s-star/converter-bundle> with # as converter-bundle {
 	
-	uses <http://incose.org/pwg/s-star/power-bundle>
+	uses <http://incose.org/pwg/s-star/power-signal-bundle>
 
 	includes <http://incose.org/pwg/s-star/power-converter>
 	

@@ -1,0 +1,26 @@
+vocabulary <http://incose.org/pwg/s-star/signal-interface> with # as signal-interface {
+	
+	extends <http://incose.org/pwg/s-star/interface>
+	
+	concept ElectricalSignalInterface :> interface:Interface
+	concept ElectricalSignalInputInterface :> ElectricalSignalInterface
+	concept ElectricalSignalOutputInterface :> ElectricalSignalInterface
+	
+	concept ConfigurationAndInformationInterface :> interface:Interface
+	concept HandlingInterface :> interface:Interface
+	
+	concept EnvironmentalInterface :> interface:Interface
+	
+	concept ElectricalSignal :> interface:InputOutput
+	
+	concept SignalFunctionalInteraction :> interface:FunctionalInteraction
+	concept TransferElectricalSignal :> SignalFunctionalInteraction
+	
+	concept SignalDistributionSystemOfAccess :> interface:SystemOfAccess
+	
+	ref concept ElectricalSignalInterface [
+		restricts all relation interface:permitsInputOutput to ElectricalSignal
+		restricts all relation interface:permitsFunctionalInteraction to SignalFunctionalInteraction
+		restricts all relation interface:permitsSOA to SignalDistributionSystemOfAccess
+	]
+}
