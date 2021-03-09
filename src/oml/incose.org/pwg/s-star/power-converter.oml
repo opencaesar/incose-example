@@ -149,4 +149,8 @@ description <http://incose.org/pwg/s-star/power-converter> with # as power-conve
 	ref ci ar_1 [
 		interface:emergesFrom ip
 	]
+	
+	ref ci ar_2 [
+		interface:emergesFrom op
+	]
 }
