@@ -86,7 +86,7 @@ task owlReason(type:io.opencaesar.owl.reason.OwlReasonTask, dependsOn: omlToOwl)
 	// OWL catalog
 	catalogPath = file('build/owl/catalog.xml')
 	// Input ontology IRI to reason on
-	inputOntologyIri = 'http://incose.org/pwg/s-star/converter-bundle'
+	inputOntologyIri = 'http://incose.org/pwg/s-star/description/converter-bundle'
 	// Entailment statements to generate and the ontologies to persist them in
 	specs = [
 		'http://incose.org/pwg/s-star/bundle/classes = ALL_SUBCLASS',
@@ -130,6 +130,7 @@ task owlQuery(type:io.opencaesar.owl.query.OwlQueryTask, dependsOn: owlLoad) {
 	endpointURL = 'http://localhost:3030/incose'
 	queryPath = file('src/sparql')
 	resultPath = file('build/frames')
+	format = 'tsv'
 }
 
 /*

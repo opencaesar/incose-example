@@ -1,8 +1,8 @@
-description <http://incose.org/pwg/s-star/power-converter> with # as power-converter {
+description <http://incose.org/pwg/s-star/description/power-converter> with # as power-converter {
 	
 	uses <http://www.w3.org/2000/01/rdf-schema>
 	
-	uses <http://incose.org/pwg/s-star/power-interface>
+	uses <http://incose.org/pwg/s-star/vocabulary/power-interface>
 	
 	// Systems
 	
