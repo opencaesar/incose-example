@@ -47,7 +47,7 @@ class ConceptInstance
 
   def to_s
     lines = []
-    lines << %(    rdfs:label "#{@label}")
+    lines << %(    @rdfs:label "#{@label}")
     lines << "    ci #{@name}: #{@types.to_a.join(', ')} ["
     @properties.each do |k, vs|
       vs.each { |v| lines << "        #{k} #{v}" }
@@ -74,43 +74,43 @@ table.each do |row|
   ia_cell = row['Configured Interaction Name']
   ia_label = ia_cell.to_s.split('::').last
   ia_type = ia_label.gsub(/ \[.*\z/, '').gsub(/\s+/, '')
-  ia_ci = cis.fetch(ia_label) { |k| cis[k] = ConceptInstance.new(ia_label, "interface:#{ia_type}") }
+  ia_ci = cis.fetch(ia_label) { |k| cis[k] = ConceptInstance.new(ia_label, "power-interface:#{ia_type}") }
 
   role_cell = row['Configured Role Name']
   role_label = role_cell.to_s.split('::').last
   role_type = role_label.gsub(/ \[.*\z/, '').gsub(/\s+/, '')
-  role_ci = cis.fetch(role_label) { |k| cis[k] = ConceptInstance.new(role_label, "interface:#{role_type}") }
+  role_ci = cis.fetch(role_label) { |k| cis[k] = ConceptInstance.new(role_label, "power-interface:#{role_type}") }
 
   if_label = if_cell.to_s.split('::').last
   if_type = if_label.gsub(/ \[.*\z/, '').gsub(/\s+/, '')
-  if_ci = cis.fetch(if_label) { |k| cis[k] = ConceptInstance.new(if_label, "interface:#{if_type}") }
+  if_ci = cis.fetch(if_label) { |k| cis[k] = ConceptInstance.new(if_label, "power-interface:#{if_type}") }
 
   io_cell = row['Configured Input Output Name']
   io_label = io_cell.to_s.split('::').last
   io_type = io_label.gsub(/ \[.*\z/, '').gsub(/\s+/, '')
-  io_ci = cis.fetch(io_label) { |k| cis[k] = ConceptInstance.new(io_label, "interface:#{io_type}") }
+  io_ci = cis.fetch(io_label) { |k| cis[k] = ConceptInstance.new(io_label, "power-interface:#{io_type}") }
 
   port_cell = row['Configured Port Name']
   port_label = port_cell.to_s.split('::').last
   port_type = port_label.gsub(/ \[.*\z/, '').gsub(/\s+/, '')
-  port_ci = cis.fetch(port_label) { |k| cis[k] = ConceptInstance.new(port_label, "interface:#{port_type}") }
+  port_ci = cis.fetch(port_label) { |k| cis[k] = ConceptInstance.new(port_label, "power-interface:#{port_type}") }
 
   pd_cell = row['Port Direction']
 
   soa_cell = row['Configured Input Output Name']
   soa_label = soa_cell.to_s.split('::').last
   soa_type = soa_label.gsub(/ \[.*\z/, '').gsub(/\s+/, '')
-  soa_ci = cis.fetch(soa_label) { |k| cis[k] = ConceptInstance.new(soa_label, "interface:#{soa_type}") }
+  soa_ci = cis.fetch(soa_label) { |k| cis[k] = ConceptInstance.new(soa_label, "power-interface:#{soa_type}") }
 
   if (ar_cell = row['Configured Arch Relat Name'])
     ar_label = ar_cell.to_s.split('::').last
     ar_type = ar_label.gsub(/ \[.*\z/, '').gsub(/\s+/, '')
-    ar_ci = cis.fetch(ar_label) { |k| cis[k] = ConceptInstance.new(ar_label, "interface:#{ar_type}") }
+    ar_ci = cis.fetch(ar_label) { |k| cis[k] = ConceptInstance.new(ar_label, "power-interface:#{ar_type}") }
 
     arr_cell = row['Configured Arch Relat Role Name']
     arr_label = arr_cell.to_s.split('::').last
     arr_type = arr_label.gsub(/ \[.*\z/, '').gsub(/\s+/, '')
-    arr_ci = cis.fetch(arr_label) { |k| cis[k] = ConceptInstance.new(arr_label, "interface:#{arr_type}") }
+    arr_ci = cis.fetch(arr_label) { |k| cis[k] = ConceptInstance.new(arr_label, "power-interface:#{arr_type}") }
   else
     ar_ci = nil
   end

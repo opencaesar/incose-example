@@ -1,86 +1,231 @@
 vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as power-interface {
 
-	extends <http://incose.org/pwg/s-star/vocabulary/interface>
+    extends <http://www.w3.org/2000/01/rdf-schema>
 
-	// Interfaces
-	concept ElectricalPowerInterface :> interface:Interface [
-		restricts all relation interface:permitsInputOutput to ElectricalPower
-		restricts all relation interface:permitsFunctionalInteraction to PowerFunctionalInteraction
-		restricts all relation interface:permitsSOA to PowerDistributionSystemOfAccess
-	]
+    extends <http://incose.org/pwg/s-star/vocabulary/interface>
 
-	concept ElectricalPowerInputInterface :> ElectricalPowerInterface
+    @rdfs:label "Convert Electrical Power"
+    concept ConvertElectricalPower :> interface:FunctionalInteraction [
+    ]
 
-	concept ElectricalPowerOutputInterface :> ElectricalPowerInterface
+    @rdfs:label "Electrically Powered Device"
+    concept ElectricallyPoweredDevice :> interface:System [
+    ]
 
-	concept ConfigurationAndInformationInterface :> interface:Interface [
-		restricts all relation interface:permitsInputOutput to ConfigurationAndInformationInputOutput
-		restricts all relation interface:permitsFunctionalInteraction to ConfigurationAndInformationFunctionalInteraction
-		restricts all relation interface:permitsSOA to ConfigurationAndInformationSystemOfAccess
-	]
+    @rdfs:label "Output Power"
+    concept OutputPower :> interface:InputOutput [
+    ]
 
-	concept HandlingInterface :> interface:Interface [
-		restricts all relation interface:permitsInputOutput to HandlingInputOutput
-		restricts all relation interface:permitsFunctionalInteraction to HandlingFunctionalInteraction
-		restricts all relation interface:permitsSOA to HandlingSystemOfAccess
-	]
+    @rdfs:label "DPI.1"
+    concept DPI.1 :> interface:Port [
+    ]
 
-	concept EnvironmentalInterface :> interface:Interface [
-		restricts all relation interface:permitsInputOutput to EnvironmentalInputOutput
-		restricts all relation interface:permitsFunctionalInteraction to EnvironmentalFunctionalInteraction
-		restricts all relation interface:permitsSOA to EnvironmentalSystemOfAccess
-	]
+    @rdfs:label "Device Power Connector"
+    concept DevicePowerConnector :> interface:SystemOfAccess [
+    ]
 
-	// Input/Outputs
-	concept ElectricalPower :> interface:InputOutput
+    @rdfs:label "Converts Electrical Power"
+    concept ConvertsElectricalPower :> interface:ArchitecturalRelationship [
+    ]
 
-	concept EnvironmentalInputOutput :> interface:InputOutput
+    @rdfs:label "Sink"
+    concept Sink :> interface:ArchitecturalRelationshipRole [
+    ]
 
-	concept Heat :> EnvironmentalInputOutput
+    @rdfs:label "International Power Converter"
+    concept InternationalPowerConverter :> interface:System [
+    ]
 
-	concept EMI :> EnvironmentalInputOutput
+    @rdfs:label "Environmental Interface"
+    concept EnvironmentalInterface :> interface:Interface [
+    ]
 
-	concept Contaminants :> EnvironmentalInputOutput
+    @rdfs:label "EMI"
+    concept EMI :> interface:InputOutput [
+    ]
 
-	concept Moisture :> EnvironmentalInputOutput
+    @rdfs:label "EN.2"
+    concept EN.2 :> interface:Port [
+    ]
 
-	concept ConfigurationAndInformationInputOutput :> interface:InputOutput
+    @rdfs:label "EMI Radiation"
+    concept EMIRadiation :> interface:SystemOfAccess [
+    ]
 
-	concept ConfigurationSetting :> ConfigurationAndInformationInputOutput
+    @rdfs:label "Heat"
+    concept Heat :> interface:InputOutput [
+    ]
 
-	concept DeviceStatusAndInformation :> ConfigurationAndInformationInputOutput
+    @rdfs:label "EN.1"
+    concept EN.1 :> interface:Port [
+    ]
 
-	concept HandlingInputOutput :> interface:InputOutput
+    @rdfs:label "Airspace Thermal Conduction"
+    concept AirspaceThermalConduction :> interface:SystemOfAccess [
+    ]
 
-	concept HandlingForce :> HandlingInputOutput
+    @rdfs:label "Power Input Interface"
+    concept PowerInputInterface :> interface:Interface [
+    ]
 
-	// Functional Interactions
-	concept PowerFunctionalInteraction :> interface:FunctionalInteraction
+    @rdfs:label "Input Power"
+    concept InputPower :> interface:InputOutput [
+    ]
 
-	concept TransferElectricalPower :> PowerFunctionalInteraction
+    @rdfs:label "PI.1"
+    concept PI.1 :> interface:Port [
+    ]
 
-	concept EnvironmentalFunctionalInteraction :> interface:FunctionalInteraction
+    @rdfs:label "Local Power Connector"
+    concept LocalPowerConnector :> interface:SystemOfAccess [
+    ]
 
-	concept ResistContamination :> EnvironmentalFunctionalInteraction
+    @rdfs:label "Converter"
+    concept Converter :> interface:ArchitecturalRelationshipRole [
+    ]
 
-	concept TolerateMoisture :> EnvironmentalFunctionalInteraction
+    @rdfs:label "Power Output Interface"
+    concept PowerOutputInterface :> interface:Interface [
+    ]
 
-	concept ConfigurationAndInformationFunctionalInteraction :> interface:FunctionalInteraction
+    @rdfs:label "PO.1"
+    concept PO.1 :> interface:Port [
+    ]
 
-	concept SetConfiguration :> ConfigurationAndInformationFunctionalInteraction
+    @rdfs:label "Local Environment"
+    concept LocalEnvironment :> interface:System [
+    ]
 
-	concept DisplayStatusAndInformation :> ConfigurationAndInformationFunctionalInteraction
+    @rdfs:label "ENV.3"
+    concept ENV.3 :> interface:Port [
+    ]
 
-	concept HandlingFunctionalInteraction :> interface:Interface
+    @rdfs:label "ENV.4"
+    concept ENV.4 :> interface:Port [
+    ]
 
-	concept HandleDevice :> HandlingFunctionalInteraction
+    @rdfs:label "Local Power Distribution System"
+    concept LocalPowerDistributionSystem :> interface:System [
+    ]
 
-	// Systems of Access
-	concept PowerDistributionSystemOfAccess :> interface:SystemOfAccess
+    @rdfs:label "LPO.1"
+    concept LPO.1 :> interface:Port [
+    ]
 
-	concept EnvironmentalSystemOfAccess :> interface:SystemOfAccess
+    @rdfs:label "Source"
+    concept Source :> interface:ArchitecturalRelationshipRole [
+    ]
 
-	concept ConfigurationAndInformationSystemOfAccess :> interface:SystemOfAccess
+    @rdfs:label "Display Status and Information"
+    concept DisplayStatusandInformation :> interface:FunctionalInteraction [
+    ]
 
-	concept HandlingSystemOfAccess :> interface:SystemOfAccess
+    @rdfs:label "Device and Converter User"
+    concept DeviceandConverterUser :> interface:System [
+    ]
+
+    @rdfs:label "Device Status and Information"
+    concept DeviceStatusandInformation :> interface:InputOutput [
+    ]
+
+    @rdfs:label "UC1.1"
+    concept UC1.1 :> interface:Port [
+    ]
+
+    @rdfs:label "HMI Display"
+    concept HMIDisplay :> interface:SystemOfAccess [
+    ]
+
+    @rdfs:label "Configuration and Information Interface"
+    concept ConfigurationandInformationInterface :> interface:Interface [
+    ]
+
+    @rdfs:label "CO.2"
+    concept CO.2 :> interface:Port [
+    ]
+
+    @rdfs:label "Handle Device"
+    concept HandleDevice :> interface:FunctionalInteraction [
+    ]
+
+    @rdfs:label "Handling Force"
+    concept HandlingForce :> interface:InputOutput [
+    ]
+
+    @rdfs:label "UHO.1"
+    concept UHO.1 :> interface:Port [
+    ]
+
+    @rdfs:label "Handle"
+    concept Handle :> interface:SystemOfAccess [
+    ]
+
+    @rdfs:label "Handling Interface"
+    concept HandlingInterface :> interface:Interface [
+    ]
+
+    @rdfs:label "HI.1"
+    concept HI.1 :> interface:Port [
+    ]
+
+    @rdfs:label "Resist Contamination"
+    concept ResistContamination :> interface:FunctionalInteraction [
+    ]
+
+    @rdfs:label "Contaminants"
+    concept Contaminants :> interface:InputOutput [
+    ]
+
+    @rdfs:label "EN.3"
+    concept EN.3 :> interface:Port [
+    ]
+
+    @rdfs:label "Airborne Particulates"
+    concept AirborneParticulates :> interface:SystemOfAccess [
+    ]
+
+    @rdfs:label "ENV.1"
+    concept ENV.1 :> interface:Port [
+    ]
+
+    @rdfs:label "Set Configuration"
+    concept SetConfiguration :> interface:FunctionalInteraction [
+    ]
+
+    @rdfs:label "Configuration Setting"
+    concept ConfigurationSetting :> interface:InputOutput [
+    ]
+
+    @rdfs:label "UCO.1"
+    concept UCO.1 :> interface:Port [
+    ]
+
+    @rdfs:label "HMI Buttons"
+    concept HMIButtons :> interface:SystemOfAccess [
+    ]
+
+    @rdfs:label "CI.1"
+    concept CI.1 :> interface:Port [
+    ]
+
+    @rdfs:label "Tolerate Moisture"
+    concept TolerateMoisture :> interface:FunctionalInteraction [
+    ]
+
+    @rdfs:label "Moisture"
+    concept Moisture :> interface:InputOutput [
+    ]
+
+    @rdfs:label "EN.4"
+    concept EN.4 :> interface:Port [
+    ]
+
+    @rdfs:label "Airborne Moisture Condensation"
+    concept AirborneMoistureCondensation :> interface:SystemOfAccess [
+    ]
+
+    @rdfs:label "ENV.2"
+    concept ENV.2 :> interface:Port [
+    ]
+
 }

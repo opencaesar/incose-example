@@ -1,156 +1,284 @@
 description <http://incose.org/pwg/s-star/description/power-converter> with # as power-converter {
-	
-	uses <http://www.w3.org/2000/01/rdf-schema>
-	
-	uses <http://incose.org/pwg/s-star/vocabulary/power-interface>
-	
-	// Systems
-	
-	@rdfs:label "Local Power Distribution System"
-	ci lpds: interface:System
-	
-	@rdfs:label "International Power Converter"
-	ci ipc: interface:System
-	
-	@rdfs:label "Externally-Powered Device"
-	ci epd: interface:System
-	
-	@rdfs:label "Device and Converter User"
-	ci dcu: interface:System
-	
-	@rdfs:label "Local Environment"
-	ci le: interface:System
-	
-	// Interfaces
-	
-	@rdfs:label "Local Power Output Interface"
-	ci lpds_po: power-interface:ElectricalPowerOutputInterface
-	
-	@rdfs:label "International Power Converter Power Input Interface"
-	ci ipc_pi: power-interface:ElectricalPowerInputInterface
-	
-	@rdfs:label "International Power Converter Power Output Interface"
-	ci ipc_po: power-interface:ElectricalPowerOutputInterface
-	
-	@rdfs:label "Externally Powered Device Power Input Interface"
-	ci epd_pi: power-interface:ElectricalPowerInputInterface
-	
-	// Input/Outputs
-	
-	@rdfs:label "Input Power"
-	ci ip: power-interface:ElectricalPower
-	
-	@rdfs:label "Output Power"
-	ci op: power-interface:ElectricalPower
-	
-	// Interactions
-	
-	@rdfs:label "Transfer Input Electrical Power"
-	ci tip: power-interface:TransferElectricalPower
-	
-	@rdfs:label "Transfer Output Electrical Power"
-	ci top: power-interface:TransferElectricalPower
-	
-	// Systems of Access
-	
-	@rdfs:label "Local Power to Converter SOA"
-	ci lpds_ipc: power-interface:PowerDistributionSystemOfAccess
-	
-	@rdfs:label "Converter to Externally-Powered Device SOA"
-	ci ipc_epd: power-interface:PowerDistributionSystemOfAccess
-	
-	// Ports
-	
-	@rdfs:label "PI.1"
-	ci pi_1: interface:Port
-	
-	@rdfs:label "PO.1"
-	ci po_1: interface:Port
-	
-	// Architectural Relationships
-	
-	@rdfs:label "AR.1"
-	ci ar_1: interface:ArchitecturalRelationship
-	
-	@rdfs:label "AR.2"
-	ci ar_2: interface:ArchitecturalRelationship
-	
-	// System relations
-	
-	ref ci lpds [
-		interface:providesInterface lpds_po
-		interface:interactsThrough pi_1
-	]
-	
-	ref ci ipc [
-		interface:providesInterface ipc_pi
-		interface:providesInterface ipc_po
-		interface:interactsThrough pi_1
-		interface:interactsThrough po_1
-	]
-	
-	ref ci epd [
-		interface:providesInterface epd_pi
-		interface:interactsThrough po_1
-	]
-	
-	// Interface relations
-	
-	ref ci lpds_po [
-		interface:permitsInputOutput ip
-		interface:permitsSOA lpds_ipc
-		interface:permitsFunctionalInteraction tip
-		interface:groups pi_1
-	]
-	
-	ref ci ipc_pi [
-		interface:permitsInputOutput ip
-		interface:permitsSOA lpds_ipc
-		interface:permitsFunctionalInteraction tip
-		interface:groups pi_1
-		interface:permitsArchitecturalRelationship ar_1
-	]
-	
-	ref ci ipc_po [
-		interface:permitsInputOutput op
-		interface:permitsSOA ipc_epd
-		interface:permitsFunctionalInteraction top
-		interface:groups po_1
-		interface:permitsArchitecturalRelationship ar_2
-	]
-	
-	ref ci epd_pi [
-		interface:permitsInputOutput op
-		interface:permitsSOA ipc_epd
-		interface:permitsFunctionalInteraction top
-		interface:groups po_1
-	]
-	
-	// Input/output relations
-	
-	// Interaction relations
-	
-	// Port relations
-	
-	ref ci pi_1 [
-		interface:receives ip
-		interface:isUsedDuring tip
-		interface:isFacilitatedByInternally lpds_ipc
-	]
-	
-	ref ci po_1 [
-		interface:sends op
-		interface:isUsedDuring top
-		interface:isFacilitatedByInternally ipc_epd
-	]
-	
-	// ArchitecturalRelationship relations
-	
-	ref ci ar_1 [
-		interface:emergesFrom ip
-	]
-	
-	ref ci ar_2 [
-		interface:emergesFrom op
-	]
+
+    uses <http://www.w3.org/2000/01/rdf-schema>
+
+    uses <http://incose.org/pwg/s-star/vocabulary/power-interface>
+
+    @rdfs:label "Convert Electrical Power [Power Output 1]"
+    ci convert_electrical_power_power_output_1_: power-interface:ConvertElectricalPower [
+    ]
+
+    @rdfs:label "International Power Converter"
+    ci international_power_converter: power-interface:InternationalPowerConverter [
+        interface:providesInterface environmental_interface
+        interface:providesInterface power_input_interface
+        interface:providesInterface power_output_interface_power_output_1_
+        interface:providesInterface power_output_interface_power_output_2_
+        interface:providesInterface power_output_interface_power_output_3_
+        interface:providesInterface configuration_and_information_interface
+        interface:providesInterface handling_interface
+        interface:interactsThrough en.2
+        interface:interactsThrough en.1
+        interface:interactsThrough pi.1
+        interface:interactsThrough po.1_power_output_1_
+        interface:interactsThrough po.1_power_output_2_
+        interface:interactsThrough po.1_power_output_3_
+        interface:interactsThrough co.2
+        interface:interactsThrough hi.1
+        interface:interactsThrough en.3
+        interface:interactsThrough ci.1
+        interface:interactsThrough en.4
+    ]
+
+    @rdfs:label "Environmental Interface"
+    ci environmental_interface: power-interface:EnvironmentalInterface [
+        interface:permitsFunctionalInteraction convert_electrical_power_power_output_1_
+        interface:permitsFunctionalInteraction convert_electrical_power_power_output_2_
+        interface:permitsFunctionalInteraction convert_electrical_power_power_output_3_
+        interface:permitsFunctionalInteraction resist_contamination_
+        interface:permitsFunctionalInteraction tolerate_moisture_
+        interface:permitsInputOutput emi
+        interface:permitsInputOutput heat
+        interface:permitsInputOutput contaminants
+        interface:permitsInputOutput moisture
+        interface:groups en.2
+        interface:groups en.1
+        interface:groups en.3
+        interface:groups en.4
+        interface:permitsSOA emi
+        interface:permitsSOA heat
+        interface:permitsSOA contaminants
+        interface:permitsSOA moisture
+    ]
+
+    @rdfs:label "EMI"
+    ci emi: power-interface:EMI [
+    ]
+
+    @rdfs:label "EN.2"
+    ci en.2: power-interface:EN.2 [
+        interface:isUsedDuring convert_electrical_power_power_output_1_
+        interface:isUsedDuring convert_electrical_power_power_output_2_
+        interface:isUsedDuring convert_electrical_power_power_output_3_
+        interface:sends emi
+        interface:isFacilitatedBy emi
+    ]
+
+    @rdfs:label "Heat"
+    ci heat: power-interface:Heat [
+    ]
+
+    @rdfs:label "EN.1"
+    ci en.1: power-interface:EN.1 [
+        interface:isUsedDuring convert_electrical_power_power_output_1_
+        interface:isUsedDuring convert_electrical_power_power_output_2_
+        interface:isUsedDuring convert_electrical_power_power_output_3_
+        interface:receives heat
+        interface:isFacilitatedBy heat
+    ]
+
+    @rdfs:label "Power Input Interface"
+    ci power_input_interface: power-interface:PowerInputInterface [
+        interface:permitsFunctionalInteraction convert_electrical_power_power_output_1_
+        interface:permitsFunctionalInteraction convert_electrical_power_power_output_2_
+        interface:permitsFunctionalInteraction convert_electrical_power_power_output_3_
+        interface:permitsInputOutput input_power
+        interface:groups pi.1
+        interface:permitsSOA input_power
+        interface:permitsArchitecturalRelationship converts_electrical_power
+    ]
+
+    @rdfs:label "Input Power"
+    ci input_power: power-interface:InputPower [
+    ]
+
+    @rdfs:label "PI.1"
+    ci pi.1: power-interface:PI.1 [
+        interface:isUsedDuring convert_electrical_power_power_output_1_
+        interface:isUsedDuring convert_electrical_power_power_output_2_
+        interface:isUsedDuring convert_electrical_power_power_output_3_
+        interface:receives input_power
+        interface:isFacilitatedBy input_power
+        interface:isLinkedBy converts_electrical_power
+    ]
+
+    @rdfs:label "Converts Electrical Power"
+    ci converts_electrical_power: power-interface:ConvertsElectricalPower [
+        interface:exemplifies input_power
+        interface:exemplifies output_power_power_output_1_
+        interface:exemplifies output_power_power_output_2_
+        interface:exemplifies output_power_power_output_3_
+        interface:hasRole converter
+    ]
+
+    @rdfs:label "Converter"
+    ci converter: power-interface:Converter [
+    ]
+
+    @rdfs:label "Power Output Interface [Power Output 1]"
+    ci power_output_interface_power_output_1_: power-interface:PowerOutputInterface [
+        interface:permitsFunctionalInteraction convert_electrical_power_power_output_1_
+        interface:permitsInputOutput output_power_power_output_1_
+        interface:groups po.1_power_output_1_
+        interface:permitsSOA output_power_power_output_1_
+        interface:permitsArchitecturalRelationship converts_electrical_power
+    ]
+
+    @rdfs:label "Output Power [Power Output 1]"
+    ci output_power_power_output_1_: power-interface:OutputPower [
+    ]
+
+    @rdfs:label "PO.1 [Power Output 1]"
+    ci po.1_power_output_1_: power-interface:PO.1 [
+        interface:isUsedDuring convert_electrical_power_power_output_1_
+        interface:sends output_power_power_output_1_
+        interface:isFacilitatedBy output_power_power_output_1_
+        interface:isLinkedBy converts_electrical_power
+    ]
+
+    @rdfs:label "Convert Electrical Power [Power Output 2]"
+    ci convert_electrical_power_power_output_2_: power-interface:ConvertElectricalPower [
+    ]
+
+    @rdfs:label "Power Output Interface [Power Output 2]"
+    ci power_output_interface_power_output_2_: power-interface:PowerOutputInterface [
+        interface:permitsFunctionalInteraction convert_electrical_power_power_output_2_
+        interface:permitsInputOutput output_power_power_output_2_
+        interface:groups po.1_power_output_2_
+        interface:permitsSOA output_power_power_output_2_
+        interface:permitsArchitecturalRelationship converts_electrical_power
+    ]
+
+    @rdfs:label "Output Power [Power Output 2]"
+    ci output_power_power_output_2_: power-interface:OutputPower [
+    ]
+
+    @rdfs:label "PO.1 [Power Output 2]"
+    ci po.1_power_output_2_: power-interface:PO.1 [
+        interface:isUsedDuring convert_electrical_power_power_output_2_
+        interface:sends output_power_power_output_2_
+        interface:isFacilitatedBy output_power_power_output_2_
+        interface:isLinkedBy converts_electrical_power
+    ]
+
+    @rdfs:label "Convert Electrical Power [Power Output 3]"
+    ci convert_electrical_power_power_output_3_: power-interface:ConvertElectricalPower [
+    ]
+
+    @rdfs:label "Power Output Interface [Power Output 3]"
+    ci power_output_interface_power_output_3_: power-interface:PowerOutputInterface [
+        interface:permitsFunctionalInteraction convert_electrical_power_power_output_3_
+        interface:permitsInputOutput output_power_power_output_3_
+        interface:groups po.1_power_output_3_
+        interface:permitsSOA output_power_power_output_3_
+        interface:permitsArchitecturalRelationship converts_electrical_power
+    ]
+
+    @rdfs:label "Output Power [Power Output 3]"
+    ci output_power_power_output_3_: power-interface:OutputPower [
+    ]
+
+    @rdfs:label "PO.1 [Power Output 3]"
+    ci po.1_power_output_3_: power-interface:PO.1 [
+        interface:isUsedDuring convert_electrical_power_power_output_3_
+        interface:sends output_power_power_output_3_
+        interface:isFacilitatedBy output_power_power_output_3_
+        interface:isLinkedBy converts_electrical_power
+    ]
+
+    @rdfs:label "Display Status and Information []"
+    ci display_status_and_information_: power-interface:DisplayStatusandInformation [
+    ]
+
+    @rdfs:label "Configuration and Information Interface"
+    ci configuration_and_information_interface: power-interface:ConfigurationandInformationInterface [
+        interface:permitsFunctionalInteraction display_status_and_information_
+        interface:permitsFunctionalInteraction set_configuration_
+        interface:permitsInputOutput device_status_and_information
+        interface:permitsInputOutput configuration_setting
+        interface:groups co.2
+        interface:groups ci.1
+        interface:permitsSOA device_status_and_information
+        interface:permitsSOA configuration_setting
+    ]
+
+    @rdfs:label "Device Status and Information"
+    ci device_status_and_information: power-interface:DeviceStatusandInformation [
+    ]
+
+    @rdfs:label "CO.2"
+    ci co.2: power-interface:CO.2 [
+        interface:isUsedDuring display_status_and_information_
+        interface:sends device_status_and_information
+        interface:isFacilitatedBy device_status_and_information
+    ]
+
+    @rdfs:label "Handle Device []"
+    ci handle_device_: power-interface:HandleDevice [
+    ]
+
+    @rdfs:label "Handling Interface"
+    ci handling_interface: power-interface:HandlingInterface [
+        interface:permitsFunctionalInteraction handle_device_
+        interface:permitsInputOutput handling_force
+        interface:groups hi.1
+        interface:permitsSOA handling_force
+    ]
+
+    @rdfs:label "Handling Force"
+    ci handling_force: power-interface:HandlingForce [
+    ]
+
+    @rdfs:label "HI.1"
+    ci hi.1: power-interface:HI.1 [
+        interface:isUsedDuring handle_device_
+        interface:exchanges handling_force
+        interface:isFacilitatedBy handling_force
+    ]
+
+    @rdfs:label "Resist Contamination []"
+    ci resist_contamination_: power-interface:ResistContamination [
+    ]
+
+    @rdfs:label "Contaminants"
+    ci contaminants: power-interface:Contaminants [
+    ]
+
+    @rdfs:label "EN.3"
+    ci en.3: power-interface:EN.3 [
+        interface:isUsedDuring resist_contamination_
+        interface:receives contaminants
+        interface:isFacilitatedBy contaminants
+    ]
+
+    @rdfs:label "Set Configuration []"
+    ci set_configuration_: power-interface:SetConfiguration [
+    ]
+
+    @rdfs:label "Configuration Setting"
+    ci configuration_setting: power-interface:ConfigurationSetting [
+    ]
+
+    @rdfs:label "CI.1"
+    ci ci.1: power-interface:CI.1 [
+        interface:isUsedDuring set_configuration_
+        interface:receives configuration_setting
+        interface:isFacilitatedBy configuration_setting
+    ]
+
+    @rdfs:label "Tolerate Moisture []"
+    ci tolerate_moisture_: power-interface:TolerateMoisture [
+    ]
+
+    @rdfs:label "Moisture"
+    ci moisture: power-interface:Moisture [
+    ]
+
+    @rdfs:label "EN.4"
+    ci en.4: power-interface:EN.4 [
+        interface:isUsedDuring tolerate_moisture_
+        interface:receives moisture
+        interface:isFacilitatedBy moisture
+    ]
+
 }

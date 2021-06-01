@@ -16,7 +16,7 @@ class Vocabulary
   def to_s
     lines = []
     lines << "vocabulary <#{@iri}> with #{@with} as #{@prefix} {\n"
-    @extends.each { |u| lines << "    uses <#{u}>\n"}
+    @extends.each { |u| lines << "    extends <#{u}>\n"}
     @concepts.each_value { |c| lines << c.to_s }
     lines << '}'
     lines.join("\n")
@@ -40,7 +40,7 @@ class Concept
 
   def to_s
     lines = []
-    lines << %(    rdfs:label "#{@label}")
+    lines << %(    @rdfs:label "#{@label}")
     lines << "    concept #{@name} :> #{@types.to_a.join(', ')} ["
     lines << "    ]\n"
     lines.join("\n")
@@ -51,6 +51,7 @@ vocab = Vocabulary.new(
   'http://incose.org/pwg/s-star/vocabulary/power-interface',
   'power-interface'
 )
+vocab.extends << 'http://www.w3.org/2000/01/rdf-schema'
 vocab.extends << 'http://incose.org/pwg/s-star/vocabulary/interface'
 
 table = CSV.new(ARGF, headers: true)
