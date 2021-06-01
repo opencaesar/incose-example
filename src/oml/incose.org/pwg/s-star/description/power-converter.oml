@@ -98,6 +98,7 @@ description <http://incose.org/pwg/s-star/description/power-converter> with # as
 
     @rdfs:label "Input Power"
     ci input_power: power-interface:InputPower [
+        interface:exemplifies converts_electrical_power
     ]
 
     @rdfs:label "PI.1"
@@ -116,10 +117,6 @@ description <http://incose.org/pwg/s-star/description/power-converter> with # as
 
     @rdfs:label "Converts Electrical Power"
     ci converts_electrical_power: power-interface:ConvertsElectricalPower [
-        interface:exemplifies input_power
-        interface:exemplifies output_power_power_output_1_
-        interface:exemplifies output_power_power_output_2_
-        interface:exemplifies output_power_power_output_3_
         interface:hasRole converter
     ]
 
@@ -138,6 +135,7 @@ description <http://incose.org/pwg/s-star/description/power-converter> with # as
 
     @rdfs:label "Output Power [Power Output 1]"
     ci output_power_power_output_1_: power-interface:OutputPower [
+        interface:exemplifies converts_electrical_power
     ]
 
     @rdfs:label "PO.1 [Power Output 1]"
@@ -167,6 +165,7 @@ description <http://incose.org/pwg/s-star/description/power-converter> with # as
 
     @rdfs:label "Output Power [Power Output 2]"
     ci output_power_power_output_2_: power-interface:OutputPower [
+        interface:exemplifies converts_electrical_power
     ]
 
     @rdfs:label "PO.1 [Power Output 2]"
@@ -196,6 +195,7 @@ description <http://incose.org/pwg/s-star/description/power-converter> with # as
 
     @rdfs:label "Output Power [Power Output 3]"
     ci output_power_power_output_3_: power-interface:OutputPower [
+        interface:exemplifies converts_electrical_power
     ]
 
     @rdfs:label "PO.1 [Power Output 3]"

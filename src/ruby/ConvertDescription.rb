@@ -130,7 +130,7 @@ table.each do |row|
   port_ci.properties['interface:isLinkedBy'] << ar_ci.name if ar_ci
 
   if ar_ci
-    ar_ci.properties['interface:exemplifies'] << io_ci.name
+    io_ci.properties['interface:exemplifies'] << ar_ci.name
     ar_ci.properties['interface:hasRole'] << arr_ci.name
   end
 

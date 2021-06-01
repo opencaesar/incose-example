@@ -120,8 +120,8 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/interface> with # as interfa
 
     @dc:^description "The Exemplifies relationship links an Architectural Relationship to its Input/Outputs that are used to refer to the full set of Input/Outputs summarized by the Architectural Relationship."
     relation entity Exemplifies [
-        from ArchitecturalRelationship
-        to InputOutput
+        from InputOutput
+        to ArchitecturalRelationship
         forward exemplifies
     ]
 
