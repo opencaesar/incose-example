@@ -97,7 +97,7 @@ table.each do |row|
 
   pd_cell = row['Port Direction']
 
-  soa_cell = row['Configured Input Output Name']
+  soa_cell = row['Configured SOA Name']
   soa_label = soa_cell.to_s.split('::').last
   soa_type = soa_label.gsub(/ \[.*\z/, '').gsub(/\s+/, '')
   soa_ci = cis.fetch(soa_label) { |k| cis[k] = ConceptInstance.new(soa_label, "power-interface:#{soa_type}") }
