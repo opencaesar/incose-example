@@ -181,7 +181,7 @@ table.each do |row|
     end
   end
 
-  ar_c = nil
+  ar_c = has_role_rest_c = nil
   if (ar_cell = row['Configured Arch Relat Name'])
     ar_label = Concept.make_label(ar_cell)
     ar_c = cs.fetch(ar_label) { |k| cs[k] = Concept.new(ar_label, 'interface:ArchitecturalRelationship') }
@@ -190,6 +190,10 @@ table.each do |row|
       sc = cs.fetch(sc_label) { |k| cs[k] = Concept.new(sc_label, 'interface:ArchitecturalRelationship') }
       ar_c.types << sc.name
     end
+
+    has_role_rest_label = "#{ar_label} Has Role"
+    has_role_rest_c = cs.fetch(has_role_rest_label) { |k| cs[k] = Concept.new(has_role_rest_label, 'interface:ArchitecturalRelationshipRole') }
+    ar_c.rest_all['interface:hasRole'] = has_role_rest_c.name
   end
 
   arr_c = nil
@@ -230,6 +234,10 @@ table.each do |row|
   if soa_c
     soa_c.types << permits_soa_rest_c.name if permits_soa_rest_c
     soa_c.types << is_facilitated_by_rest_c.name if is_facilitated_by_rest_c
+  end
+
+  if arr_c
+    arr_c.types << has_role_rest_c.name if has_role_rest_c
   end
 
 end

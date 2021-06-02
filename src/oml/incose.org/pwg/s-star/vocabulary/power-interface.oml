@@ -72,10 +72,15 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
 
     @rdfs:label "Converts Electrical Power"
     concept Converts_Electrical_Power :> interface:ArchitecturalRelationship, Output_Power_Power_Output_1_Exemplifies, DPI.1_Is_Linked_By, Power_Input_Interface_Permits_Architectural_Relationship, Input_Power_Exemplifies, PI.1_Is_Linked_By, Power_Output_Interface_Power_Output_1_Permits_Architectural_Relationship, PO.1_Power_Output_1_Is_Linked_By, LPO.1_Is_Linked_By, Output_Power_Power_Output_2_Exemplifies, Power_Output_Interface_Power_Output_2_Permits_Architectural_Relationship, PO.1_Power_Output_2_Is_Linked_By, Output_Power_Power_Output_3_Exemplifies, Power_Output_Interface_Power_Output_3_Permits_Architectural_Relationship, PO.1_Power_Output_3_Is_Linked_By [
+        restricts all relation interface:hasRole to Converts_Electrical_Power_Has_Role
+    ]
+
+    @rdfs:label "Converts Electrical Power Has Role"
+    concept Converts_Electrical_Power_Has_Role :> interface:ArchitecturalRelationshipRole [
     ]
 
     @rdfs:label "Sink [Power Output 1]"
-    concept Sink_Power_Output_1_ :> interface:ArchitecturalRelationshipRole, Sink [
+    concept Sink_Power_Output_1_ :> interface:ArchitecturalRelationshipRole, Sink, Converts_Electrical_Power_Has_Role [
     ]
 
     @rdfs:label "Sink"
@@ -251,7 +256,7 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "Converter"
-    concept Converter :> interface:ArchitecturalRelationshipRole [
+    concept Converter :> interface:ArchitecturalRelationshipRole, Converts_Electrical_Power_Has_Role [
     ]
 
     @rdfs:label "Power Output Interface [Power Output 1]"
@@ -396,7 +401,7 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "Source"
-    concept Source :> interface:ArchitecturalRelationshipRole [
+    concept Source :> interface:ArchitecturalRelationshipRole, Converts_Electrical_Power_Has_Role [
     ]
 
     @rdfs:label "Convert Electrical Power [Power Output 2]"
@@ -431,7 +436,7 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "Sink [Power Output 2]"
-    concept Sink_Power_Output_2_ :> interface:ArchitecturalRelationshipRole, Sink [
+    concept Sink_Power_Output_2_ :> interface:ArchitecturalRelationshipRole, Sink, Converts_Electrical_Power_Has_Role [
     ]
 
     @rdfs:label "Power Output Interface [Power Output 2]"
@@ -514,7 +519,7 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "Sink [Power Output 3]"
-    concept Sink_Power_Output_3_ :> interface:ArchitecturalRelationshipRole, Sink [
+    concept Sink_Power_Output_3_ :> interface:ArchitecturalRelationshipRole, Sink, Converts_Electrical_Power_Has_Role [
     ]
 
     @rdfs:label "Power Output Interface [Power Output 3]"
