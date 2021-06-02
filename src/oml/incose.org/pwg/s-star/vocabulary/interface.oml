@@ -4,14 +4,30 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/interface> with # as interfa
 
     extends <http://www.w3.org/2001/XMLSchema.oml>
 
+	@dc:^description "An Identified has an identifier."
+	aspect Identified
+	
+	scalar property hasIdentifier [
+		domain Identified
+		range xsd:string
+	]
+	
+	aspect ModeledClass
+	
     @dc:^description "An Interface is an association of Input/Outputs, Functional Interactions, Systems of Access (SOAs), and Architectural Relationships through which a system interacts with other systems. Each interface is owned by that system."
-    concept Interface
+    concept Interface :> Identified [
+    	key hasIdentifier
+    ]
 
     @dc:^description "A system is a collection of interacting components.  A component can itself be a System, called a sub-system.  Information about the purpose or configuration of a system is encoded into the metaclasses associated with the System (e.g., Feature)."
-    concept System
+    concept System :> Identified [
+    	key hasIdentifier
+    ]
 
     @dc:^description "An Input/Output is that which is exchanged between interacting systems."
-    concept InputOutput
+    concept InputOutput :> Identified [
+    	key hasIdentifier
+    ]
 
     @dc:^description ""
 //    concept ExternalInputOutput :> InputOutput
@@ -20,7 +36,9 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/interface> with # as interfa
 //    concept InternalInputOutput :> InputOutput
 
     @dc:^description "A Functional Interaction is an interaction of two or more Systems.  Interaction means that one system affects the state of another system.  All interactions are relationships between systems, expressing the externally visible behavioral outcome (requirement) of the interactions.  A Functional Interaction is also sometimes called a Collaboration."
-    concept FunctionalInteraction
+    concept FunctionalInteraction :> Identified [
+    	key hasIdentifier
+    ]
 
     @dc:^description "A System of Access (SOA) is the system which allows other systems to interact (impact each other’s state)."
     concept SystemOfAccess :> System
@@ -32,20 +50,25 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/interface> with # as interfa
     concept ModeledAttribute
 
     @dc:^description "A Port is the coincidence of an Input/Output and System border.  A Port is a specific relationship between a received and sent Input/Output, internal and external Systems of Access (SOAs), internal and external Architectural Relationship, and a Functional Interaction."
-    concept Port
+    concept Port :> Identified [
+    	key hasIdentifier
+    ]
 
     @dc:^description "A Domain is an environmental system.  The components and relationships of this system establish an overall environment (domain) for a subject system.  A domain establishes the domain knowledge relevant to a subject system."
-    concept Domain
+    concept Domain :> Identified [
+    	key hasIdentifier
+    ]
 
     @dc:^description "An Architectural Relationship is a relationship that summarizes the architectural significance of a set of interactions between systems."
-    concept ArchitecturalRelationship
+    concept ArchitecturalRelationship :> Identified [
+    	key hasIdentifier
+    ]
 
     @dc:^description "An Architectural Relationship Role is a role defined within an Architectural Relationship that is played by a System."
-    concept ArchitecturalRelationshipRole
+    concept ArchitecturalRelationshipRole :> Identified [
+    	key hasIdentifier
+    ]
     
-   @dc:^description "Anything is a temporary workaround for a bug in the OML Workbench."
-    concept Anything
-
     @dc:^description "The Provides relationship links an Interface to a System."
     relation entity ProvidesInterface [
         from System
@@ -91,7 +114,7 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/interface> with # as interfa
 
     @dc:^description "The Has Attribute relationship links a Modeled Attribute to any Class that has that Attribute."
     relation entity HasAttribute [
-        from Anything
+        from ModeledClass
         to ModeledAttribute
         forward hasAttribute
     ]
