@@ -39,6 +39,10 @@ class Concept
     label.gsub(/[\[\]\s]+/, '_')
   end
 
+  def self.label_to_superclass(label)
+    label.gsub(/ \[.*\z/, '')
+  end
+
   def self.make_label(s)
     s
   end
@@ -71,12 +75,22 @@ table.each do |row|
   if (ia_cell = row['Configured Interaction Name'])
     ia_label = Concept.make_label(ia_cell)
     ia_c = cs.fetch(ia_label) { |k| cs[k] = Concept.new(ia_label, 'interface:FunctionalInteraction') }
+
+    if (sc_label = Concept.label_to_superclass(ia_label)) != ia_label
+      sc = cs.fetch(sc_label) { |k| cs[k] = Concept.new(sc_label, 'interface:FunctionalInteraction') }
+      ia_c.types << sc.name
+    end
   end
 
   sy_c = provides_if_rest_c = int_thr_rest_c = nil
   if (role_cell = row['Configured Role Name'])
     role_label = Concept.make_label(role_cell)
     sy_c = cs.fetch(role_label) { |k| cs[k] = Concept.new(role_label, 'interface:System') }
+
+    if (sc_label = Concept.label_to_superclass(role_label)) != role_label
+      sc = cs.fetch(sc_label) { |k| cs[k] = Concept.new(sc_label, 'interface:System') }
+      sy_c.types << sc.name
+    end
 
     provides_if_rest_label = "#{role_label} Provides Interface"
     provides_if_rest_c = cs.fetch(provides_if_rest_label) { |k| cs[k] = Concept.new(provides_if_rest_label, 'interface:Interface') }
@@ -91,6 +105,11 @@ table.each do |row|
   if (if_cell = row['Configured Interface Name'])
     if_label = Concept.make_label(if_cell)
     if_c = cs.fetch(if_label) { |k| cs[k] = Concept.new(if_label, 'interface:Interface') }
+
+    if (sc_label = Concept.label_to_superclass(if_label)) != if_label
+      sc = cs.fetch(sc_label) { |k| cs[k] = Concept.new(sc_label, 'interface:Interface') }
+      if_c.types << sc.name
+    end
 
     permits_fi_rest_label = "#{if_label} Permits Functional Interaction"
     permits_fi_rest_c = cs.fetch(permits_fi_rest_label) { |k| cs[k] = Concept.new(permits_fi_rest_label, 'interface:FunctionalInteraction') }
@@ -118,6 +137,11 @@ table.each do |row|
     io_label = Concept.make_label(io_cell)
     io_c = cs.fetch(io_label) { |k| cs[k] = Concept.new(io_label, 'interface:InputOutput') }
 
+    if (sc_label = Concept.label_to_superclass(io_label)) != io_label
+      sc = cs.fetch(sc_label) { |k| cs[k] = Concept.new(sc_label, 'interface:InputOutput') }
+      io_c.types << sc.name
+    end
+
     exemplifies_rest_label = "#{io_label} Exemplifies"
     exemplifies_rest_c = cs.fetch(exemplifies_rest_label) { |k| cs[k] = Concept.new(exemplifies_rest_label, 'interface:ArchitecturalRelationship') }
     io_c.rest_all['interface:exemplifies'] = exemplifies_rest_c.name
@@ -127,6 +151,11 @@ table.each do |row|
   if (port_cell = row['Configured Port Name'])
     port_label = Concept.make_label(port_cell)
     port_c = cs.fetch(port_label) { |k| cs[k] = Concept.new(port_label, 'interface:Port') }
+
+    if (sc_label = Concept.label_to_superclass(port_label)) != port_label
+      sc = cs.fetch(sc_label) { |k| cs[k] = Concept.new(sc_label, 'interface:Port') }
+      port_c.types << sc.name
+    end
 
     is_used_during_rest_label = "#{port_label} Is Used During"
     is_used_during_rest_c = cs.fetch(is_used_during_rest_label) { |k| cs[k] = Concept.new(is_used_during_rest_label, 'interface:FunctionalInteraction') }
@@ -145,18 +174,33 @@ table.each do |row|
   if (soa_cell = row['Configured SOA Name'])
     soa_label = Concept.make_label(soa_cell)
     soa_c = cs.fetch(soa_label) { |k| cs[k] = Concept.new(soa_label, 'interface:SystemOfAccess') }
+
+    if (sc_label = Concept.label_to_superclass(soa_label)) != soa_label
+      sc = cs.fetch(sc_label) { |k| cs[k] = Concept.new(sc_label, 'interface:System') }
+      soa_c.types << sc.name
+    end
   end
 
   ar_c = nil
   if (ar_cell = row['Configured Arch Relat Name'])
     ar_label = Concept.make_label(ar_cell)
     ar_c = cs.fetch(ar_label) { |k| cs[k] = Concept.new(ar_label, 'interface:ArchitecturalRelationship') }
+
+    if (sc_label = Concept.label_to_superclass(ar_label)) != ar_label
+      sc = cs.fetch(sc_label) { |k| cs[k] = Concept.new(sc_label, 'interface:System') }
+      ar_c.types << sc.name
+    end
   end
 
   arr_c = nil
   if (arr_cell = row['Configured Arch Relat Role Name'])
     arr_label = Concept.make_label(arr_cell)
-    cs.fetch(arr_label) { |k| cs[k] = Concept.new(arr_label, 'interface:ArchitecturalRelationshipRole') }
+    arr_c = cs.fetch(arr_label) { |k| cs[k] = Concept.new(arr_label, 'interface:ArchitecturalRelationshipRole') }
+
+    if (sc_label = Concept.label_to_superclass(arr_label)) != arr_label
+      sc = cs.fetch(sc_label) { |k| cs[k] = Concept.new(sc_label, 'interface:System') }
+      arr_c.types << sc.name
+    end
   end
 
   if ia_c
