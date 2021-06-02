@@ -31,11 +31,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "Device Power Connector"
-    concept DevicePowerConnector :> interface:SystemOfAccess [
+    concept DevicePowerConnector :> interface:SystemOfAccess, PowerOutputInterfacePermitsSOA [
     ]
 
     @rdfs:label "Converts Electrical Power"
-    concept ConvertsElectricalPower :> interface:ArchitecturalRelationship [
+    concept ConvertsElectricalPower :> interface:ArchitecturalRelationship, PowerInputInterfacePermitsArchitecturalRelationship, PowerOutputInterfacePermitsArchitecturalRelationship [
     ]
 
     @rdfs:label "Sink"
@@ -60,6 +60,9 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     concept EnvironmentalInterface :> interface:Interface, InternationalPowerConverterProvidesInterface [
         restricts all relation interface:permitsFunctionalInteraction to EnvironmentalInterfacePermitsFunctionalInteraction
         restricts all relation interface:permitsInputOutput to EnvironmentalInterfacePermitsInputOutput
+        restricts all relation interface:permitsArchitecturalRelationship to EnvironmentalInterfacePermitsArchitecturalRelationship
+        restricts all relation interface:groups to EnvironmentalInterfaceGroups
+        restricts all relation interface:permitsSOA to EnvironmentalInterfacePermitsSOA
     ]
 
     @rdfs:label "Environmental Interface Permits Functional Interaction"
@@ -70,16 +73,28 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     concept EnvironmentalInterfacePermitsInputOutput :> interface:InputOutput [
     ]
 
+    @rdfs:label "Environmental Interface Permits Architectural Relationship"
+    concept EnvironmentalInterfacePermitsArchitecturalRelationship :> interface:ArchitecturalRelationship [
+    ]
+
+    @rdfs:label "Environmental Interface Groups"
+    concept EnvironmentalInterfaceGroups :> interface:Port [
+    ]
+
+    @rdfs:label "Environmental Interface Permits SOA"
+    concept EnvironmentalInterfacePermitsSOA :> interface:SystemOfAccess [
+    ]
+
     @rdfs:label "EMI"
     concept EMI :> interface:InputOutput, EnvironmentalInterfacePermitsInputOutput [
     ]
 
     @rdfs:label "EN.2"
-    concept EN.2 :> interface:Port, InternationalPowerConverterInteractsThrough [
+    concept EN.2 :> interface:Port, EnvironmentalInterfaceGroups, InternationalPowerConverterInteractsThrough [
     ]
 
     @rdfs:label "EMI Radiation"
-    concept EMIRadiation :> interface:SystemOfAccess [
+    concept EMIRadiation :> interface:SystemOfAccess, EnvironmentalInterfacePermitsSOA [
     ]
 
     @rdfs:label "Heat"
@@ -87,17 +102,20 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "EN.1"
-    concept EN.1 :> interface:Port, InternationalPowerConverterInteractsThrough [
+    concept EN.1 :> interface:Port, EnvironmentalInterfaceGroups, InternationalPowerConverterInteractsThrough [
     ]
 
     @rdfs:label "Airspace Thermal Conduction"
-    concept AirspaceThermalConduction :> interface:SystemOfAccess [
+    concept AirspaceThermalConduction :> interface:SystemOfAccess, EnvironmentalInterfacePermitsSOA [
     ]
 
     @rdfs:label "Power Input Interface"
     concept PowerInputInterface :> interface:Interface, InternationalPowerConverterProvidesInterface [
         restricts all relation interface:permitsFunctionalInteraction to PowerInputInterfacePermitsFunctionalInteraction
         restricts all relation interface:permitsInputOutput to PowerInputInterfacePermitsInputOutput
+        restricts all relation interface:permitsArchitecturalRelationship to PowerInputInterfacePermitsArchitecturalRelationship
+        restricts all relation interface:groups to PowerInputInterfaceGroups
+        restricts all relation interface:permitsSOA to PowerInputInterfacePermitsSOA
     ]
 
     @rdfs:label "Power Input Interface Permits Functional Interaction"
@@ -108,16 +126,28 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     concept PowerInputInterfacePermitsInputOutput :> interface:InputOutput [
     ]
 
+    @rdfs:label "Power Input Interface Permits Architectural Relationship"
+    concept PowerInputInterfacePermitsArchitecturalRelationship :> interface:ArchitecturalRelationship [
+    ]
+
+    @rdfs:label "Power Input Interface Groups"
+    concept PowerInputInterfaceGroups :> interface:Port [
+    ]
+
+    @rdfs:label "Power Input Interface Permits SOA"
+    concept PowerInputInterfacePermitsSOA :> interface:SystemOfAccess [
+    ]
+
     @rdfs:label "Input Power"
     concept InputPower :> interface:InputOutput, PowerInputInterfacePermitsInputOutput [
     ]
 
     @rdfs:label "PI.1"
-    concept PI.1 :> interface:Port, InternationalPowerConverterInteractsThrough [
+    concept PI.1 :> interface:Port, PowerInputInterfaceGroups, InternationalPowerConverterInteractsThrough [
     ]
 
     @rdfs:label "Local Power Connector"
-    concept LocalPowerConnector :> interface:SystemOfAccess [
+    concept LocalPowerConnector :> interface:SystemOfAccess, PowerInputInterfacePermitsSOA [
     ]
 
     @rdfs:label "Converter"
@@ -128,6 +158,9 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     concept PowerOutputInterface :> interface:Interface, InternationalPowerConverterProvidesInterface [
         restricts all relation interface:permitsFunctionalInteraction to PowerOutputInterfacePermitsFunctionalInteraction
         restricts all relation interface:permitsInputOutput to PowerOutputInterfacePermitsInputOutput
+        restricts all relation interface:permitsArchitecturalRelationship to PowerOutputInterfacePermitsArchitecturalRelationship
+        restricts all relation interface:groups to PowerOutputInterfaceGroups
+        restricts all relation interface:permitsSOA to PowerOutputInterfacePermitsSOA
     ]
 
     @rdfs:label "Power Output Interface Permits Functional Interaction"
@@ -138,8 +171,20 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     concept PowerOutputInterfacePermitsInputOutput :> interface:InputOutput [
     ]
 
+    @rdfs:label "Power Output Interface Permits Architectural Relationship"
+    concept PowerOutputInterfacePermitsArchitecturalRelationship :> interface:ArchitecturalRelationship [
+    ]
+
+    @rdfs:label "Power Output Interface Groups"
+    concept PowerOutputInterfaceGroups :> interface:Port [
+    ]
+
+    @rdfs:label "Power Output Interface Permits SOA"
+    concept PowerOutputInterfacePermitsSOA :> interface:SystemOfAccess [
+    ]
+
     @rdfs:label "PO.1"
-    concept PO.1 :> interface:Port, InternationalPowerConverterInteractsThrough [
+    concept PO.1 :> interface:Port, PowerOutputInterfaceGroups, InternationalPowerConverterInteractsThrough [
     ]
 
     @rdfs:label "Local Environment"
@@ -213,13 +258,16 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "HMI Display"
-    concept HMIDisplay :> interface:SystemOfAccess [
+    concept HMIDisplay :> interface:SystemOfAccess, ConfigurationandInformationInterfacePermitsSOA [
     ]
 
     @rdfs:label "Configuration and Information Interface"
     concept ConfigurationandInformationInterface :> interface:Interface, InternationalPowerConverterProvidesInterface [
         restricts all relation interface:permitsFunctionalInteraction to ConfigurationandInformationInterfacePermitsFunctionalInteraction
         restricts all relation interface:permitsInputOutput to ConfigurationandInformationInterfacePermitsInputOutput
+        restricts all relation interface:permitsArchitecturalRelationship to ConfigurationandInformationInterfacePermitsArchitecturalRelationship
+        restricts all relation interface:groups to ConfigurationandInformationInterfaceGroups
+        restricts all relation interface:permitsSOA to ConfigurationandInformationInterfacePermitsSOA
     ]
 
     @rdfs:label "Configuration and Information Interface Permits Functional Interaction"
@@ -230,8 +278,20 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     concept ConfigurationandInformationInterfacePermitsInputOutput :> interface:InputOutput [
     ]
 
+    @rdfs:label "Configuration and Information Interface Permits Architectural Relationship"
+    concept ConfigurationandInformationInterfacePermitsArchitecturalRelationship :> interface:ArchitecturalRelationship [
+    ]
+
+    @rdfs:label "Configuration and Information Interface Groups"
+    concept ConfigurationandInformationInterfaceGroups :> interface:Port [
+    ]
+
+    @rdfs:label "Configuration and Information Interface Permits SOA"
+    concept ConfigurationandInformationInterfacePermitsSOA :> interface:SystemOfAccess [
+    ]
+
     @rdfs:label "CO.2"
-    concept CO.2 :> interface:Port, InternationalPowerConverterInteractsThrough [
+    concept CO.2 :> interface:Port, ConfigurationandInformationInterfaceGroups, InternationalPowerConverterInteractsThrough [
     ]
 
     @rdfs:label "Handle Device"
@@ -247,13 +307,16 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "Handle"
-    concept Handle :> interface:SystemOfAccess [
+    concept Handle :> interface:SystemOfAccess, HandlingInterfacePermitsSOA [
     ]
 
     @rdfs:label "Handling Interface"
     concept HandlingInterface :> interface:Interface, InternationalPowerConverterProvidesInterface [
         restricts all relation interface:permitsFunctionalInteraction to HandlingInterfacePermitsFunctionalInteraction
         restricts all relation interface:permitsInputOutput to HandlingInterfacePermitsInputOutput
+        restricts all relation interface:permitsArchitecturalRelationship to HandlingInterfacePermitsArchitecturalRelationship
+        restricts all relation interface:groups to HandlingInterfaceGroups
+        restricts all relation interface:permitsSOA to HandlingInterfacePermitsSOA
     ]
 
     @rdfs:label "Handling Interface Permits Functional Interaction"
@@ -264,8 +327,20 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     concept HandlingInterfacePermitsInputOutput :> interface:InputOutput [
     ]
 
+    @rdfs:label "Handling Interface Permits Architectural Relationship"
+    concept HandlingInterfacePermitsArchitecturalRelationship :> interface:ArchitecturalRelationship [
+    ]
+
+    @rdfs:label "Handling Interface Groups"
+    concept HandlingInterfaceGroups :> interface:Port [
+    ]
+
+    @rdfs:label "Handling Interface Permits SOA"
+    concept HandlingInterfacePermitsSOA :> interface:SystemOfAccess [
+    ]
+
     @rdfs:label "HI.1"
-    concept HI.1 :> interface:Port, InternationalPowerConverterInteractsThrough [
+    concept HI.1 :> interface:Port, HandlingInterfaceGroups, InternationalPowerConverterInteractsThrough [
     ]
 
     @rdfs:label "Resist Contamination"
@@ -277,11 +352,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "EN.3"
-    concept EN.3 :> interface:Port, InternationalPowerConverterInteractsThrough [
+    concept EN.3 :> interface:Port, EnvironmentalInterfaceGroups, InternationalPowerConverterInteractsThrough [
     ]
 
     @rdfs:label "Airborne Particulates"
-    concept AirborneParticulates :> interface:SystemOfAccess [
+    concept AirborneParticulates :> interface:SystemOfAccess, EnvironmentalInterfacePermitsSOA [
     ]
 
     @rdfs:label "ENV.1"
@@ -301,11 +376,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "HMI Buttons"
-    concept HMIButtons :> interface:SystemOfAccess [
+    concept HMIButtons :> interface:SystemOfAccess, ConfigurationandInformationInterfacePermitsSOA [
     ]
 
     @rdfs:label "CI.1"
-    concept CI.1 :> interface:Port, InternationalPowerConverterInteractsThrough [
+    concept CI.1 :> interface:Port, ConfigurationandInformationInterfaceGroups, InternationalPowerConverterInteractsThrough [
     ]
 
     @rdfs:label "Tolerate Moisture"
@@ -317,11 +392,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "EN.4"
-    concept EN.4 :> interface:Port, InternationalPowerConverterInteractsThrough [
+    concept EN.4 :> interface:Port, EnvironmentalInterfaceGroups, InternationalPowerConverterInteractsThrough [
     ]
 
     @rdfs:label "Airborne Moisture Condensation"
-    concept AirborneMoistureCondensation :> interface:SystemOfAccess [
+    concept AirborneMoistureCondensation :> interface:SystemOfAccess, EnvironmentalInterfacePermitsSOA [
     ]
 
     @rdfs:label "ENV.2"

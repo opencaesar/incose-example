@@ -82,7 +82,7 @@ table.each do |row|
     sy_c.rest_all['interface:interactsThrough'] = int_thr_rest_c.name
   end
 
-  if_c = permits_fi_rest_c = permits_io_rest_c = nil
+  if_c = permits_fi_rest_c = permits_io_rest_c = permits_ar_rest_c = groups_rest_c = permits_soa_rest_c = nil
   if (if_cell = row['Configured Interface Name'])
     if_label = if_cell.to_s.split('::').last.gsub(/ \[.*\z/, '')
     if_c = cs.fetch(if_label) { |k| cs[k] = Concept.new(if_label, 'interface:Interface')}
@@ -94,6 +94,18 @@ table.each do |row|
     permits_io_rest_label = "#{if_label} Permits Input Output"
     permits_io_rest_c = cs.fetch(permits_io_rest_label) { |k| cs[k] = Concept.new(permits_io_rest_label, 'interface:InputOutput')}
     if_c.rest_all['interface:permitsInputOutput'] = permits_io_rest_c.name
+
+    permits_ar_rest_label = "#{if_label} Permits Architectural Relationship"
+    permits_ar_rest_c = cs.fetch(permits_ar_rest_label) { |k| cs[k] = Concept.new(permits_ar_rest_label, 'interface:ArchitecturalRelationship')}
+    if_c.rest_all['interface:permitsArchitecturalRelationship'] = permits_ar_rest_c.name
+
+    groups_rest_label = "#{if_label} Groups"
+    groups_rest_c = cs.fetch(groups_rest_label) { |k| cs[k] = Concept.new(groups_rest_label, 'interface:Port')}
+    if_c.rest_all['interface:groups'] = groups_rest_c.name
+
+    permits_soa_rest_label = "#{if_label} Permits SOA"
+    permits_soa_rest_c = cs.fetch(permits_soa_rest_label) { |k| cs[k] = Concept.new(permits_soa_rest_label, 'interface:SystemOfAccess')}
+    if_c.rest_all['interface:permitsSOA'] = permits_soa_rest_c.name
   end
 
   io_c = nil
@@ -102,19 +114,21 @@ table.each do |row|
     io_c = cs.fetch(io_label) { |k| cs[k] = Concept.new(io_label, 'interface:InputOutput')}
   end
 
+  port_c = nil
   if (port_cell = row['Configured Port Name'])
     port_label = port_cell.to_s.split('::').last.gsub(/ \[.*\z/, '')
     port_c = cs.fetch(port_label) { |k| cs[k] = Concept.new(port_label, 'interface:Port')}
   end
 
+  soa_c = nil
   if (soa_cell = row['Configured SOA Name'])
     soa_label = soa_cell.to_s.split('::').last.gsub(/ \[.*\z/, '')
-    cs.fetch(soa_label) { |k| cs[k] = Concept.new(soa_label, 'interface:SystemOfAccess')}
+    soa_c = cs.fetch(soa_label) { |k| cs[k] = Concept.new(soa_label, 'interface:SystemOfAccess')}
   end
 
   if (ar_cell = row['Configured Arch Relat Name'])
     ar_label = ar_cell.to_s.split('::').last.gsub(/ \[.*\z/, '')
-    cs.fetch(ar_label) { |k| cs[k] = Concept.new(ar_label, 'interface:ArchitecturalRelationship')}
+    ar_c = cs.fetch(ar_label) { |k| cs[k] = Concept.new(ar_label, 'interface:ArchitecturalRelationship')}
   end
 
   if (arr_cell = row['Configured Arch Relat Role Name'])
@@ -122,11 +136,19 @@ table.each do |row|
     cs.fetch(arr_label) { |k| cs[k] = Concept.new(arr_label, 'interface:ArchitecturalRelationshipRole')}
   end
 
-  ia_c.types << permits_fi_rest_c.name if ia_c if permits_fi_rest_c
-  if_c.types << provides_if_rest_c.name if if_c if provides_if_rest_c
-  port_c.types << int_thr_rest_c.name if port_c if int_thr_rest_c
-  io_c.types << permits_io_rest_c.name if io_c if permits_io_rest_c
+  ia_c.types << permits_fi_rest_c.name if permits_fi_rest_c && ia_c
 
+  if_c.types << provides_if_rest_c.name if provides_if_rest_c && if_c
+
+  io_c.types << permits_io_rest_c.name if permits_io_rest_c && io_c
+
+  ar_c.types << permits_ar_rest_c.name if permits_ar_rest_c && ar_c
+
+  port_c.types << groups_rest_c.name if groups_rest_c && port_c
+  port_c.types << int_thr_rest_c.name if int_thr_rest_c && port_c
+
+  soa_c.types << permits_soa_rest_c.name if permits_soa_rest_c && soa_c
+  
 end
 
 puts vocab.to_s
