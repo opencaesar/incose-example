@@ -5,29 +5,29 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     extends <http://incose.org/pwg/s-star/vocabulary/interface>
 
     @rdfs:label "Convert Electrical Power"
-    concept ConvertElectricalPower :> interface:FunctionalInteraction [
+    concept ConvertElectricalPower :> interface:FunctionalInteraction, EnvironmentalInterfacePermitsFunctionalInteraction, PowerInputInterfacePermitsFunctionalInteraction, PowerOutputInterfacePermitsFunctionalInteraction [
     ]
 
     @rdfs:label "Electrically Powered Device"
     concept ElectricallyPoweredDevice :> interface:System [
-        restricts all relation interface:providesInterface to ElectricallyPoweredDeviceProvidedInterface
-        restricts all relation interface:interactsThrough to ElectricallyPoweredDeviceInteractsThroughPort
+        restricts all relation interface:providesInterface to ElectricallyPoweredDeviceProvidesInterface
+        restricts all relation interface:interactsThrough to ElectricallyPoweredDeviceInteractsThrough
     ]
 
-    @rdfs:label "Electrically Powered Device Provided Interface"
-    concept ElectricallyPoweredDeviceProvidedInterface :> interface:Interface [
+    @rdfs:label "Electrically Powered Device Provides Interface"
+    concept ElectricallyPoweredDeviceProvidesInterface :> interface:Interface [
     ]
 
-    @rdfs:label "Electrically Powered Device Interacts Through Port"
-    concept ElectricallyPoweredDeviceInteractsThroughPort :> interface:Port [
+    @rdfs:label "Electrically Powered Device Interacts Through"
+    concept ElectricallyPoweredDeviceInteractsThrough :> interface:Port [
     ]
 
     @rdfs:label "Output Power"
-    concept OutputPower :> interface:InputOutput [
+    concept OutputPower :> interface:InputOutput, PowerOutputInterfacePermitsInputOutput [
     ]
 
     @rdfs:label "DPI.1"
-    concept DPI.1 :> interface:Port, ElectricallyPoweredDeviceInteractsThroughPort [
+    concept DPI.1 :> interface:Port, ElectricallyPoweredDeviceInteractsThrough [
     ]
 
     @rdfs:label "Device Power Connector"
@@ -44,28 +44,38 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
 
     @rdfs:label "International Power Converter"
     concept InternationalPowerConverter :> interface:System [
-        restricts all relation interface:providesInterface to InternationalPowerConverterProvidedInterface
-        restricts all relation interface:interactsThrough to InternationalPowerConverterInteractsThroughPort
+        restricts all relation interface:providesInterface to InternationalPowerConverterProvidesInterface
+        restricts all relation interface:interactsThrough to InternationalPowerConverterInteractsThrough
     ]
 
-    @rdfs:label "International Power Converter Provided Interface"
-    concept InternationalPowerConverterProvidedInterface :> interface:Interface [
+    @rdfs:label "International Power Converter Provides Interface"
+    concept InternationalPowerConverterProvidesInterface :> interface:Interface [
     ]
 
-    @rdfs:label "International Power Converter Interacts Through Port"
-    concept InternationalPowerConverterInteractsThroughPort :> interface:Port [
+    @rdfs:label "International Power Converter Interacts Through"
+    concept InternationalPowerConverterInteractsThrough :> interface:Port [
     ]
 
     @rdfs:label "Environmental Interface"
-    concept EnvironmentalInterface :> interface:Interface, InternationalPowerConverterProvidedInterface [
+    concept EnvironmentalInterface :> interface:Interface, InternationalPowerConverterProvidesInterface [
+        restricts all relation interface:permitsFunctionalInteraction to EnvironmentalInterfacePermitsFunctionalInteraction
+        restricts all relation interface:permitsInputOutput to EnvironmentalInterfacePermitsInputOutput
+    ]
+
+    @rdfs:label "Environmental Interface Permits Functional Interaction"
+    concept EnvironmentalInterfacePermitsFunctionalInteraction :> interface:FunctionalInteraction [
+    ]
+
+    @rdfs:label "Environmental Interface Permits Input Output"
+    concept EnvironmentalInterfacePermitsInputOutput :> interface:InputOutput [
     ]
 
     @rdfs:label "EMI"
-    concept EMI :> interface:InputOutput [
+    concept EMI :> interface:InputOutput, EnvironmentalInterfacePermitsInputOutput [
     ]
 
     @rdfs:label "EN.2"
-    concept EN.2 :> interface:Port, InternationalPowerConverterInteractsThroughPort [
+    concept EN.2 :> interface:Port, InternationalPowerConverterInteractsThrough [
     ]
 
     @rdfs:label "EMI Radiation"
@@ -73,11 +83,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "Heat"
-    concept Heat :> interface:InputOutput [
+    concept Heat :> interface:InputOutput, EnvironmentalInterfacePermitsInputOutput [
     ]
 
     @rdfs:label "EN.1"
-    concept EN.1 :> interface:Port, InternationalPowerConverterInteractsThroughPort [
+    concept EN.1 :> interface:Port, InternationalPowerConverterInteractsThrough [
     ]
 
     @rdfs:label "Airspace Thermal Conduction"
@@ -85,15 +95,25 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "Power Input Interface"
-    concept PowerInputInterface :> interface:Interface, InternationalPowerConverterProvidedInterface [
+    concept PowerInputInterface :> interface:Interface, InternationalPowerConverterProvidesInterface [
+        restricts all relation interface:permitsFunctionalInteraction to PowerInputInterfacePermitsFunctionalInteraction
+        restricts all relation interface:permitsInputOutput to PowerInputInterfacePermitsInputOutput
+    ]
+
+    @rdfs:label "Power Input Interface Permits Functional Interaction"
+    concept PowerInputInterfacePermitsFunctionalInteraction :> interface:FunctionalInteraction [
+    ]
+
+    @rdfs:label "Power Input Interface Permits Input Output"
+    concept PowerInputInterfacePermitsInputOutput :> interface:InputOutput [
     ]
 
     @rdfs:label "Input Power"
-    concept InputPower :> interface:InputOutput [
+    concept InputPower :> interface:InputOutput, PowerInputInterfacePermitsInputOutput [
     ]
 
     @rdfs:label "PI.1"
-    concept PI.1 :> interface:Port, InternationalPowerConverterInteractsThroughPort [
+    concept PI.1 :> interface:Port, InternationalPowerConverterInteractsThrough [
     ]
 
     @rdfs:label "Local Power Connector"
@@ -105,51 +125,61 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "Power Output Interface"
-    concept PowerOutputInterface :> interface:Interface, InternationalPowerConverterProvidedInterface [
+    concept PowerOutputInterface :> interface:Interface, InternationalPowerConverterProvidesInterface [
+        restricts all relation interface:permitsFunctionalInteraction to PowerOutputInterfacePermitsFunctionalInteraction
+        restricts all relation interface:permitsInputOutput to PowerOutputInterfacePermitsInputOutput
+    ]
+
+    @rdfs:label "Power Output Interface Permits Functional Interaction"
+    concept PowerOutputInterfacePermitsFunctionalInteraction :> interface:FunctionalInteraction [
+    ]
+
+    @rdfs:label "Power Output Interface Permits Input Output"
+    concept PowerOutputInterfacePermitsInputOutput :> interface:InputOutput [
     ]
 
     @rdfs:label "PO.1"
-    concept PO.1 :> interface:Port, InternationalPowerConverterInteractsThroughPort [
+    concept PO.1 :> interface:Port, InternationalPowerConverterInteractsThrough [
     ]
 
     @rdfs:label "Local Environment"
     concept LocalEnvironment :> interface:System [
-        restricts all relation interface:providesInterface to LocalEnvironmentProvidedInterface
-        restricts all relation interface:interactsThrough to LocalEnvironmentInteractsThroughPort
+        restricts all relation interface:providesInterface to LocalEnvironmentProvidesInterface
+        restricts all relation interface:interactsThrough to LocalEnvironmentInteractsThrough
     ]
 
-    @rdfs:label "Local Environment Provided Interface"
-    concept LocalEnvironmentProvidedInterface :> interface:Interface [
+    @rdfs:label "Local Environment Provides Interface"
+    concept LocalEnvironmentProvidesInterface :> interface:Interface [
     ]
 
-    @rdfs:label "Local Environment Interacts Through Port"
-    concept LocalEnvironmentInteractsThroughPort :> interface:Port [
+    @rdfs:label "Local Environment Interacts Through"
+    concept LocalEnvironmentInteractsThrough :> interface:Port [
     ]
 
     @rdfs:label "ENV.3"
-    concept ENV.3 :> interface:Port, LocalEnvironmentInteractsThroughPort [
+    concept ENV.3 :> interface:Port, LocalEnvironmentInteractsThrough [
     ]
 
     @rdfs:label "ENV.4"
-    concept ENV.4 :> interface:Port, LocalEnvironmentInteractsThroughPort [
+    concept ENV.4 :> interface:Port, LocalEnvironmentInteractsThrough [
     ]
 
     @rdfs:label "Local Power Distribution System"
     concept LocalPowerDistributionSystem :> interface:System [
-        restricts all relation interface:providesInterface to LocalPowerDistributionSystemProvidedInterface
-        restricts all relation interface:interactsThrough to LocalPowerDistributionSystemInteractsThroughPort
+        restricts all relation interface:providesInterface to LocalPowerDistributionSystemProvidesInterface
+        restricts all relation interface:interactsThrough to LocalPowerDistributionSystemInteractsThrough
     ]
 
-    @rdfs:label "Local Power Distribution System Provided Interface"
-    concept LocalPowerDistributionSystemProvidedInterface :> interface:Interface [
+    @rdfs:label "Local Power Distribution System Provides Interface"
+    concept LocalPowerDistributionSystemProvidesInterface :> interface:Interface [
     ]
 
-    @rdfs:label "Local Power Distribution System Interacts Through Port"
-    concept LocalPowerDistributionSystemInteractsThroughPort :> interface:Port [
+    @rdfs:label "Local Power Distribution System Interacts Through"
+    concept LocalPowerDistributionSystemInteractsThrough :> interface:Port [
     ]
 
     @rdfs:label "LPO.1"
-    concept LPO.1 :> interface:Port, LocalPowerDistributionSystemInteractsThroughPort [
+    concept LPO.1 :> interface:Port, LocalPowerDistributionSystemInteractsThrough [
     ]
 
     @rdfs:label "Source"
@@ -157,29 +187,29 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "Display Status and Information"
-    concept DisplayStatusandInformation :> interface:FunctionalInteraction [
+    concept DisplayStatusandInformation :> interface:FunctionalInteraction, ConfigurationandInformationInterfacePermitsFunctionalInteraction [
     ]
 
     @rdfs:label "Device and Converter User"
     concept DeviceandConverterUser :> interface:System [
-        restricts all relation interface:providesInterface to DeviceandConverterUserProvidedInterface
-        restricts all relation interface:interactsThrough to DeviceandConverterUserInteractsThroughPort
+        restricts all relation interface:providesInterface to DeviceandConverterUserProvidesInterface
+        restricts all relation interface:interactsThrough to DeviceandConverterUserInteractsThrough
     ]
 
-    @rdfs:label "Device and Converter User Provided Interface"
-    concept DeviceandConverterUserProvidedInterface :> interface:Interface [
+    @rdfs:label "Device and Converter User Provides Interface"
+    concept DeviceandConverterUserProvidesInterface :> interface:Interface [
     ]
 
-    @rdfs:label "Device and Converter User Interacts Through Port"
-    concept DeviceandConverterUserInteractsThroughPort :> interface:Port [
+    @rdfs:label "Device and Converter User Interacts Through"
+    concept DeviceandConverterUserInteractsThrough :> interface:Port [
     ]
 
     @rdfs:label "Device Status and Information"
-    concept DeviceStatusandInformation :> interface:InputOutput [
+    concept DeviceStatusandInformation :> interface:InputOutput, ConfigurationandInformationInterfacePermitsInputOutput [
     ]
 
     @rdfs:label "UC1.1"
-    concept UC1.1 :> interface:Port, DeviceandConverterUserInteractsThroughPort [
+    concept UC1.1 :> interface:Port, DeviceandConverterUserInteractsThrough [
     ]
 
     @rdfs:label "HMI Display"
@@ -187,23 +217,33 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "Configuration and Information Interface"
-    concept ConfigurationandInformationInterface :> interface:Interface, InternationalPowerConverterProvidedInterface [
+    concept ConfigurationandInformationInterface :> interface:Interface, InternationalPowerConverterProvidesInterface [
+        restricts all relation interface:permitsFunctionalInteraction to ConfigurationandInformationInterfacePermitsFunctionalInteraction
+        restricts all relation interface:permitsInputOutput to ConfigurationandInformationInterfacePermitsInputOutput
+    ]
+
+    @rdfs:label "Configuration and Information Interface Permits Functional Interaction"
+    concept ConfigurationandInformationInterfacePermitsFunctionalInteraction :> interface:FunctionalInteraction [
+    ]
+
+    @rdfs:label "Configuration and Information Interface Permits Input Output"
+    concept ConfigurationandInformationInterfacePermitsInputOutput :> interface:InputOutput [
     ]
 
     @rdfs:label "CO.2"
-    concept CO.2 :> interface:Port, InternationalPowerConverterInteractsThroughPort [
+    concept CO.2 :> interface:Port, InternationalPowerConverterInteractsThrough [
     ]
 
     @rdfs:label "Handle Device"
-    concept HandleDevice :> interface:FunctionalInteraction [
+    concept HandleDevice :> interface:FunctionalInteraction, HandlingInterfacePermitsFunctionalInteraction [
     ]
 
     @rdfs:label "Handling Force"
-    concept HandlingForce :> interface:InputOutput [
+    concept HandlingForce :> interface:InputOutput, HandlingInterfacePermitsInputOutput [
     ]
 
     @rdfs:label "UHO.1"
-    concept UHO.1 :> interface:Port, DeviceandConverterUserInteractsThroughPort [
+    concept UHO.1 :> interface:Port, DeviceandConverterUserInteractsThrough [
     ]
 
     @rdfs:label "Handle"
@@ -211,23 +251,33 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "Handling Interface"
-    concept HandlingInterface :> interface:Interface, InternationalPowerConverterProvidedInterface [
+    concept HandlingInterface :> interface:Interface, InternationalPowerConverterProvidesInterface [
+        restricts all relation interface:permitsFunctionalInteraction to HandlingInterfacePermitsFunctionalInteraction
+        restricts all relation interface:permitsInputOutput to HandlingInterfacePermitsInputOutput
+    ]
+
+    @rdfs:label "Handling Interface Permits Functional Interaction"
+    concept HandlingInterfacePermitsFunctionalInteraction :> interface:FunctionalInteraction [
+    ]
+
+    @rdfs:label "Handling Interface Permits Input Output"
+    concept HandlingInterfacePermitsInputOutput :> interface:InputOutput [
     ]
 
     @rdfs:label "HI.1"
-    concept HI.1 :> interface:Port, InternationalPowerConverterInteractsThroughPort [
+    concept HI.1 :> interface:Port, InternationalPowerConverterInteractsThrough [
     ]
 
     @rdfs:label "Resist Contamination"
-    concept ResistContamination :> interface:FunctionalInteraction [
+    concept ResistContamination :> interface:FunctionalInteraction, EnvironmentalInterfacePermitsFunctionalInteraction [
     ]
 
     @rdfs:label "Contaminants"
-    concept Contaminants :> interface:InputOutput [
+    concept Contaminants :> interface:InputOutput, EnvironmentalInterfacePermitsInputOutput [
     ]
 
     @rdfs:label "EN.3"
-    concept EN.3 :> interface:Port, InternationalPowerConverterInteractsThroughPort [
+    concept EN.3 :> interface:Port, InternationalPowerConverterInteractsThrough [
     ]
 
     @rdfs:label "Airborne Particulates"
@@ -235,19 +285,19 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "ENV.1"
-    concept ENV.1 :> interface:Port, LocalEnvironmentInteractsThroughPort [
+    concept ENV.1 :> interface:Port, LocalEnvironmentInteractsThrough [
     ]
 
     @rdfs:label "Set Configuration"
-    concept SetConfiguration :> interface:FunctionalInteraction [
+    concept SetConfiguration :> interface:FunctionalInteraction, ConfigurationandInformationInterfacePermitsFunctionalInteraction [
     ]
 
     @rdfs:label "Configuration Setting"
-    concept ConfigurationSetting :> interface:InputOutput [
+    concept ConfigurationSetting :> interface:InputOutput, ConfigurationandInformationInterfacePermitsInputOutput [
     ]
 
     @rdfs:label "UCO.1"
-    concept UCO.1 :> interface:Port, DeviceandConverterUserInteractsThroughPort [
+    concept UCO.1 :> interface:Port, DeviceandConverterUserInteractsThrough [
     ]
 
     @rdfs:label "HMI Buttons"
@@ -255,19 +305,19 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "CI.1"
-    concept CI.1 :> interface:Port, InternationalPowerConverterInteractsThroughPort [
+    concept CI.1 :> interface:Port, InternationalPowerConverterInteractsThrough [
     ]
 
     @rdfs:label "Tolerate Moisture"
-    concept TolerateMoisture :> interface:FunctionalInteraction [
+    concept TolerateMoisture :> interface:FunctionalInteraction, EnvironmentalInterfacePermitsFunctionalInteraction [
     ]
 
     @rdfs:label "Moisture"
-    concept Moisture :> interface:InputOutput [
+    concept Moisture :> interface:InputOutput, EnvironmentalInterfacePermitsInputOutput [
     ]
 
     @rdfs:label "EN.4"
-    concept EN.4 :> interface:Port, InternationalPowerConverterInteractsThroughPort [
+    concept EN.4 :> interface:Port, InternationalPowerConverterInteractsThrough [
     ]
 
     @rdfs:label "Airborne Moisture Condensation"
@@ -275,7 +325,7 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "ENV.2"
-    concept ENV.2 :> interface:Port, LocalEnvironmentInteractsThroughPort [
+    concept ENV.2 :> interface:Port, LocalEnvironmentInteractsThrough [
     ]
 
 }

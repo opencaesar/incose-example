@@ -65,35 +65,46 @@ table.each do |row|
 
   if (ia_cell = row['Configured Interaction Name'])
     ia_label = ia_cell.to_s.split('::').last.gsub(/ \[.*\z/, '')
-    cs.fetch(ia_label) { |k| cs[k] = Concept.new(ia_label, 'interface:FunctionalInteraction')}
+    ia_c = cs.fetch(ia_label) { |k| cs[k] = Concept.new(ia_label, 'interface:FunctionalInteraction')}
   end
 
+  sy_c = provides_if_rest_c = int_thr_rest_c = nil
   if (role_cell = row['Configured Role Name'])
     role_label = role_cell.to_s.split('::').last.gsub(/ \[.*\z/, '')
     sy_c = cs.fetch(role_label) { |k| cs[k] = Concept.new(role_label, 'interface:System')}
-    provides_if_rest_label = "#{role_label} Provided Interface"
+
+    provides_if_rest_label = "#{role_label} Provides Interface"
     provides_if_rest_c = cs.fetch(provides_if_rest_label) { |k| cs[k] = Concept.new(provides_if_rest_label, 'interface:Interface')}
     sy_c.rest_all['interface:providesInterface'] = provides_if_rest_c.name
-    int_thr_port_rest_label = "#{role_label} Interacts Through Port"
-    int_thr_port_rest_c = cs.fetch(int_thr_port_rest_label) { |k| cs[k] = Concept.new(int_thr_port_rest_label, 'interface:Port')}
-    sy_c.rest_all['interface:interactsThrough'] = int_thr_port_rest_c.name
+
+    int_thr_rest_label = "#{role_label} Interacts Through"
+    int_thr_rest_c = cs.fetch(int_thr_rest_label) { |k| cs[k] = Concept.new(int_thr_rest_label, 'interface:Port')}
+    sy_c.rest_all['interface:interactsThrough'] = int_thr_rest_c.name
   end
 
+  if_c = permits_fi_rest_c = permits_io_rest_c = nil
   if (if_cell = row['Configured Interface Name'])
     if_label = if_cell.to_s.split('::').last.gsub(/ \[.*\z/, '')
     if_c = cs.fetch(if_label) { |k| cs[k] = Concept.new(if_label, 'interface:Interface')}
-    if_c.types << provides_if_rest_c.name
+
+    permits_fi_rest_label = "#{if_label} Permits Functional Interaction"
+    permits_fi_rest_c = cs.fetch(permits_fi_rest_label) { |k| cs[k] = Concept.new(permits_fi_rest_label, 'interface:FunctionalInteraction')}
+    if_c.rest_all['interface:permitsFunctionalInteraction'] = permits_fi_rest_c.name
+
+    permits_io_rest_label = "#{if_label} Permits Input Output"
+    permits_io_rest_c = cs.fetch(permits_io_rest_label) { |k| cs[k] = Concept.new(permits_io_rest_label, 'interface:InputOutput')}
+    if_c.rest_all['interface:permitsInputOutput'] = permits_io_rest_c.name
   end
 
+  io_c = nil
   if (io_cell = row['Configured Input Output Name'])
     io_label = io_cell.to_s.split('::').last.gsub(/ \[.*\z/, '')
-    cs.fetch(io_label) { |k| cs[k] = Concept.new(io_label, 'interface:InputOutput')}
+    io_c = cs.fetch(io_label) { |k| cs[k] = Concept.new(io_label, 'interface:InputOutput')}
   end
 
   if (port_cell = row['Configured Port Name'])
     port_label = port_cell.to_s.split('::').last.gsub(/ \[.*\z/, '')
     port_c = cs.fetch(port_label) { |k| cs[k] = Concept.new(port_label, 'interface:Port')}
-    port_c.types << int_thr_port_rest_c.name
   end
 
   if (soa_cell = row['Configured SOA Name'])
@@ -110,6 +121,11 @@ table.each do |row|
     arr_label = arr_cell.to_s.split('::').last.gsub(/ \[.*\z/, '')
     cs.fetch(arr_label) { |k| cs[k] = Concept.new(arr_label, 'interface:ArchitecturalRelationshipRole')}
   end
+
+  ia_c.types << permits_fi_rest_c.name if ia_c if permits_fi_rest_c
+  if_c.types << provides_if_rest_c.name if if_c if provides_if_rest_c
+  port_c.types << int_thr_rest_c.name if port_c if int_thr_rest_c
+  io_c.types << permits_io_rest_c.name if io_c if permits_io_rest_c
 
 end
 
