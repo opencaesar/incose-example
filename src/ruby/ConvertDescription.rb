@@ -67,10 +67,10 @@ end
 
 desc = Description.new(
   'http://incose.org/pwg/s-star/description/power-converter',
-  'power-converter'
+  'ipc'
 )
 desc.uses << 'http://www.w3.org/2000/01/rdf-schema'
-desc.uses << 'http://incose.org/pwg/s-star/vocabulary/power-converter-bundle'
+desc.uses << 'http://incose.org/pwg/s-star/vocabulary/power-converter'
 
 table = CSV.new(ARGF, headers: true)
 

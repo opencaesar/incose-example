@@ -77,7 +77,7 @@ task owlReason(type:io.opencaesar.owl.reason.OwlReasonTask, dependsOn: omlToOwl)
 	// OWL catalog
 	catalogPath = file('build/owl/catalog.xml')
 	// Input ontology IRI to reason on
-	inputOntologyIri = 'http://incose.org/pwg/s-star/description/converter-bundle'
+	inputOntologyIri = 'http://incose.org/pwg/s-star/description/power-converter-bundle'
 	// Entailment statements to generate and the ontologies to persist them in
 	specs = [
 		'http://incose.org/pwg/s-star/bundle/classes = ALL_SUBCLASS',

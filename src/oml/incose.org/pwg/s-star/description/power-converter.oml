@@ -1,8 +1,8 @@
-description <http://incose.org/pwg/s-star/description/power-converter> with # as power-converter {
+description <http://incose.org/pwg/s-star/description/power-converter> with # as ipc {
 
     uses <http://www.w3.org/2000/01/rdf-schema>
 
-    uses <http://incose.org/pwg/s-star/vocabulary/power-converter-bundle>
+    uses <http://incose.org/pwg/s-star/vocabulary/power-converter>
 
     ci convert_electrical_power_power_output_1_: power-converter:Convert_Electrical_Power_Power_Output_1_ [
         interface:hasIdentifier "Convert Electrical Power [Power Output 1]"

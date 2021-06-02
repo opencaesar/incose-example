@@ -1,0 +1,7 @@
+description bundle <http://incose.org/pwg/s-star/description/power-converter-bundle> with # as ipc-bundle {
+	
+	uses <http://incose.org/pwg/s-star/vocabulary/power-converter-bundle>
+
+	includes <http://incose.org/pwg/s-star/description/power-converter>
+	
+}
