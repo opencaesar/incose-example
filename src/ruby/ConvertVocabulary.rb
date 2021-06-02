@@ -147,7 +147,7 @@ table.each do |row|
     io_c.rest_all['interface:exemplifies'] = exemplifies_rest_c.name
   end
 
-  port_c = is_used_during_rest_c = is_facilitated_by_rest_c = is_linked_by_rest_c = nil
+  port_c = sends_rest_c = is_used_during_rest_c = is_facilitated_by_rest_c = is_linked_by_rest_c = nil
   if (port_cell = row['Configured Port Name'])
     port_label = Concept.make_label(port_cell)
     port_c = cs.fetch(port_label) { |k| cs[k] = Concept.new(port_label, 'interface:Port') }
@@ -156,6 +156,14 @@ table.each do |row|
       sc = cs.fetch(sc_label) { |k| cs[k] = Concept.new(sc_label, 'interface:Port') }
       port_c.types << sc.name
     end
+
+    sends_rest_label = "#{port_label} Sends"
+    sends_rest_c = cs.fetch(sends_rest_label) { |k| cs[k] = Concept.new(sends_rest_label, 'interface:InputOutput') }
+    port_c.rest_all['interface:sends'] = sends_rest_c.name
+
+    receives_rest_label = "#{port_label} Receives"
+    receives_rest_c = cs.fetch(receives_rest_label) { |k| cs[k] = Concept.new(receives_rest_label, 'interface:InputOutput') }
+    port_c.rest_all['interface:receives'] = receives_rest_c.name
 
     is_used_during_rest_label = "#{port_label} Is Used During"
     is_used_during_rest_c = cs.fetch(is_used_during_rest_label) { |k| cs[k] = Concept.new(is_used_during_rest_label, 'interface:FunctionalInteraction') }
@@ -169,6 +177,8 @@ table.each do |row|
     is_linked_by_rest_c = cs.fetch(is_linked_by_rest_label) { |k| cs[k] = Concept.new(is_linked_by_rest_label, 'interface:ArchitecturalRelationship') }
     port_c.rest_all['interface:isLinkedBy'] = is_linked_by_rest_c.name
   end
+
+  pd = row['Port Direction']
 
   soa_c = nil
   if (soa_cell = row['Configured SOA Name'])
@@ -217,7 +227,9 @@ table.each do |row|
   end
 
   if io_c
-    io_c.types << permits_io_rest_c.name if permits_io_rest_c && io_c
+    io_c.types << permits_io_rest_c.name if permits_io_rest_c
+    io_c.types << sends_rest_c.name if sends_rest_c && pd == 'Out'
+    io_c.types << receives_rest_c.name if receives_rest_c && pd == 'In'
   end
 
   if ar_c
