@@ -119,7 +119,7 @@ table.each do |row|
     io_c.rest_all['interface:exemplifies'] = exemplifies_rest_c.name
   end
 
-  port_c = is_used_during_rest_c = is_facilitated_by_rest_c = nil
+  port_c = is_used_during_rest_c = is_facilitated_by_rest_c = is_linked_by_rest_c = nil
   if (port_cell = row['Configured Port Name'])
     port_label = port_cell.to_s.split('::').last.gsub(/ \[.*\z/, '')
     port_c = cs.fetch(port_label) { |k| cs[k] = Concept.new(port_label, 'interface:Port') }
@@ -131,6 +131,10 @@ table.each do |row|
     is_facilitated_by_rest_label = "#{port_label} Is Facilitated By"
     is_facilitated_by_rest_c = cs.fetch(is_facilitated_by_rest_label) { |k| cs[k] = Concept.new(is_facilitated_by_rest_label, 'interface:SystemOfAccess') }
     port_c.rest_all['interface:isFacilitatedBy'] = is_facilitated_by_rest_c.name
+
+    is_linked_by_rest_label = "#{port_label} Is Linked By"
+    is_linked_by_rest_c = cs.fetch(is_linked_by_rest_label) { |k| cs[k] = Concept.new(is_linked_by_rest_label, 'interface:ArchitecturalRelationship') }
+    port_c.rest_all['interface:isLinkedBy'] = is_linked_by_rest_c.name
   end
 
   soa_c = nil
@@ -151,22 +155,34 @@ table.each do |row|
     cs.fetch(arr_label) { |k| cs[k] = Concept.new(arr_label, 'interface:ArchitecturalRelationshipRole') }
   end
 
-  ia_c.types << permits_fi_rest_c.name if permits_fi_rest_c && ia_c
-  ia_c.types << is_used_during_rest_c.name if is_used_during_rest_c && ia_c
+  if ia_c
+    ia_c.types << permits_fi_rest_c.name if permits_fi_rest_c
+    ia_c.types << is_used_during_rest_c.name if is_used_during_rest_c
+  end
 
-  if_c.types << provides_if_rest_c.name if provides_if_rest_c && if_c
+  if if_c
+    if_c.types << provides_if_rest_c.name if provides_if_rest_c
+  end
 
-  io_c.types << permits_io_rest_c.name if permits_io_rest_c && io_c
+  if io_c
+    io_c.types << permits_io_rest_c.name if permits_io_rest_c && io_c
+  end
 
-  ar_c.types << permits_ar_rest_c.name if permits_ar_rest_c && ar_c
-  ar_c.types << exemplifies_rest_c.name if exemplifies_rest_c && ar_c
+  if ar_c
+    ar_c.types << permits_ar_rest_c.name if permits_ar_rest_c
+    ar_c.types << exemplifies_rest_c.name if exemplifies_rest_c
+    ar_c.types << is_linked_by_rest_c.name if is_linked_by_rest_c
+  end
 
-  port_c.types << groups_rest_c.name if groups_rest_c && port_c
-  port_c.types << int_thr_rest_c.name if int_thr_rest_c && port_c
-  port_c.types << is_facilitated_by_rest_c.name if is_facilitated_by_rest_c && port_c
+  if port_c
+    port_c.types << groups_rest_c.name if groups_rest_c
+    port_c.types << int_thr_rest_c.name if int_thr_rest_c
+  end
 
-  soa_c.types << permits_soa_rest_c.name if permits_soa_rest_c && soa_c
-  soa_c.types << is_facilitated_by_rest_c.name if is_facilitated_by_rest_c && soa_c
+  if soa_c
+    soa_c.types << permits_soa_rest_c.name if permits_soa_rest_c
+    soa_c.types << is_facilitated_by_rest_c.name if is_facilitated_by_rest_c
+  end
 
 end
 

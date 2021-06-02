@@ -32,9 +32,10 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "DPI.1"
-    concept DPI.1 :> interface:Port, ElectricallyPoweredDeviceInteractsThrough, DPI.1IsFacilitatedBy [
+    concept DPI.1 :> interface:Port, ElectricallyPoweredDeviceInteractsThrough [
         restricts all relation interface:isUsedDuring to DPI.1IsUsedDuring
         restricts all relation interface:isFacilitatedBy to DPI.1IsFacilitatedBy
+        restricts all relation interface:isLinkedBy to DPI.1IsLinkedBy
     ]
 
     @rdfs:label "DPI.1 Is Used During"
@@ -45,12 +46,16 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     concept DPI.1IsFacilitatedBy :> interface:SystemOfAccess [
     ]
 
+    @rdfs:label "DPI.1 Is Linked By"
+    concept DPI.1IsLinkedBy :> interface:ArchitecturalRelationship [
+    ]
+
     @rdfs:label "Device Power Connector"
     concept DevicePowerConnector :> interface:SystemOfAccess, DPI.1IsFacilitatedBy, PowerOutputInterfacePermitsSOA, PO.1IsFacilitatedBy [
     ]
 
     @rdfs:label "Converts Electrical Power"
-    concept ConvertsElectricalPower :> interface:ArchitecturalRelationship, OutputPowerExemplifies, PowerInputInterfacePermitsArchitecturalRelationship, InputPowerExemplifies, PowerOutputInterfacePermitsArchitecturalRelationship [
+    concept ConvertsElectricalPower :> interface:ArchitecturalRelationship, OutputPowerExemplifies, DPI.1IsLinkedBy, PowerInputInterfacePermitsArchitecturalRelationship, InputPowerExemplifies, PI.1IsLinkedBy, PowerOutputInterfacePermitsArchitecturalRelationship, PO.1IsLinkedBy, LPO.1IsLinkedBy [
     ]
 
     @rdfs:label "Sink"
@@ -110,9 +115,10 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "EN.2"
-    concept EN.2 :> interface:Port, EnvironmentalInterfaceGroups, InternationalPowerConverterInteractsThrough, EN.2IsFacilitatedBy [
+    concept EN.2 :> interface:Port, EnvironmentalInterfaceGroups, InternationalPowerConverterInteractsThrough [
         restricts all relation interface:isUsedDuring to EN.2IsUsedDuring
         restricts all relation interface:isFacilitatedBy to EN.2IsFacilitatedBy
+        restricts all relation interface:isLinkedBy to EN.2IsLinkedBy
     ]
 
     @rdfs:label "EN.2 Is Used During"
@@ -121,6 +127,10 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
 
     @rdfs:label "EN.2 Is Facilitated By"
     concept EN.2IsFacilitatedBy :> interface:SystemOfAccess [
+    ]
+
+    @rdfs:label "EN.2 Is Linked By"
+    concept EN.2IsLinkedBy :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "EMI Radiation"
@@ -137,9 +147,10 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "EN.1"
-    concept EN.1 :> interface:Port, EnvironmentalInterfaceGroups, InternationalPowerConverterInteractsThrough, EN.1IsFacilitatedBy [
+    concept EN.1 :> interface:Port, EnvironmentalInterfaceGroups, InternationalPowerConverterInteractsThrough [
         restricts all relation interface:isUsedDuring to EN.1IsUsedDuring
         restricts all relation interface:isFacilitatedBy to EN.1IsFacilitatedBy
+        restricts all relation interface:isLinkedBy to EN.1IsLinkedBy
     ]
 
     @rdfs:label "EN.1 Is Used During"
@@ -148,6 +159,10 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
 
     @rdfs:label "EN.1 Is Facilitated By"
     concept EN.1IsFacilitatedBy :> interface:SystemOfAccess [
+    ]
+
+    @rdfs:label "EN.1 Is Linked By"
+    concept EN.1IsLinkedBy :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "Airspace Thermal Conduction"
@@ -193,9 +208,10 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "PI.1"
-    concept PI.1 :> interface:Port, PowerInputInterfaceGroups, InternationalPowerConverterInteractsThrough, PI.1IsFacilitatedBy [
+    concept PI.1 :> interface:Port, PowerInputInterfaceGroups, InternationalPowerConverterInteractsThrough [
         restricts all relation interface:isUsedDuring to PI.1IsUsedDuring
         restricts all relation interface:isFacilitatedBy to PI.1IsFacilitatedBy
+        restricts all relation interface:isLinkedBy to PI.1IsLinkedBy
     ]
 
     @rdfs:label "PI.1 Is Used During"
@@ -204,6 +220,10 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
 
     @rdfs:label "PI.1 Is Facilitated By"
     concept PI.1IsFacilitatedBy :> interface:SystemOfAccess [
+    ]
+
+    @rdfs:label "PI.1 Is Linked By"
+    concept PI.1IsLinkedBy :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "Local Power Connector"
@@ -244,9 +264,10 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "PO.1"
-    concept PO.1 :> interface:Port, PowerOutputInterfaceGroups, InternationalPowerConverterInteractsThrough, PO.1IsFacilitatedBy [
+    concept PO.1 :> interface:Port, PowerOutputInterfaceGroups, InternationalPowerConverterInteractsThrough [
         restricts all relation interface:isUsedDuring to PO.1IsUsedDuring
         restricts all relation interface:isFacilitatedBy to PO.1IsFacilitatedBy
+        restricts all relation interface:isLinkedBy to PO.1IsLinkedBy
     ]
 
     @rdfs:label "PO.1 Is Used During"
@@ -255,6 +276,10 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
 
     @rdfs:label "PO.1 Is Facilitated By"
     concept PO.1IsFacilitatedBy :> interface:SystemOfAccess [
+    ]
+
+    @rdfs:label "PO.1 Is Linked By"
+    concept PO.1IsLinkedBy :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "Local Environment"
@@ -272,9 +297,10 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "ENV.3"
-    concept ENV.3 :> interface:Port, LocalEnvironmentInteractsThrough, ENV.3IsFacilitatedBy [
+    concept ENV.3 :> interface:Port, LocalEnvironmentInteractsThrough [
         restricts all relation interface:isUsedDuring to ENV.3IsUsedDuring
         restricts all relation interface:isFacilitatedBy to ENV.3IsFacilitatedBy
+        restricts all relation interface:isLinkedBy to ENV.3IsLinkedBy
     ]
 
     @rdfs:label "ENV.3 Is Used During"
@@ -285,10 +311,15 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     concept ENV.3IsFacilitatedBy :> interface:SystemOfAccess [
     ]
 
+    @rdfs:label "ENV.3 Is Linked By"
+    concept ENV.3IsLinkedBy :> interface:ArchitecturalRelationship [
+    ]
+
     @rdfs:label "ENV.4"
-    concept ENV.4 :> interface:Port, LocalEnvironmentInteractsThrough, ENV.4IsFacilitatedBy [
+    concept ENV.4 :> interface:Port, LocalEnvironmentInteractsThrough [
         restricts all relation interface:isUsedDuring to ENV.4IsUsedDuring
         restricts all relation interface:isFacilitatedBy to ENV.4IsFacilitatedBy
+        restricts all relation interface:isLinkedBy to ENV.4IsLinkedBy
     ]
 
     @rdfs:label "ENV.4 Is Used During"
@@ -297,6 +328,10 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
 
     @rdfs:label "ENV.4 Is Facilitated By"
     concept ENV.4IsFacilitatedBy :> interface:SystemOfAccess [
+    ]
+
+    @rdfs:label "ENV.4 Is Linked By"
+    concept ENV.4IsLinkedBy :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "Local Power Distribution System"
@@ -314,9 +349,10 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "LPO.1"
-    concept LPO.1 :> interface:Port, LocalPowerDistributionSystemInteractsThrough, LPO.1IsFacilitatedBy [
+    concept LPO.1 :> interface:Port, LocalPowerDistributionSystemInteractsThrough [
         restricts all relation interface:isUsedDuring to LPO.1IsUsedDuring
         restricts all relation interface:isFacilitatedBy to LPO.1IsFacilitatedBy
+        restricts all relation interface:isLinkedBy to LPO.1IsLinkedBy
     ]
 
     @rdfs:label "LPO.1 Is Used During"
@@ -325,6 +361,10 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
 
     @rdfs:label "LPO.1 Is Facilitated By"
     concept LPO.1IsFacilitatedBy :> interface:SystemOfAccess [
+    ]
+
+    @rdfs:label "LPO.1 Is Linked By"
+    concept LPO.1IsLinkedBy :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "Source"
@@ -359,9 +399,10 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "UC1.1"
-    concept UC1.1 :> interface:Port, DeviceandConverterUserInteractsThrough, UC1.1IsFacilitatedBy [
+    concept UC1.1 :> interface:Port, DeviceandConverterUserInteractsThrough [
         restricts all relation interface:isUsedDuring to UC1.1IsUsedDuring
         restricts all relation interface:isFacilitatedBy to UC1.1IsFacilitatedBy
+        restricts all relation interface:isLinkedBy to UC1.1IsLinkedBy
     ]
 
     @rdfs:label "UC1.1 Is Used During"
@@ -370,6 +411,10 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
 
     @rdfs:label "UC1.1 Is Facilitated By"
     concept UC1.1IsFacilitatedBy :> interface:SystemOfAccess [
+    ]
+
+    @rdfs:label "UC1.1 Is Linked By"
+    concept UC1.1IsLinkedBy :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "HMI Display"
@@ -406,9 +451,10 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "CO.2"
-    concept CO.2 :> interface:Port, ConfigurationandInformationInterfaceGroups, InternationalPowerConverterInteractsThrough, CO.2IsFacilitatedBy [
+    concept CO.2 :> interface:Port, ConfigurationandInformationInterfaceGroups, InternationalPowerConverterInteractsThrough [
         restricts all relation interface:isUsedDuring to CO.2IsUsedDuring
         restricts all relation interface:isFacilitatedBy to CO.2IsFacilitatedBy
+        restricts all relation interface:isLinkedBy to CO.2IsLinkedBy
     ]
 
     @rdfs:label "CO.2 Is Used During"
@@ -417,6 +463,10 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
 
     @rdfs:label "CO.2 Is Facilitated By"
     concept CO.2IsFacilitatedBy :> interface:SystemOfAccess [
+    ]
+
+    @rdfs:label "CO.2 Is Linked By"
+    concept CO.2IsLinkedBy :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "Handle Device"
@@ -433,9 +483,10 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "UHO.1"
-    concept UHO.1 :> interface:Port, DeviceandConverterUserInteractsThrough, UHO.1IsFacilitatedBy [
+    concept UHO.1 :> interface:Port, DeviceandConverterUserInteractsThrough [
         restricts all relation interface:isUsedDuring to UHO.1IsUsedDuring
         restricts all relation interface:isFacilitatedBy to UHO.1IsFacilitatedBy
+        restricts all relation interface:isLinkedBy to UHO.1IsLinkedBy
     ]
 
     @rdfs:label "UHO.1 Is Used During"
@@ -444,6 +495,10 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
 
     @rdfs:label "UHO.1 Is Facilitated By"
     concept UHO.1IsFacilitatedBy :> interface:SystemOfAccess [
+    ]
+
+    @rdfs:label "UHO.1 Is Linked By"
+    concept UHO.1IsLinkedBy :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "Handle"
@@ -480,9 +535,10 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "HI.1"
-    concept HI.1 :> interface:Port, HandlingInterfaceGroups, InternationalPowerConverterInteractsThrough, HI.1IsFacilitatedBy [
+    concept HI.1 :> interface:Port, HandlingInterfaceGroups, InternationalPowerConverterInteractsThrough [
         restricts all relation interface:isUsedDuring to HI.1IsUsedDuring
         restricts all relation interface:isFacilitatedBy to HI.1IsFacilitatedBy
+        restricts all relation interface:isLinkedBy to HI.1IsLinkedBy
     ]
 
     @rdfs:label "HI.1 Is Used During"
@@ -491,6 +547,10 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
 
     @rdfs:label "HI.1 Is Facilitated By"
     concept HI.1IsFacilitatedBy :> interface:SystemOfAccess [
+    ]
+
+    @rdfs:label "HI.1 Is Linked By"
+    concept HI.1IsLinkedBy :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "Resist Contamination"
@@ -507,9 +567,10 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "EN.3"
-    concept EN.3 :> interface:Port, EnvironmentalInterfaceGroups, InternationalPowerConverterInteractsThrough, EN.3IsFacilitatedBy [
+    concept EN.3 :> interface:Port, EnvironmentalInterfaceGroups, InternationalPowerConverterInteractsThrough [
         restricts all relation interface:isUsedDuring to EN.3IsUsedDuring
         restricts all relation interface:isFacilitatedBy to EN.3IsFacilitatedBy
+        restricts all relation interface:isLinkedBy to EN.3IsLinkedBy
     ]
 
     @rdfs:label "EN.3 Is Used During"
@@ -520,14 +581,19 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     concept EN.3IsFacilitatedBy :> interface:SystemOfAccess [
     ]
 
+    @rdfs:label "EN.3 Is Linked By"
+    concept EN.3IsLinkedBy :> interface:ArchitecturalRelationship [
+    ]
+
     @rdfs:label "Airborne Particulates"
     concept AirborneParticulates :> interface:SystemOfAccess, EnvironmentalInterfacePermitsSOA, EN.3IsFacilitatedBy, ENV.1IsFacilitatedBy [
     ]
 
     @rdfs:label "ENV.1"
-    concept ENV.1 :> interface:Port, LocalEnvironmentInteractsThrough, ENV.1IsFacilitatedBy [
+    concept ENV.1 :> interface:Port, LocalEnvironmentInteractsThrough [
         restricts all relation interface:isUsedDuring to ENV.1IsUsedDuring
         restricts all relation interface:isFacilitatedBy to ENV.1IsFacilitatedBy
+        restricts all relation interface:isLinkedBy to ENV.1IsLinkedBy
     ]
 
     @rdfs:label "ENV.1 Is Used During"
@@ -536,6 +602,10 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
 
     @rdfs:label "ENV.1 Is Facilitated By"
     concept ENV.1IsFacilitatedBy :> interface:SystemOfAccess [
+    ]
+
+    @rdfs:label "ENV.1 Is Linked By"
+    concept ENV.1IsLinkedBy :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "Set Configuration"
@@ -552,9 +622,10 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "UCO.1"
-    concept UCO.1 :> interface:Port, DeviceandConverterUserInteractsThrough, UCO.1IsFacilitatedBy [
+    concept UCO.1 :> interface:Port, DeviceandConverterUserInteractsThrough [
         restricts all relation interface:isUsedDuring to UCO.1IsUsedDuring
         restricts all relation interface:isFacilitatedBy to UCO.1IsFacilitatedBy
+        restricts all relation interface:isLinkedBy to UCO.1IsLinkedBy
     ]
 
     @rdfs:label "UCO.1 Is Used During"
@@ -565,14 +636,19 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     concept UCO.1IsFacilitatedBy :> interface:SystemOfAccess [
     ]
 
+    @rdfs:label "UCO.1 Is Linked By"
+    concept UCO.1IsLinkedBy :> interface:ArchitecturalRelationship [
+    ]
+
     @rdfs:label "HMI Buttons"
     concept HMIButtons :> interface:SystemOfAccess, UCO.1IsFacilitatedBy, ConfigurationandInformationInterfacePermitsSOA, CI.1IsFacilitatedBy [
     ]
 
     @rdfs:label "CI.1"
-    concept CI.1 :> interface:Port, ConfigurationandInformationInterfaceGroups, InternationalPowerConverterInteractsThrough, CI.1IsFacilitatedBy [
+    concept CI.1 :> interface:Port, ConfigurationandInformationInterfaceGroups, InternationalPowerConverterInteractsThrough [
         restricts all relation interface:isUsedDuring to CI.1IsUsedDuring
         restricts all relation interface:isFacilitatedBy to CI.1IsFacilitatedBy
+        restricts all relation interface:isLinkedBy to CI.1IsLinkedBy
     ]
 
     @rdfs:label "CI.1 Is Used During"
@@ -581,6 +657,10 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
 
     @rdfs:label "CI.1 Is Facilitated By"
     concept CI.1IsFacilitatedBy :> interface:SystemOfAccess [
+    ]
+
+    @rdfs:label "CI.1 Is Linked By"
+    concept CI.1IsLinkedBy :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "Tolerate Moisture"
@@ -597,9 +677,10 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "EN.4"
-    concept EN.4 :> interface:Port, EnvironmentalInterfaceGroups, InternationalPowerConverterInteractsThrough, EN.4IsFacilitatedBy [
+    concept EN.4 :> interface:Port, EnvironmentalInterfaceGroups, InternationalPowerConverterInteractsThrough [
         restricts all relation interface:isUsedDuring to EN.4IsUsedDuring
         restricts all relation interface:isFacilitatedBy to EN.4IsFacilitatedBy
+        restricts all relation interface:isLinkedBy to EN.4IsLinkedBy
     ]
 
     @rdfs:label "EN.4 Is Used During"
@@ -610,14 +691,19 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     concept EN.4IsFacilitatedBy :> interface:SystemOfAccess [
     ]
 
+    @rdfs:label "EN.4 Is Linked By"
+    concept EN.4IsLinkedBy :> interface:ArchitecturalRelationship [
+    ]
+
     @rdfs:label "Airborne Moisture Condensation"
     concept AirborneMoistureCondensation :> interface:SystemOfAccess, EnvironmentalInterfacePermitsSOA, EN.4IsFacilitatedBy, ENV.2IsFacilitatedBy [
     ]
 
     @rdfs:label "ENV.2"
-    concept ENV.2 :> interface:Port, LocalEnvironmentInteractsThrough, ENV.2IsFacilitatedBy [
+    concept ENV.2 :> interface:Port, LocalEnvironmentInteractsThrough [
         restricts all relation interface:isUsedDuring to ENV.2IsUsedDuring
         restricts all relation interface:isFacilitatedBy to ENV.2IsFacilitatedBy
+        restricts all relation interface:isLinkedBy to ENV.2IsLinkedBy
     ]
 
     @rdfs:label "ENV.2 Is Used During"
@@ -626,6 +712,10 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
 
     @rdfs:label "ENV.2 Is Facilitated By"
     concept ENV.2IsFacilitatedBy :> interface:SystemOfAccess [
+    ]
+
+    @rdfs:label "ENV.2 Is Linked By"
+    concept ENV.2IsLinkedBy :> interface:ArchitecturalRelationship [
     ]
 
 }
