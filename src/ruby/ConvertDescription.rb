@@ -55,8 +55,8 @@ class ConceptInstance
 
   def to_s
     lines = []
-    lines << %(    @rdfs:label "#{@label}")
     lines << "    ci #{@name}: #{@types.to_a.join(', ')} ["
+    lines << %(        interface:hasIdentifier "#{@label}")
     @properties.each do |k, vs|
       vs.each { |v| lines << "        #{k} #{v}" }
     end

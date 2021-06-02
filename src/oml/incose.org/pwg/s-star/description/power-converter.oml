@@ -4,12 +4,12 @@ description <http://incose.org/pwg/s-star/description/power-converter> with # as
 
     uses <http://incose.org/pwg/s-star/vocabulary/power-interface>
 
-    @rdfs:label "Convert Electrical Power [Power Output 1]"
     ci convert_electrical_power_power_output_1_: power-interface:Convert_Electrical_Power_Power_Output_1_ [
+        interface:hasIdentifier "Convert Electrical Power [Power Output 1]"
     ]
 
-    @rdfs:label "International Power Converter"
     ci international_power_converter: power-interface:International_Power_Converter [
+        interface:hasIdentifier "International Power Converter"
         interface:providesInterface environmental_interface
         interface:providesInterface power_input_interface
         interface:providesInterface power_output_interface_power_output_1_
@@ -30,8 +30,8 @@ description <http://incose.org/pwg/s-star/description/power-converter> with # as
         interface:interactsThrough en.4
     ]
 
-    @rdfs:label "Environmental Interface"
     ci environmental_interface: power-interface:Environmental_Interface [
+        interface:hasIdentifier "Environmental Interface"
         interface:permitsFunctionalInteraction convert_electrical_power_power_output_1_
         interface:permitsFunctionalInteraction convert_electrical_power_power_output_2_
         interface:permitsFunctionalInteraction convert_electrical_power_power_output_3_
@@ -51,12 +51,12 @@ description <http://incose.org/pwg/s-star/description/power-converter> with # as
         interface:permitsSOA airborne_moisture_condensation
     ]
 
-    @rdfs:label "EMI"
     ci emi: power-interface:EMI [
+        interface:hasIdentifier "EMI"
     ]
 
-    @rdfs:label "EN.2"
     ci en.2: power-interface:EN.2 [
+        interface:hasIdentifier "EN.2"
         interface:isUsedDuring convert_electrical_power_power_output_1_
         interface:isUsedDuring convert_electrical_power_power_output_2_
         interface:isUsedDuring convert_electrical_power_power_output_3_
@@ -64,16 +64,16 @@ description <http://incose.org/pwg/s-star/description/power-converter> with # as
         interface:isFacilitatedBy emi_radiation
     ]
 
-    @rdfs:label "EMI Radiation"
     ci emi_radiation: power-interface:EMI_Radiation [
+        interface:hasIdentifier "EMI Radiation"
     ]
 
-    @rdfs:label "Heat"
     ci heat: power-interface:Heat [
+        interface:hasIdentifier "Heat"
     ]
 
-    @rdfs:label "EN.1"
     ci en.1: power-interface:EN.1 [
+        interface:hasIdentifier "EN.1"
         interface:isUsedDuring convert_electrical_power_power_output_1_
         interface:isUsedDuring convert_electrical_power_power_output_2_
         interface:isUsedDuring convert_electrical_power_power_output_3_
@@ -81,12 +81,12 @@ description <http://incose.org/pwg/s-star/description/power-converter> with # as
         interface:isFacilitatedBy airspace_thermal_conduction
     ]
 
-    @rdfs:label "Airspace Thermal Conduction"
     ci airspace_thermal_conduction: power-interface:Airspace_Thermal_Conduction [
+        interface:hasIdentifier "Airspace Thermal Conduction"
     ]
 
-    @rdfs:label "Power Input Interface"
     ci power_input_interface: power-interface:Power_Input_Interface [
+        interface:hasIdentifier "Power Input Interface"
         interface:permitsFunctionalInteraction convert_electrical_power_power_output_1_
         interface:permitsFunctionalInteraction convert_electrical_power_power_output_2_
         interface:permitsFunctionalInteraction convert_electrical_power_power_output_3_
@@ -96,13 +96,13 @@ description <http://incose.org/pwg/s-star/description/power-converter> with # as
         interface:permitsArchitecturalRelationship converts_electrical_power
     ]
 
-    @rdfs:label "Input Power"
     ci input_power: power-interface:Input_Power [
+        interface:hasIdentifier "Input Power"
         interface:exemplifies converts_electrical_power
     ]
 
-    @rdfs:label "PI.1"
     ci pi.1: power-interface:PI.1 [
+        interface:hasIdentifier "PI.1"
         interface:isUsedDuring convert_electrical_power_power_output_1_
         interface:isUsedDuring convert_electrical_power_power_output_2_
         interface:isUsedDuring convert_electrical_power_power_output_3_
@@ -111,21 +111,21 @@ description <http://incose.org/pwg/s-star/description/power-converter> with # as
         interface:isLinkedBy converts_electrical_power
     ]
 
-    @rdfs:label "Local Power Connector"
     ci local_power_connector: power-interface:Local_Power_Connector [
+        interface:hasIdentifier "Local Power Connector"
     ]
 
-    @rdfs:label "Converts Electrical Power"
     ci converts_electrical_power: power-interface:Converts_Electrical_Power [
+        interface:hasIdentifier "Converts Electrical Power"
         interface:hasRole converter
     ]
 
-    @rdfs:label "Converter"
     ci converter: power-interface:Converter [
+        interface:hasIdentifier "Converter"
     ]
 
-    @rdfs:label "Power Output Interface [Power Output 1]"
     ci power_output_interface_power_output_1_: power-interface:Power_Output_Interface_Power_Output_1_ [
+        interface:hasIdentifier "Power Output Interface [Power Output 1]"
         interface:permitsFunctionalInteraction convert_electrical_power_power_output_1_
         interface:permitsInputOutput output_power_power_output_1_
         interface:groups po.1_power_output_1_
@@ -133,29 +133,29 @@ description <http://incose.org/pwg/s-star/description/power-converter> with # as
         interface:permitsArchitecturalRelationship converts_electrical_power
     ]
 
-    @rdfs:label "Output Power [Power Output 1]"
     ci output_power_power_output_1_: power-interface:Output_Power_Power_Output_1_ [
+        interface:hasIdentifier "Output Power [Power Output 1]"
         interface:exemplifies converts_electrical_power
     ]
 
-    @rdfs:label "PO.1 [Power Output 1]"
     ci po.1_power_output_1_: power-interface:PO.1_Power_Output_1_ [
+        interface:hasIdentifier "PO.1 [Power Output 1]"
         interface:isUsedDuring convert_electrical_power_power_output_1_
         interface:sends output_power_power_output_1_
         interface:isFacilitatedBy device_power_connector_power_output_1_
         interface:isLinkedBy converts_electrical_power
     ]
 
-    @rdfs:label "Device Power Connector [Power Output 1]"
     ci device_power_connector_power_output_1_: power-interface:Device_Power_Connector_Power_Output_1_ [
+        interface:hasIdentifier "Device Power Connector [Power Output 1]"
     ]
 
-    @rdfs:label "Convert Electrical Power [Power Output 2]"
     ci convert_electrical_power_power_output_2_: power-interface:Convert_Electrical_Power_Power_Output_2_ [
+        interface:hasIdentifier "Convert Electrical Power [Power Output 2]"
     ]
 
-    @rdfs:label "Power Output Interface [Power Output 2]"
     ci power_output_interface_power_output_2_: power-interface:Power_Output_Interface_Power_Output_2_ [
+        interface:hasIdentifier "Power Output Interface [Power Output 2]"
         interface:permitsFunctionalInteraction convert_electrical_power_power_output_2_
         interface:permitsInputOutput output_power_power_output_2_
         interface:groups po.1_power_output_2_
@@ -163,29 +163,29 @@ description <http://incose.org/pwg/s-star/description/power-converter> with # as
         interface:permitsArchitecturalRelationship converts_electrical_power
     ]
 
-    @rdfs:label "Output Power [Power Output 2]"
     ci output_power_power_output_2_: power-interface:Output_Power_Power_Output_2_ [
+        interface:hasIdentifier "Output Power [Power Output 2]"
         interface:exemplifies converts_electrical_power
     ]
 
-    @rdfs:label "PO.1 [Power Output 2]"
     ci po.1_power_output_2_: power-interface:PO.1_Power_Output_2_ [
+        interface:hasIdentifier "PO.1 [Power Output 2]"
         interface:isUsedDuring convert_electrical_power_power_output_2_
         interface:sends output_power_power_output_2_
         interface:isFacilitatedBy device_power_connector_power_output_2_
         interface:isLinkedBy converts_electrical_power
     ]
 
-    @rdfs:label "Device Power Connector [Power Output 2]"
     ci device_power_connector_power_output_2_: power-interface:Device_Power_Connector_Power_Output_2_ [
+        interface:hasIdentifier "Device Power Connector [Power Output 2]"
     ]
 
-    @rdfs:label "Convert Electrical Power [Power Output 3]"
     ci convert_electrical_power_power_output_3_: power-interface:Convert_Electrical_Power_Power_Output_3_ [
+        interface:hasIdentifier "Convert Electrical Power [Power Output 3]"
     ]
 
-    @rdfs:label "Power Output Interface [Power Output 3]"
     ci power_output_interface_power_output_3_: power-interface:Power_Output_Interface_Power_Output_3_ [
+        interface:hasIdentifier "Power Output Interface [Power Output 3]"
         interface:permitsFunctionalInteraction convert_electrical_power_power_output_3_
         interface:permitsInputOutput output_power_power_output_3_
         interface:groups po.1_power_output_3_
@@ -193,29 +193,29 @@ description <http://incose.org/pwg/s-star/description/power-converter> with # as
         interface:permitsArchitecturalRelationship converts_electrical_power
     ]
 
-    @rdfs:label "Output Power [Power Output 3]"
     ci output_power_power_output_3_: power-interface:Output_Power_Power_Output_3_ [
+        interface:hasIdentifier "Output Power [Power Output 3]"
         interface:exemplifies converts_electrical_power
     ]
 
-    @rdfs:label "PO.1 [Power Output 3]"
     ci po.1_power_output_3_: power-interface:PO.1_Power_Output_3_ [
+        interface:hasIdentifier "PO.1 [Power Output 3]"
         interface:isUsedDuring convert_electrical_power_power_output_3_
         interface:sends output_power_power_output_3_
         interface:isFacilitatedBy device_power_connector_power_output_3_
         interface:isLinkedBy converts_electrical_power
     ]
 
-    @rdfs:label "Device Power Connector [Power Output 3]"
     ci device_power_connector_power_output_3_: power-interface:Device_Power_Connector_Power_Output_3_ [
+        interface:hasIdentifier "Device Power Connector [Power Output 3]"
     ]
 
-    @rdfs:label "Display Status and Information []"
     ci display_status_and_information_: power-interface:Display_Status_and_Information_ [
+        interface:hasIdentifier "Display Status and Information []"
     ]
 
-    @rdfs:label "Configuration and Information Interface"
     ci configuration_and_information_interface: power-interface:Configuration_and_Information_Interface [
+        interface:hasIdentifier "Configuration and Information Interface"
         interface:permitsFunctionalInteraction display_status_and_information_
         interface:permitsFunctionalInteraction set_configuration_
         interface:permitsInputOutput device_status_and_information
@@ -226,103 +226,103 @@ description <http://incose.org/pwg/s-star/description/power-converter> with # as
         interface:permitsSOA hmi_buttons
     ]
 
-    @rdfs:label "Device Status and Information"
     ci device_status_and_information: power-interface:Device_Status_and_Information [
+        interface:hasIdentifier "Device Status and Information"
     ]
 
-    @rdfs:label "CO.2"
     ci co.2: power-interface:CO.2 [
+        interface:hasIdentifier "CO.2"
         interface:isUsedDuring display_status_and_information_
         interface:sends device_status_and_information
         interface:isFacilitatedBy hmi_display
     ]
 
-    @rdfs:label "HMI Display"
     ci hmi_display: power-interface:HMI_Display [
+        interface:hasIdentifier "HMI Display"
     ]
 
-    @rdfs:label "Handle Device []"
     ci handle_device_: power-interface:Handle_Device_ [
+        interface:hasIdentifier "Handle Device []"
     ]
 
-    @rdfs:label "Handling Interface"
     ci handling_interface: power-interface:Handling_Interface [
+        interface:hasIdentifier "Handling Interface"
         interface:permitsFunctionalInteraction handle_device_
         interface:permitsInputOutput handling_force
         interface:groups hi.1
         interface:permitsSOA handle
     ]
 
-    @rdfs:label "Handling Force"
     ci handling_force: power-interface:Handling_Force [
+        interface:hasIdentifier "Handling Force"
     ]
 
-    @rdfs:label "HI.1"
     ci hi.1: power-interface:HI.1 [
+        interface:hasIdentifier "HI.1"
         interface:isUsedDuring handle_device_
         interface:exchanges handling_force
         interface:isFacilitatedBy handle
     ]
 
-    @rdfs:label "Handle"
     ci handle: power-interface:Handle [
+        interface:hasIdentifier "Handle"
     ]
 
-    @rdfs:label "Resist Contamination []"
     ci resist_contamination_: power-interface:Resist_Contamination_ [
+        interface:hasIdentifier "Resist Contamination []"
     ]
 
-    @rdfs:label "Contaminants"
     ci contaminants: power-interface:Contaminants [
+        interface:hasIdentifier "Contaminants"
     ]
 
-    @rdfs:label "EN.3"
     ci en.3: power-interface:EN.3 [
+        interface:hasIdentifier "EN.3"
         interface:isUsedDuring resist_contamination_
         interface:receives contaminants
         interface:isFacilitatedBy airborne_particulates
     ]
 
-    @rdfs:label "Airborne Particulates"
     ci airborne_particulates: power-interface:Airborne_Particulates [
+        interface:hasIdentifier "Airborne Particulates"
     ]
 
-    @rdfs:label "Set Configuration []"
     ci set_configuration_: power-interface:Set_Configuration_ [
+        interface:hasIdentifier "Set Configuration []"
     ]
 
-    @rdfs:label "Configuration Setting"
     ci configuration_setting: power-interface:Configuration_Setting [
+        interface:hasIdentifier "Configuration Setting"
     ]
 
-    @rdfs:label "CI.1"
     ci ci.1: power-interface:CI.1 [
+        interface:hasIdentifier "CI.1"
         interface:isUsedDuring set_configuration_
         interface:receives configuration_setting
         interface:isFacilitatedBy hmi_buttons
     ]
 
-    @rdfs:label "HMI Buttons"
     ci hmi_buttons: power-interface:HMI_Buttons [
+        interface:hasIdentifier "HMI Buttons"
     ]
 
-    @rdfs:label "Tolerate Moisture []"
     ci tolerate_moisture_: power-interface:Tolerate_Moisture_ [
+        interface:hasIdentifier "Tolerate Moisture []"
     ]
 
-    @rdfs:label "Moisture"
     ci moisture: power-interface:Moisture [
+        interface:hasIdentifier "Moisture"
     ]
 
-    @rdfs:label "EN.4"
     ci en.4: power-interface:EN.4 [
+        interface:hasIdentifier "EN.4"
         interface:isUsedDuring tolerate_moisture_
         interface:receives moisture
         interface:isFacilitatedBy airborne_moisture_condensation
     ]
 
-    @rdfs:label "Airborne Moisture Condensation"
     ci airborne_moisture_condensation: power-interface:Airborne_Moisture_Condensation [
+        interface:hasIdentifier "Airborne Moisture Condensation"
     ]
 
 }
