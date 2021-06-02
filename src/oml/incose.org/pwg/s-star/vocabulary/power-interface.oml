@@ -67,7 +67,7 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "Device Power Connector"
-    concept Device_Power_Connector :> interface:System [
+    concept Device_Power_Connector :> interface:SystemOfAccess [
     ]
 
     @rdfs:label "Converts Electrical Power"
@@ -79,7 +79,7 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
     ]
 
     @rdfs:label "Sink"
-    concept Sink :> interface:System [
+    concept Sink :> interface:ArchitecturalRelationshipRole [
     ]
 
     @rdfs:label "International Power Converter"

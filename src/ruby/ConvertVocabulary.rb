@@ -176,7 +176,7 @@ table.each do |row|
     soa_c = cs.fetch(soa_label) { |k| cs[k] = Concept.new(soa_label, 'interface:SystemOfAccess') }
 
     if (sc_label = Concept.label_to_superclass(soa_label)) != soa_label
-      sc = cs.fetch(sc_label) { |k| cs[k] = Concept.new(sc_label, 'interface:System') }
+      sc = cs.fetch(sc_label) { |k| cs[k] = Concept.new(sc_label, 'interface:SystemOfAccess') }
       soa_c.types << sc.name
     end
   end
@@ -187,7 +187,7 @@ table.each do |row|
     ar_c = cs.fetch(ar_label) { |k| cs[k] = Concept.new(ar_label, 'interface:ArchitecturalRelationship') }
 
     if (sc_label = Concept.label_to_superclass(ar_label)) != ar_label
-      sc = cs.fetch(sc_label) { |k| cs[k] = Concept.new(sc_label, 'interface:System') }
+      sc = cs.fetch(sc_label) { |k| cs[k] = Concept.new(sc_label, 'interface:ArchitecturalRelationship') }
       ar_c.types << sc.name
     end
   end
@@ -198,7 +198,7 @@ table.each do |row|
     arr_c = cs.fetch(arr_label) { |k| cs[k] = Concept.new(arr_label, 'interface:ArchitecturalRelationshipRole') }
 
     if (sc_label = Concept.label_to_superclass(arr_label)) != arr_label
-      sc = cs.fetch(sc_label) { |k| cs[k] = Concept.new(sc_label, 'interface:System') }
+      sc = cs.fetch(sc_label) { |k| cs[k] = Concept.new(sc_label, 'interface:ArchitecturalRelationshipRole') }
       arr_c.types << sc.name
     end
   end
