@@ -70,7 +70,7 @@ desc = Description.new(
   'power-converter'
 )
 desc.uses << 'http://www.w3.org/2000/01/rdf-schema'
-desc.uses << 'http://incose.org/pwg/s-star/vocabulary/power-interface'
+desc.uses << 'http://incose.org/pwg/s-star/vocabulary/power-converter-bundle'
 
 table = CSV.new(ARGF, headers: true)
 
@@ -82,43 +82,43 @@ table.each do |row|
   ia_cell = row['Configured Interaction Name']
   ia_label = ConceptInstance.make_label(ia_cell)
   ia_type = ConceptInstance.label_to_type(ia_label)
-  ia_ci = cis.fetch(ia_label) { |k| cis[k] = ConceptInstance.new(ia_label, "power-interface:#{ia_type}") }
+  ia_ci = cis.fetch(ia_label) { |k| cis[k] = ConceptInstance.new(ia_label, "power-converter:#{ia_type}") }
 
   role_cell = row['Configured Role Name']
   role_label = ConceptInstance.make_label(role_cell)
   role_type = ConceptInstance.label_to_type(role_label)
-  role_ci = cis.fetch(role_label) { |k| cis[k] = ConceptInstance.new(role_label, "power-interface:#{role_type}") }
+  role_ci = cis.fetch(role_label) { |k| cis[k] = ConceptInstance.new(role_label, "power-converter:#{role_type}") }
 
   if_label = ConceptInstance.make_label(if_cell)
   if_type = ConceptInstance.label_to_type(if_label)
-  if_ci = cis.fetch(if_label) { |k| cis[k] = ConceptInstance.new(if_label, "power-interface:#{if_type}") }
+  if_ci = cis.fetch(if_label) { |k| cis[k] = ConceptInstance.new(if_label, "power-converter:#{if_type}") }
 
   io_cell = row['Configured Input Output Name']
   io_label = ConceptInstance.make_label(io_cell)
   io_type = ConceptInstance.label_to_type(io_label)
-  io_ci = cis.fetch(io_label) { |k| cis[k] = ConceptInstance.new(io_label, "power-interface:#{io_type}") }
+  io_ci = cis.fetch(io_label) { |k| cis[k] = ConceptInstance.new(io_label, "power-converter:#{io_type}") }
 
   port_cell = row['Configured Port Name']
   port_label = ConceptInstance.make_label(port_cell)
   port_type = ConceptInstance.label_to_type(port_label)
-  port_ci = cis.fetch(port_label) { |k| cis[k] = ConceptInstance.new(port_label, "power-interface:#{port_type}") }
+  port_ci = cis.fetch(port_label) { |k| cis[k] = ConceptInstance.new(port_label, "power-converter:#{port_type}") }
 
   pd_cell = row['Port Direction']
 
   soa_cell = row['Configured SOA Name']
   soa_label = ConceptInstance.make_label(soa_cell)
   soa_type = ConceptInstance.label_to_type(soa_label)
-  soa_ci = cis.fetch(soa_label) { |k| cis[k] = ConceptInstance.new(soa_label, "power-interface:#{soa_type}") }
+  soa_ci = cis.fetch(soa_label) { |k| cis[k] = ConceptInstance.new(soa_label, "power-converter:#{soa_type}") }
 
   if (ar_cell = row['Configured Arch Relat Name'])
     ar_label = ConceptInstance.make_label(ar_cell)
     ar_type = ConceptInstance.label_to_type(ar_label)
-    ar_ci = cis.fetch(ar_label) { |k| cis[k] = ConceptInstance.new(ar_label, "power-interface:#{ar_type}") }
+    ar_ci = cis.fetch(ar_label) { |k| cis[k] = ConceptInstance.new(ar_label, "power-converter:#{ar_type}") }
 
     arr_cell = row['Configured Arch Relat Role Name']
     arr_label = ConceptInstance.make_label(arr_cell)
     arr_type = ConceptInstance.label_to_type(arr_label)
-    arr_ci = cis.fetch(arr_label) { |k| cis[k] = ConceptInstance.new(arr_label, "power-interface:#{arr_type}") }
+    arr_ci = cis.fetch(arr_label) { |k| cis[k] = ConceptInstance.new(arr_label, "power-converter:#{arr_type}") }
   else
     ar_ci = nil
   end

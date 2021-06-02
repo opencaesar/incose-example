@@ -60,8 +60,8 @@ class Concept
 end
 
 vocab = Vocabulary.new(
-  'http://incose.org/pwg/s-star/vocabulary/power-interface',
-  'power-interface'
+  'http://incose.org/pwg/s-star/vocabulary/power-converter',
+  'power-converter'
 )
 vocab.extends << 'http://www.w3.org/2000/01/rdf-schema'
 vocab.extends << 'http://incose.org/pwg/s-star/vocabulary/interface'
