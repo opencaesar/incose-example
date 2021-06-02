@@ -4,718 +4,884 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
 
     extends <http://incose.org/pwg/s-star/vocabulary/interface>
 
-    @rdfs:label "Convert Electrical Power"
-    concept ConvertElectricalPower :> interface:FunctionalInteraction, DPI.1IsUsedDuring, EnvironmentalInterfacePermitsFunctionalInteraction, EN.2IsUsedDuring, EN.1IsUsedDuring, PowerInputInterfacePermitsFunctionalInteraction, PI.1IsUsedDuring, PowerOutputInterfacePermitsFunctionalInteraction, PO.1IsUsedDuring, ENV.3IsUsedDuring, ENV.4IsUsedDuring, LPO.1IsUsedDuring [
+    @rdfs:label "Convert Electrical Power [Power Output 1]"
+    concept Convert_Electrical_Power_Power_Output_1_ :> interface:FunctionalInteraction, DPI.1_Is_Used_During, Environmental_Interface_Permits_Functional_Interaction, EN.2_Is_Used_During, EN.1_Is_Used_During, Power_Input_Interface_Permits_Functional_Interaction, PI.1_Is_Used_During, Power_Output_Interface_Power_Output_1_Permits_Functional_Interaction, PO.1_Power_Output_1_Is_Used_During, ENV.3_Is_Used_During, ENV.4_Is_Used_During, LPO.1_Is_Used_During [
     ]
 
-    @rdfs:label "Electrically Powered Device"
-    concept ElectricallyPoweredDevice :> interface:System [
-        restricts all relation interface:providesInterface to ElectricallyPoweredDeviceProvidesInterface
-        restricts all relation interface:interactsThrough to ElectricallyPoweredDeviceInteractsThrough
+    @rdfs:label "Electrically Powered Device [Power Output 1]"
+    concept Electrically_Powered_Device_Power_Output_1_ :> interface:System [
+        restricts all relation interface:providesInterface to Electrically_Powered_Device_Power_Output_1_Provides_Interface
+        restricts all relation interface:interactsThrough to Electrically_Powered_Device_Power_Output_1_Interacts_Through
     ]
 
-    @rdfs:label "Electrically Powered Device Provides Interface"
-    concept ElectricallyPoweredDeviceProvidesInterface :> interface:Interface [
+    @rdfs:label "Electrically Powered Device [Power Output 1] Provides Interface"
+    concept Electrically_Powered_Device_Power_Output_1_Provides_Interface :> interface:Interface [
     ]
 
-    @rdfs:label "Electrically Powered Device Interacts Through"
-    concept ElectricallyPoweredDeviceInteractsThrough :> interface:Port [
+    @rdfs:label "Electrically Powered Device [Power Output 1] Interacts Through"
+    concept Electrically_Powered_Device_Power_Output_1_Interacts_Through :> interface:Port [
     ]
 
-    @rdfs:label "Output Power"
-    concept OutputPower :> interface:InputOutput, PowerOutputInterfacePermitsInputOutput [
-        restricts all relation interface:exemplifies to OutputPowerExemplifies
+    @rdfs:label "Output Power [Power Output 1]"
+    concept Output_Power_Power_Output_1_ :> interface:InputOutput, Power_Output_Interface_Power_Output_1_Permits_Input_Output [
+        restricts all relation interface:exemplifies to Output_Power_Power_Output_1_Exemplifies
     ]
 
-    @rdfs:label "Output Power Exemplifies"
-    concept OutputPowerExemplifies :> interface:ArchitecturalRelationship [
+    @rdfs:label "Output Power [Power Output 1] Exemplifies"
+    concept Output_Power_Power_Output_1_Exemplifies :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "DPI.1"
-    concept DPI.1 :> interface:Port, ElectricallyPoweredDeviceInteractsThrough [
-        restricts all relation interface:isUsedDuring to DPI.1IsUsedDuring
-        restricts all relation interface:isFacilitatedBy to DPI.1IsFacilitatedBy
-        restricts all relation interface:isLinkedBy to DPI.1IsLinkedBy
+    concept DPI.1 :> interface:Port, Electrically_Powered_Device_Power_Output_1_Interacts_Through, Electrically_Powered_Device_Power_Output_2_Interacts_Through, Electrically_Powered_Device_Power_Output_3_Interacts_Through [
+        restricts all relation interface:isUsedDuring to DPI.1_Is_Used_During
+        restricts all relation interface:isFacilitatedBy to DPI.1_Is_Facilitated_By
+        restricts all relation interface:isLinkedBy to DPI.1_Is_Linked_By
     ]
 
     @rdfs:label "DPI.1 Is Used During"
-    concept DPI.1IsUsedDuring :> interface:FunctionalInteraction [
+    concept DPI.1_Is_Used_During :> interface:FunctionalInteraction [
     ]
 
     @rdfs:label "DPI.1 Is Facilitated By"
-    concept DPI.1IsFacilitatedBy :> interface:SystemOfAccess [
+    concept DPI.1_Is_Facilitated_By :> interface:SystemOfAccess [
     ]
 
     @rdfs:label "DPI.1 Is Linked By"
-    concept DPI.1IsLinkedBy :> interface:ArchitecturalRelationship [
+    concept DPI.1_Is_Linked_By :> interface:ArchitecturalRelationship [
     ]
 
-    @rdfs:label "Device Power Connector"
-    concept DevicePowerConnector :> interface:SystemOfAccess, DPI.1IsFacilitatedBy, PowerOutputInterfacePermitsSOA, PO.1IsFacilitatedBy [
+    @rdfs:label "Device Power Connector [Power Output 1]"
+    concept Device_Power_Connector_Power_Output_1_ :> interface:SystemOfAccess, DPI.1_Is_Facilitated_By, Power_Output_Interface_Power_Output_1_Permits_SOA, PO.1_Power_Output_1_Is_Facilitated_By [
     ]
 
     @rdfs:label "Converts Electrical Power"
-    concept ConvertsElectricalPower :> interface:ArchitecturalRelationship, OutputPowerExemplifies, DPI.1IsLinkedBy, PowerInputInterfacePermitsArchitecturalRelationship, InputPowerExemplifies, PI.1IsLinkedBy, PowerOutputInterfacePermitsArchitecturalRelationship, PO.1IsLinkedBy, LPO.1IsLinkedBy [
+    concept Converts_Electrical_Power :> interface:ArchitecturalRelationship, Output_Power_Power_Output_1_Exemplifies, DPI.1_Is_Linked_By, Power_Input_Interface_Permits_Architectural_Relationship, Input_Power_Exemplifies, PI.1_Is_Linked_By, Power_Output_Interface_Power_Output_1_Permits_Architectural_Relationship, PO.1_Power_Output_1_Is_Linked_By, LPO.1_Is_Linked_By, Output_Power_Power_Output_2_Exemplifies, Power_Output_Interface_Power_Output_2_Permits_Architectural_Relationship, PO.1_Power_Output_2_Is_Linked_By, Output_Power_Power_Output_3_Exemplifies, Power_Output_Interface_Power_Output_3_Permits_Architectural_Relationship, PO.1_Power_Output_3_Is_Linked_By [
     ]
 
-    @rdfs:label "Sink"
-    concept Sink :> interface:ArchitecturalRelationshipRole [
+    @rdfs:label "Sink [Power Output 1]"
+    concept Sink_Power_Output_1_ :> interface:ArchitecturalRelationshipRole [
     ]
 
     @rdfs:label "International Power Converter"
-    concept InternationalPowerConverter :> interface:System [
-        restricts all relation interface:providesInterface to InternationalPowerConverterProvidesInterface
-        restricts all relation interface:interactsThrough to InternationalPowerConverterInteractsThrough
+    concept International_Power_Converter :> interface:System [
+        restricts all relation interface:providesInterface to International_Power_Converter_Provides_Interface
+        restricts all relation interface:interactsThrough to International_Power_Converter_Interacts_Through
     ]
 
     @rdfs:label "International Power Converter Provides Interface"
-    concept InternationalPowerConverterProvidesInterface :> interface:Interface [
+    concept International_Power_Converter_Provides_Interface :> interface:Interface [
     ]
 
     @rdfs:label "International Power Converter Interacts Through"
-    concept InternationalPowerConverterInteractsThrough :> interface:Port [
+    concept International_Power_Converter_Interacts_Through :> interface:Port [
     ]
 
     @rdfs:label "Environmental Interface"
-    concept EnvironmentalInterface :> interface:Interface, InternationalPowerConverterProvidesInterface [
-        restricts all relation interface:permitsFunctionalInteraction to EnvironmentalInterfacePermitsFunctionalInteraction
-        restricts all relation interface:permitsInputOutput to EnvironmentalInterfacePermitsInputOutput
-        restricts all relation interface:permitsArchitecturalRelationship to EnvironmentalInterfacePermitsArchitecturalRelationship
-        restricts all relation interface:groups to EnvironmentalInterfaceGroups
-        restricts all relation interface:permitsSOA to EnvironmentalInterfacePermitsSOA
+    concept Environmental_Interface :> interface:Interface, International_Power_Converter_Provides_Interface [
+        restricts all relation interface:permitsFunctionalInteraction to Environmental_Interface_Permits_Functional_Interaction
+        restricts all relation interface:permitsInputOutput to Environmental_Interface_Permits_Input_Output
+        restricts all relation interface:permitsArchitecturalRelationship to Environmental_Interface_Permits_Architectural_Relationship
+        restricts all relation interface:groups to Environmental_Interface_Groups
+        restricts all relation interface:permitsSOA to Environmental_Interface_Permits_SOA
     ]
 
     @rdfs:label "Environmental Interface Permits Functional Interaction"
-    concept EnvironmentalInterfacePermitsFunctionalInteraction :> interface:FunctionalInteraction [
+    concept Environmental_Interface_Permits_Functional_Interaction :> interface:FunctionalInteraction [
     ]
 
     @rdfs:label "Environmental Interface Permits Input Output"
-    concept EnvironmentalInterfacePermitsInputOutput :> interface:InputOutput [
+    concept Environmental_Interface_Permits_Input_Output :> interface:InputOutput [
     ]
 
     @rdfs:label "Environmental Interface Permits Architectural Relationship"
-    concept EnvironmentalInterfacePermitsArchitecturalRelationship :> interface:ArchitecturalRelationship [
+    concept Environmental_Interface_Permits_Architectural_Relationship :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "Environmental Interface Groups"
-    concept EnvironmentalInterfaceGroups :> interface:Port [
+    concept Environmental_Interface_Groups :> interface:Port [
     ]
 
     @rdfs:label "Environmental Interface Permits SOA"
-    concept EnvironmentalInterfacePermitsSOA :> interface:SystemOfAccess [
+    concept Environmental_Interface_Permits_SOA :> interface:SystemOfAccess [
     ]
 
     @rdfs:label "EMI"
-    concept EMI :> interface:InputOutput, EnvironmentalInterfacePermitsInputOutput [
-        restricts all relation interface:exemplifies to EMIExemplifies
+    concept EMI :> interface:InputOutput, Environmental_Interface_Permits_Input_Output [
+        restricts all relation interface:exemplifies to EMI_Exemplifies
     ]
 
     @rdfs:label "EMI Exemplifies"
-    concept EMIExemplifies :> interface:ArchitecturalRelationship [
+    concept EMI_Exemplifies :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "EN.2"
-    concept EN.2 :> interface:Port, EnvironmentalInterfaceGroups, InternationalPowerConverterInteractsThrough [
-        restricts all relation interface:isUsedDuring to EN.2IsUsedDuring
-        restricts all relation interface:isFacilitatedBy to EN.2IsFacilitatedBy
-        restricts all relation interface:isLinkedBy to EN.2IsLinkedBy
+    concept EN.2 :> interface:Port, Environmental_Interface_Groups, International_Power_Converter_Interacts_Through [
+        restricts all relation interface:isUsedDuring to EN.2_Is_Used_During
+        restricts all relation interface:isFacilitatedBy to EN.2_Is_Facilitated_By
+        restricts all relation interface:isLinkedBy to EN.2_Is_Linked_By
     ]
 
     @rdfs:label "EN.2 Is Used During"
-    concept EN.2IsUsedDuring :> interface:FunctionalInteraction [
+    concept EN.2_Is_Used_During :> interface:FunctionalInteraction [
     ]
 
     @rdfs:label "EN.2 Is Facilitated By"
-    concept EN.2IsFacilitatedBy :> interface:SystemOfAccess [
+    concept EN.2_Is_Facilitated_By :> interface:SystemOfAccess [
     ]
 
     @rdfs:label "EN.2 Is Linked By"
-    concept EN.2IsLinkedBy :> interface:ArchitecturalRelationship [
+    concept EN.2_Is_Linked_By :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "EMI Radiation"
-    concept EMIRadiation :> interface:SystemOfAccess, EnvironmentalInterfacePermitsSOA, EN.2IsFacilitatedBy, ENV.3IsFacilitatedBy [
+    concept EMI_Radiation :> interface:SystemOfAccess, Environmental_Interface_Permits_SOA, EN.2_Is_Facilitated_By, ENV.3_Is_Facilitated_By [
     ]
 
     @rdfs:label "Heat"
-    concept Heat :> interface:InputOutput, EnvironmentalInterfacePermitsInputOutput [
-        restricts all relation interface:exemplifies to HeatExemplifies
+    concept Heat :> interface:InputOutput, Environmental_Interface_Permits_Input_Output [
+        restricts all relation interface:exemplifies to Heat_Exemplifies
     ]
 
     @rdfs:label "Heat Exemplifies"
-    concept HeatExemplifies :> interface:ArchitecturalRelationship [
+    concept Heat_Exemplifies :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "EN.1"
-    concept EN.1 :> interface:Port, EnvironmentalInterfaceGroups, InternationalPowerConverterInteractsThrough [
-        restricts all relation interface:isUsedDuring to EN.1IsUsedDuring
-        restricts all relation interface:isFacilitatedBy to EN.1IsFacilitatedBy
-        restricts all relation interface:isLinkedBy to EN.1IsLinkedBy
+    concept EN.1 :> interface:Port, Environmental_Interface_Groups, International_Power_Converter_Interacts_Through [
+        restricts all relation interface:isUsedDuring to EN.1_Is_Used_During
+        restricts all relation interface:isFacilitatedBy to EN.1_Is_Facilitated_By
+        restricts all relation interface:isLinkedBy to EN.1_Is_Linked_By
     ]
 
     @rdfs:label "EN.1 Is Used During"
-    concept EN.1IsUsedDuring :> interface:FunctionalInteraction [
+    concept EN.1_Is_Used_During :> interface:FunctionalInteraction [
     ]
 
     @rdfs:label "EN.1 Is Facilitated By"
-    concept EN.1IsFacilitatedBy :> interface:SystemOfAccess [
+    concept EN.1_Is_Facilitated_By :> interface:SystemOfAccess [
     ]
 
     @rdfs:label "EN.1 Is Linked By"
-    concept EN.1IsLinkedBy :> interface:ArchitecturalRelationship [
+    concept EN.1_Is_Linked_By :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "Airspace Thermal Conduction"
-    concept AirspaceThermalConduction :> interface:SystemOfAccess, EnvironmentalInterfacePermitsSOA, EN.1IsFacilitatedBy, ENV.4IsFacilitatedBy [
+    concept Airspace_Thermal_Conduction :> interface:SystemOfAccess, Environmental_Interface_Permits_SOA, EN.1_Is_Facilitated_By, ENV.4_Is_Facilitated_By [
     ]
 
     @rdfs:label "Power Input Interface"
-    concept PowerInputInterface :> interface:Interface, InternationalPowerConverterProvidesInterface [
-        restricts all relation interface:permitsFunctionalInteraction to PowerInputInterfacePermitsFunctionalInteraction
-        restricts all relation interface:permitsInputOutput to PowerInputInterfacePermitsInputOutput
-        restricts all relation interface:permitsArchitecturalRelationship to PowerInputInterfacePermitsArchitecturalRelationship
-        restricts all relation interface:groups to PowerInputInterfaceGroups
-        restricts all relation interface:permitsSOA to PowerInputInterfacePermitsSOA
+    concept Power_Input_Interface :> interface:Interface, International_Power_Converter_Provides_Interface [
+        restricts all relation interface:permitsFunctionalInteraction to Power_Input_Interface_Permits_Functional_Interaction
+        restricts all relation interface:permitsInputOutput to Power_Input_Interface_Permits_Input_Output
+        restricts all relation interface:permitsArchitecturalRelationship to Power_Input_Interface_Permits_Architectural_Relationship
+        restricts all relation interface:groups to Power_Input_Interface_Groups
+        restricts all relation interface:permitsSOA to Power_Input_Interface_Permits_SOA
     ]
 
     @rdfs:label "Power Input Interface Permits Functional Interaction"
-    concept PowerInputInterfacePermitsFunctionalInteraction :> interface:FunctionalInteraction [
+    concept Power_Input_Interface_Permits_Functional_Interaction :> interface:FunctionalInteraction [
     ]
 
     @rdfs:label "Power Input Interface Permits Input Output"
-    concept PowerInputInterfacePermitsInputOutput :> interface:InputOutput [
+    concept Power_Input_Interface_Permits_Input_Output :> interface:InputOutput [
     ]
 
     @rdfs:label "Power Input Interface Permits Architectural Relationship"
-    concept PowerInputInterfacePermitsArchitecturalRelationship :> interface:ArchitecturalRelationship [
+    concept Power_Input_Interface_Permits_Architectural_Relationship :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "Power Input Interface Groups"
-    concept PowerInputInterfaceGroups :> interface:Port [
+    concept Power_Input_Interface_Groups :> interface:Port [
     ]
 
     @rdfs:label "Power Input Interface Permits SOA"
-    concept PowerInputInterfacePermitsSOA :> interface:SystemOfAccess [
+    concept Power_Input_Interface_Permits_SOA :> interface:SystemOfAccess [
     ]
 
     @rdfs:label "Input Power"
-    concept InputPower :> interface:InputOutput, PowerInputInterfacePermitsInputOutput [
-        restricts all relation interface:exemplifies to InputPowerExemplifies
+    concept Input_Power :> interface:InputOutput, Power_Input_Interface_Permits_Input_Output [
+        restricts all relation interface:exemplifies to Input_Power_Exemplifies
     ]
 
     @rdfs:label "Input Power Exemplifies"
-    concept InputPowerExemplifies :> interface:ArchitecturalRelationship [
+    concept Input_Power_Exemplifies :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "PI.1"
-    concept PI.1 :> interface:Port, PowerInputInterfaceGroups, InternationalPowerConverterInteractsThrough [
-        restricts all relation interface:isUsedDuring to PI.1IsUsedDuring
-        restricts all relation interface:isFacilitatedBy to PI.1IsFacilitatedBy
-        restricts all relation interface:isLinkedBy to PI.1IsLinkedBy
+    concept PI.1 :> interface:Port, Power_Input_Interface_Groups, International_Power_Converter_Interacts_Through [
+        restricts all relation interface:isUsedDuring to PI.1_Is_Used_During
+        restricts all relation interface:isFacilitatedBy to PI.1_Is_Facilitated_By
+        restricts all relation interface:isLinkedBy to PI.1_Is_Linked_By
     ]
 
     @rdfs:label "PI.1 Is Used During"
-    concept PI.1IsUsedDuring :> interface:FunctionalInteraction [
+    concept PI.1_Is_Used_During :> interface:FunctionalInteraction [
     ]
 
     @rdfs:label "PI.1 Is Facilitated By"
-    concept PI.1IsFacilitatedBy :> interface:SystemOfAccess [
+    concept PI.1_Is_Facilitated_By :> interface:SystemOfAccess [
     ]
 
     @rdfs:label "PI.1 Is Linked By"
-    concept PI.1IsLinkedBy :> interface:ArchitecturalRelationship [
+    concept PI.1_Is_Linked_By :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "Local Power Connector"
-    concept LocalPowerConnector :> interface:SystemOfAccess, PowerInputInterfacePermitsSOA, PI.1IsFacilitatedBy, LPO.1IsFacilitatedBy [
+    concept Local_Power_Connector :> interface:SystemOfAccess, Power_Input_Interface_Permits_SOA, PI.1_Is_Facilitated_By, LPO.1_Is_Facilitated_By [
     ]
 
     @rdfs:label "Converter"
     concept Converter :> interface:ArchitecturalRelationshipRole [
     ]
 
-    @rdfs:label "Power Output Interface"
-    concept PowerOutputInterface :> interface:Interface, InternationalPowerConverterProvidesInterface [
-        restricts all relation interface:permitsFunctionalInteraction to PowerOutputInterfacePermitsFunctionalInteraction
-        restricts all relation interface:permitsInputOutput to PowerOutputInterfacePermitsInputOutput
-        restricts all relation interface:permitsArchitecturalRelationship to PowerOutputInterfacePermitsArchitecturalRelationship
-        restricts all relation interface:groups to PowerOutputInterfaceGroups
-        restricts all relation interface:permitsSOA to PowerOutputInterfacePermitsSOA
+    @rdfs:label "Power Output Interface [Power Output 1]"
+    concept Power_Output_Interface_Power_Output_1_ :> interface:Interface, International_Power_Converter_Provides_Interface [
+        restricts all relation interface:permitsFunctionalInteraction to Power_Output_Interface_Power_Output_1_Permits_Functional_Interaction
+        restricts all relation interface:permitsInputOutput to Power_Output_Interface_Power_Output_1_Permits_Input_Output
+        restricts all relation interface:permitsArchitecturalRelationship to Power_Output_Interface_Power_Output_1_Permits_Architectural_Relationship
+        restricts all relation interface:groups to Power_Output_Interface_Power_Output_1_Groups
+        restricts all relation interface:permitsSOA to Power_Output_Interface_Power_Output_1_Permits_SOA
     ]
 
-    @rdfs:label "Power Output Interface Permits Functional Interaction"
-    concept PowerOutputInterfacePermitsFunctionalInteraction :> interface:FunctionalInteraction [
+    @rdfs:label "Power Output Interface [Power Output 1] Permits Functional Interaction"
+    concept Power_Output_Interface_Power_Output_1_Permits_Functional_Interaction :> interface:FunctionalInteraction [
     ]
 
-    @rdfs:label "Power Output Interface Permits Input Output"
-    concept PowerOutputInterfacePermitsInputOutput :> interface:InputOutput [
+    @rdfs:label "Power Output Interface [Power Output 1] Permits Input Output"
+    concept Power_Output_Interface_Power_Output_1_Permits_Input_Output :> interface:InputOutput [
     ]
 
-    @rdfs:label "Power Output Interface Permits Architectural Relationship"
-    concept PowerOutputInterfacePermitsArchitecturalRelationship :> interface:ArchitecturalRelationship [
+    @rdfs:label "Power Output Interface [Power Output 1] Permits Architectural Relationship"
+    concept Power_Output_Interface_Power_Output_1_Permits_Architectural_Relationship :> interface:ArchitecturalRelationship [
     ]
 
-    @rdfs:label "Power Output Interface Groups"
-    concept PowerOutputInterfaceGroups :> interface:Port [
+    @rdfs:label "Power Output Interface [Power Output 1] Groups"
+    concept Power_Output_Interface_Power_Output_1_Groups :> interface:Port [
     ]
 
-    @rdfs:label "Power Output Interface Permits SOA"
-    concept PowerOutputInterfacePermitsSOA :> interface:SystemOfAccess [
+    @rdfs:label "Power Output Interface [Power Output 1] Permits SOA"
+    concept Power_Output_Interface_Power_Output_1_Permits_SOA :> interface:SystemOfAccess [
     ]
 
-    @rdfs:label "PO.1"
-    concept PO.1 :> interface:Port, PowerOutputInterfaceGroups, InternationalPowerConverterInteractsThrough [
-        restricts all relation interface:isUsedDuring to PO.1IsUsedDuring
-        restricts all relation interface:isFacilitatedBy to PO.1IsFacilitatedBy
-        restricts all relation interface:isLinkedBy to PO.1IsLinkedBy
+    @rdfs:label "PO.1 [Power Output 1]"
+    concept PO.1_Power_Output_1_ :> interface:Port, Power_Output_Interface_Power_Output_1_Groups, International_Power_Converter_Interacts_Through [
+        restricts all relation interface:isUsedDuring to PO.1_Power_Output_1_Is_Used_During
+        restricts all relation interface:isFacilitatedBy to PO.1_Power_Output_1_Is_Facilitated_By
+        restricts all relation interface:isLinkedBy to PO.1_Power_Output_1_Is_Linked_By
     ]
 
-    @rdfs:label "PO.1 Is Used During"
-    concept PO.1IsUsedDuring :> interface:FunctionalInteraction [
+    @rdfs:label "PO.1 [Power Output 1] Is Used During"
+    concept PO.1_Power_Output_1_Is_Used_During :> interface:FunctionalInteraction [
     ]
 
-    @rdfs:label "PO.1 Is Facilitated By"
-    concept PO.1IsFacilitatedBy :> interface:SystemOfAccess [
+    @rdfs:label "PO.1 [Power Output 1] Is Facilitated By"
+    concept PO.1_Power_Output_1_Is_Facilitated_By :> interface:SystemOfAccess [
     ]
 
-    @rdfs:label "PO.1 Is Linked By"
-    concept PO.1IsLinkedBy :> interface:ArchitecturalRelationship [
+    @rdfs:label "PO.1 [Power Output 1] Is Linked By"
+    concept PO.1_Power_Output_1_Is_Linked_By :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "Local Environment"
-    concept LocalEnvironment :> interface:System [
-        restricts all relation interface:providesInterface to LocalEnvironmentProvidesInterface
-        restricts all relation interface:interactsThrough to LocalEnvironmentInteractsThrough
+    concept Local_Environment :> interface:System [
+        restricts all relation interface:providesInterface to Local_Environment_Provides_Interface
+        restricts all relation interface:interactsThrough to Local_Environment_Interacts_Through
     ]
 
     @rdfs:label "Local Environment Provides Interface"
-    concept LocalEnvironmentProvidesInterface :> interface:Interface [
+    concept Local_Environment_Provides_Interface :> interface:Interface [
     ]
 
     @rdfs:label "Local Environment Interacts Through"
-    concept LocalEnvironmentInteractsThrough :> interface:Port [
+    concept Local_Environment_Interacts_Through :> interface:Port [
     ]
 
     @rdfs:label "ENV.3"
-    concept ENV.3 :> interface:Port, LocalEnvironmentInteractsThrough [
-        restricts all relation interface:isUsedDuring to ENV.3IsUsedDuring
-        restricts all relation interface:isFacilitatedBy to ENV.3IsFacilitatedBy
-        restricts all relation interface:isLinkedBy to ENV.3IsLinkedBy
+    concept ENV.3 :> interface:Port, Local_Environment_Interacts_Through [
+        restricts all relation interface:isUsedDuring to ENV.3_Is_Used_During
+        restricts all relation interface:isFacilitatedBy to ENV.3_Is_Facilitated_By
+        restricts all relation interface:isLinkedBy to ENV.3_Is_Linked_By
     ]
 
     @rdfs:label "ENV.3 Is Used During"
-    concept ENV.3IsUsedDuring :> interface:FunctionalInteraction [
+    concept ENV.3_Is_Used_During :> interface:FunctionalInteraction [
     ]
 
     @rdfs:label "ENV.3 Is Facilitated By"
-    concept ENV.3IsFacilitatedBy :> interface:SystemOfAccess [
+    concept ENV.3_Is_Facilitated_By :> interface:SystemOfAccess [
     ]
 
     @rdfs:label "ENV.3 Is Linked By"
-    concept ENV.3IsLinkedBy :> interface:ArchitecturalRelationship [
+    concept ENV.3_Is_Linked_By :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "ENV.4"
-    concept ENV.4 :> interface:Port, LocalEnvironmentInteractsThrough [
-        restricts all relation interface:isUsedDuring to ENV.4IsUsedDuring
-        restricts all relation interface:isFacilitatedBy to ENV.4IsFacilitatedBy
-        restricts all relation interface:isLinkedBy to ENV.4IsLinkedBy
+    concept ENV.4 :> interface:Port, Local_Environment_Interacts_Through [
+        restricts all relation interface:isUsedDuring to ENV.4_Is_Used_During
+        restricts all relation interface:isFacilitatedBy to ENV.4_Is_Facilitated_By
+        restricts all relation interface:isLinkedBy to ENV.4_Is_Linked_By
     ]
 
     @rdfs:label "ENV.4 Is Used During"
-    concept ENV.4IsUsedDuring :> interface:FunctionalInteraction [
+    concept ENV.4_Is_Used_During :> interface:FunctionalInteraction [
     ]
 
     @rdfs:label "ENV.4 Is Facilitated By"
-    concept ENV.4IsFacilitatedBy :> interface:SystemOfAccess [
+    concept ENV.4_Is_Facilitated_By :> interface:SystemOfAccess [
     ]
 
     @rdfs:label "ENV.4 Is Linked By"
-    concept ENV.4IsLinkedBy :> interface:ArchitecturalRelationship [
+    concept ENV.4_Is_Linked_By :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "Local Power Distribution System"
-    concept LocalPowerDistributionSystem :> interface:System [
-        restricts all relation interface:providesInterface to LocalPowerDistributionSystemProvidesInterface
-        restricts all relation interface:interactsThrough to LocalPowerDistributionSystemInteractsThrough
+    concept Local_Power_Distribution_System :> interface:System [
+        restricts all relation interface:providesInterface to Local_Power_Distribution_System_Provides_Interface
+        restricts all relation interface:interactsThrough to Local_Power_Distribution_System_Interacts_Through
     ]
 
     @rdfs:label "Local Power Distribution System Provides Interface"
-    concept LocalPowerDistributionSystemProvidesInterface :> interface:Interface [
+    concept Local_Power_Distribution_System_Provides_Interface :> interface:Interface [
     ]
 
     @rdfs:label "Local Power Distribution System Interacts Through"
-    concept LocalPowerDistributionSystemInteractsThrough :> interface:Port [
+    concept Local_Power_Distribution_System_Interacts_Through :> interface:Port [
     ]
 
     @rdfs:label "LPO.1"
-    concept LPO.1 :> interface:Port, LocalPowerDistributionSystemInteractsThrough [
-        restricts all relation interface:isUsedDuring to LPO.1IsUsedDuring
-        restricts all relation interface:isFacilitatedBy to LPO.1IsFacilitatedBy
-        restricts all relation interface:isLinkedBy to LPO.1IsLinkedBy
+    concept LPO.1 :> interface:Port, Local_Power_Distribution_System_Interacts_Through [
+        restricts all relation interface:isUsedDuring to LPO.1_Is_Used_During
+        restricts all relation interface:isFacilitatedBy to LPO.1_Is_Facilitated_By
+        restricts all relation interface:isLinkedBy to LPO.1_Is_Linked_By
     ]
 
     @rdfs:label "LPO.1 Is Used During"
-    concept LPO.1IsUsedDuring :> interface:FunctionalInteraction [
+    concept LPO.1_Is_Used_During :> interface:FunctionalInteraction [
     ]
 
     @rdfs:label "LPO.1 Is Facilitated By"
-    concept LPO.1IsFacilitatedBy :> interface:SystemOfAccess [
+    concept LPO.1_Is_Facilitated_By :> interface:SystemOfAccess [
     ]
 
     @rdfs:label "LPO.1 Is Linked By"
-    concept LPO.1IsLinkedBy :> interface:ArchitecturalRelationship [
+    concept LPO.1_Is_Linked_By :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "Source"
     concept Source :> interface:ArchitecturalRelationshipRole [
     ]
 
-    @rdfs:label "Display Status and Information"
-    concept DisplayStatusandInformation :> interface:FunctionalInteraction, UC1.1IsUsedDuring, ConfigurationandInformationInterfacePermitsFunctionalInteraction, CO.2IsUsedDuring [
+    @rdfs:label "Convert Electrical Power [Power Output 2]"
+    concept Convert_Electrical_Power_Power_Output_2_ :> interface:FunctionalInteraction, DPI.1_Is_Used_During, Environmental_Interface_Permits_Functional_Interaction, EN.2_Is_Used_During, EN.1_Is_Used_During, Power_Input_Interface_Permits_Functional_Interaction, PI.1_Is_Used_During, Power_Output_Interface_Power_Output_2_Permits_Functional_Interaction, PO.1_Power_Output_2_Is_Used_During, ENV.4_Is_Used_During, ENV.3_Is_Used_During, LPO.1_Is_Used_During [
+    ]
+
+    @rdfs:label "Electrically Powered Device [Power Output 2]"
+    concept Electrically_Powered_Device_Power_Output_2_ :> interface:System [
+        restricts all relation interface:providesInterface to Electrically_Powered_Device_Power_Output_2_Provides_Interface
+        restricts all relation interface:interactsThrough to Electrically_Powered_Device_Power_Output_2_Interacts_Through
+    ]
+
+    @rdfs:label "Electrically Powered Device [Power Output 2] Provides Interface"
+    concept Electrically_Powered_Device_Power_Output_2_Provides_Interface :> interface:Interface [
+    ]
+
+    @rdfs:label "Electrically Powered Device [Power Output 2] Interacts Through"
+    concept Electrically_Powered_Device_Power_Output_2_Interacts_Through :> interface:Port [
+    ]
+
+    @rdfs:label "Output Power [Power Output 2]"
+    concept Output_Power_Power_Output_2_ :> interface:InputOutput, Power_Output_Interface_Power_Output_2_Permits_Input_Output [
+        restricts all relation interface:exemplifies to Output_Power_Power_Output_2_Exemplifies
+    ]
+
+    @rdfs:label "Output Power [Power Output 2] Exemplifies"
+    concept Output_Power_Power_Output_2_Exemplifies :> interface:ArchitecturalRelationship [
+    ]
+
+    @rdfs:label "Device Power Connector [Power Output 2]"
+    concept Device_Power_Connector_Power_Output_2_ :> interface:SystemOfAccess, DPI.1_Is_Facilitated_By, Power_Output_Interface_Power_Output_2_Permits_SOA, PO.1_Power_Output_2_Is_Facilitated_By [
+    ]
+
+    @rdfs:label "Sink [Power Output 2]"
+    concept Sink_Power_Output_2_ :> interface:ArchitecturalRelationshipRole [
+    ]
+
+    @rdfs:label "Power Output Interface [Power Output 2]"
+    concept Power_Output_Interface_Power_Output_2_ :> interface:Interface, International_Power_Converter_Provides_Interface [
+        restricts all relation interface:permitsFunctionalInteraction to Power_Output_Interface_Power_Output_2_Permits_Functional_Interaction
+        restricts all relation interface:permitsInputOutput to Power_Output_Interface_Power_Output_2_Permits_Input_Output
+        restricts all relation interface:permitsArchitecturalRelationship to Power_Output_Interface_Power_Output_2_Permits_Architectural_Relationship
+        restricts all relation interface:groups to Power_Output_Interface_Power_Output_2_Groups
+        restricts all relation interface:permitsSOA to Power_Output_Interface_Power_Output_2_Permits_SOA
+    ]
+
+    @rdfs:label "Power Output Interface [Power Output 2] Permits Functional Interaction"
+    concept Power_Output_Interface_Power_Output_2_Permits_Functional_Interaction :> interface:FunctionalInteraction [
+    ]
+
+    @rdfs:label "Power Output Interface [Power Output 2] Permits Input Output"
+    concept Power_Output_Interface_Power_Output_2_Permits_Input_Output :> interface:InputOutput [
+    ]
+
+    @rdfs:label "Power Output Interface [Power Output 2] Permits Architectural Relationship"
+    concept Power_Output_Interface_Power_Output_2_Permits_Architectural_Relationship :> interface:ArchitecturalRelationship [
+    ]
+
+    @rdfs:label "Power Output Interface [Power Output 2] Groups"
+    concept Power_Output_Interface_Power_Output_2_Groups :> interface:Port [
+    ]
+
+    @rdfs:label "Power Output Interface [Power Output 2] Permits SOA"
+    concept Power_Output_Interface_Power_Output_2_Permits_SOA :> interface:SystemOfAccess [
+    ]
+
+    @rdfs:label "PO.1 [Power Output 2]"
+    concept PO.1_Power_Output_2_ :> interface:Port, Power_Output_Interface_Power_Output_2_Groups, International_Power_Converter_Interacts_Through [
+        restricts all relation interface:isUsedDuring to PO.1_Power_Output_2_Is_Used_During
+        restricts all relation interface:isFacilitatedBy to PO.1_Power_Output_2_Is_Facilitated_By
+        restricts all relation interface:isLinkedBy to PO.1_Power_Output_2_Is_Linked_By
+    ]
+
+    @rdfs:label "PO.1 [Power Output 2] Is Used During"
+    concept PO.1_Power_Output_2_Is_Used_During :> interface:FunctionalInteraction [
+    ]
+
+    @rdfs:label "PO.1 [Power Output 2] Is Facilitated By"
+    concept PO.1_Power_Output_2_Is_Facilitated_By :> interface:SystemOfAccess [
+    ]
+
+    @rdfs:label "PO.1 [Power Output 2] Is Linked By"
+    concept PO.1_Power_Output_2_Is_Linked_By :> interface:ArchitecturalRelationship [
+    ]
+
+    @rdfs:label "Convert Electrical Power [Power Output 3]"
+    concept Convert_Electrical_Power_Power_Output_3_ :> interface:FunctionalInteraction, DPI.1_Is_Used_During, Environmental_Interface_Permits_Functional_Interaction, EN.2_Is_Used_During, EN.1_Is_Used_During, Power_Input_Interface_Permits_Functional_Interaction, PI.1_Is_Used_During, Power_Output_Interface_Power_Output_3_Permits_Functional_Interaction, PO.1_Power_Output_3_Is_Used_During, ENV.3_Is_Used_During, ENV.4_Is_Used_During, LPO.1_Is_Used_During [
+    ]
+
+    @rdfs:label "Electrically Powered Device [Power Output 3]"
+    concept Electrically_Powered_Device_Power_Output_3_ :> interface:System [
+        restricts all relation interface:providesInterface to Electrically_Powered_Device_Power_Output_3_Provides_Interface
+        restricts all relation interface:interactsThrough to Electrically_Powered_Device_Power_Output_3_Interacts_Through
+    ]
+
+    @rdfs:label "Electrically Powered Device [Power Output 3] Provides Interface"
+    concept Electrically_Powered_Device_Power_Output_3_Provides_Interface :> interface:Interface [
+    ]
+
+    @rdfs:label "Electrically Powered Device [Power Output 3] Interacts Through"
+    concept Electrically_Powered_Device_Power_Output_3_Interacts_Through :> interface:Port [
+    ]
+
+    @rdfs:label "Output Power [Power Output 3]"
+    concept Output_Power_Power_Output_3_ :> interface:InputOutput, Power_Output_Interface_Power_Output_3_Permits_Input_Output [
+        restricts all relation interface:exemplifies to Output_Power_Power_Output_3_Exemplifies
+    ]
+
+    @rdfs:label "Output Power [Power Output 3] Exemplifies"
+    concept Output_Power_Power_Output_3_Exemplifies :> interface:ArchitecturalRelationship [
+    ]
+
+    @rdfs:label "Device Power Connector [Power Output 3]"
+    concept Device_Power_Connector_Power_Output_3_ :> interface:SystemOfAccess, DPI.1_Is_Facilitated_By, Power_Output_Interface_Power_Output_3_Permits_SOA, PO.1_Power_Output_3_Is_Facilitated_By [
+    ]
+
+    @rdfs:label "Sink [Power Output 3]"
+    concept Sink_Power_Output_3_ :> interface:ArchitecturalRelationshipRole [
+    ]
+
+    @rdfs:label "Power Output Interface [Power Output 3]"
+    concept Power_Output_Interface_Power_Output_3_ :> interface:Interface, International_Power_Converter_Provides_Interface [
+        restricts all relation interface:permitsFunctionalInteraction to Power_Output_Interface_Power_Output_3_Permits_Functional_Interaction
+        restricts all relation interface:permitsInputOutput to Power_Output_Interface_Power_Output_3_Permits_Input_Output
+        restricts all relation interface:permitsArchitecturalRelationship to Power_Output_Interface_Power_Output_3_Permits_Architectural_Relationship
+        restricts all relation interface:groups to Power_Output_Interface_Power_Output_3_Groups
+        restricts all relation interface:permitsSOA to Power_Output_Interface_Power_Output_3_Permits_SOA
+    ]
+
+    @rdfs:label "Power Output Interface [Power Output 3] Permits Functional Interaction"
+    concept Power_Output_Interface_Power_Output_3_Permits_Functional_Interaction :> interface:FunctionalInteraction [
+    ]
+
+    @rdfs:label "Power Output Interface [Power Output 3] Permits Input Output"
+    concept Power_Output_Interface_Power_Output_3_Permits_Input_Output :> interface:InputOutput [
+    ]
+
+    @rdfs:label "Power Output Interface [Power Output 3] Permits Architectural Relationship"
+    concept Power_Output_Interface_Power_Output_3_Permits_Architectural_Relationship :> interface:ArchitecturalRelationship [
+    ]
+
+    @rdfs:label "Power Output Interface [Power Output 3] Groups"
+    concept Power_Output_Interface_Power_Output_3_Groups :> interface:Port [
+    ]
+
+    @rdfs:label "Power Output Interface [Power Output 3] Permits SOA"
+    concept Power_Output_Interface_Power_Output_3_Permits_SOA :> interface:SystemOfAccess [
+    ]
+
+    @rdfs:label "PO.1 [Power Output 3]"
+    concept PO.1_Power_Output_3_ :> interface:Port, Power_Output_Interface_Power_Output_3_Groups, International_Power_Converter_Interacts_Through [
+        restricts all relation interface:isUsedDuring to PO.1_Power_Output_3_Is_Used_During
+        restricts all relation interface:isFacilitatedBy to PO.1_Power_Output_3_Is_Facilitated_By
+        restricts all relation interface:isLinkedBy to PO.1_Power_Output_3_Is_Linked_By
+    ]
+
+    @rdfs:label "PO.1 [Power Output 3] Is Used During"
+    concept PO.1_Power_Output_3_Is_Used_During :> interface:FunctionalInteraction [
+    ]
+
+    @rdfs:label "PO.1 [Power Output 3] Is Facilitated By"
+    concept PO.1_Power_Output_3_Is_Facilitated_By :> interface:SystemOfAccess [
+    ]
+
+    @rdfs:label "PO.1 [Power Output 3] Is Linked By"
+    concept PO.1_Power_Output_3_Is_Linked_By :> interface:ArchitecturalRelationship [
+    ]
+
+    @rdfs:label "Display Status and Information []"
+    concept Display_Status_and_Information_ :> interface:FunctionalInteraction, UC1.1_Is_Used_During, Configuration_and_Information_Interface_Permits_Functional_Interaction, CO.2_Is_Used_During [
     ]
 
     @rdfs:label "Device and Converter User"
-    concept DeviceandConverterUser :> interface:System [
-        restricts all relation interface:providesInterface to DeviceandConverterUserProvidesInterface
-        restricts all relation interface:interactsThrough to DeviceandConverterUserInteractsThrough
+    concept Device_and_Converter_User :> interface:System [
+        restricts all relation interface:providesInterface to Device_and_Converter_User_Provides_Interface
+        restricts all relation interface:interactsThrough to Device_and_Converter_User_Interacts_Through
     ]
 
     @rdfs:label "Device and Converter User Provides Interface"
-    concept DeviceandConverterUserProvidesInterface :> interface:Interface [
+    concept Device_and_Converter_User_Provides_Interface :> interface:Interface [
     ]
 
     @rdfs:label "Device and Converter User Interacts Through"
-    concept DeviceandConverterUserInteractsThrough :> interface:Port [
+    concept Device_and_Converter_User_Interacts_Through :> interface:Port [
     ]
 
     @rdfs:label "Device Status and Information"
-    concept DeviceStatusandInformation :> interface:InputOutput, ConfigurationandInformationInterfacePermitsInputOutput [
-        restricts all relation interface:exemplifies to DeviceStatusandInformationExemplifies
+    concept Device_Status_and_Information :> interface:InputOutput, Configuration_and_Information_Interface_Permits_Input_Output [
+        restricts all relation interface:exemplifies to Device_Status_and_Information_Exemplifies
     ]
 
     @rdfs:label "Device Status and Information Exemplifies"
-    concept DeviceStatusandInformationExemplifies :> interface:ArchitecturalRelationship [
+    concept Device_Status_and_Information_Exemplifies :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "UC1.1"
-    concept UC1.1 :> interface:Port, DeviceandConverterUserInteractsThrough [
-        restricts all relation interface:isUsedDuring to UC1.1IsUsedDuring
-        restricts all relation interface:isFacilitatedBy to UC1.1IsFacilitatedBy
-        restricts all relation interface:isLinkedBy to UC1.1IsLinkedBy
+    concept UC1.1 :> interface:Port, Device_and_Converter_User_Interacts_Through [
+        restricts all relation interface:isUsedDuring to UC1.1_Is_Used_During
+        restricts all relation interface:isFacilitatedBy to UC1.1_Is_Facilitated_By
+        restricts all relation interface:isLinkedBy to UC1.1_Is_Linked_By
     ]
 
     @rdfs:label "UC1.1 Is Used During"
-    concept UC1.1IsUsedDuring :> interface:FunctionalInteraction [
+    concept UC1.1_Is_Used_During :> interface:FunctionalInteraction [
     ]
 
     @rdfs:label "UC1.1 Is Facilitated By"
-    concept UC1.1IsFacilitatedBy :> interface:SystemOfAccess [
+    concept UC1.1_Is_Facilitated_By :> interface:SystemOfAccess [
     ]
 
     @rdfs:label "UC1.1 Is Linked By"
-    concept UC1.1IsLinkedBy :> interface:ArchitecturalRelationship [
+    concept UC1.1_Is_Linked_By :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "HMI Display"
-    concept HMIDisplay :> interface:SystemOfAccess, UC1.1IsFacilitatedBy, ConfigurationandInformationInterfacePermitsSOA, CO.2IsFacilitatedBy [
+    concept HMI_Display :> interface:SystemOfAccess, UC1.1_Is_Facilitated_By, Configuration_and_Information_Interface_Permits_SOA, CO.2_Is_Facilitated_By [
     ]
 
     @rdfs:label "Configuration and Information Interface"
-    concept ConfigurationandInformationInterface :> interface:Interface, InternationalPowerConverterProvidesInterface [
-        restricts all relation interface:permitsFunctionalInteraction to ConfigurationandInformationInterfacePermitsFunctionalInteraction
-        restricts all relation interface:permitsInputOutput to ConfigurationandInformationInterfacePermitsInputOutput
-        restricts all relation interface:permitsArchitecturalRelationship to ConfigurationandInformationInterfacePermitsArchitecturalRelationship
-        restricts all relation interface:groups to ConfigurationandInformationInterfaceGroups
-        restricts all relation interface:permitsSOA to ConfigurationandInformationInterfacePermitsSOA
+    concept Configuration_and_Information_Interface :> interface:Interface, International_Power_Converter_Provides_Interface [
+        restricts all relation interface:permitsFunctionalInteraction to Configuration_and_Information_Interface_Permits_Functional_Interaction
+        restricts all relation interface:permitsInputOutput to Configuration_and_Information_Interface_Permits_Input_Output
+        restricts all relation interface:permitsArchitecturalRelationship to Configuration_and_Information_Interface_Permits_Architectural_Relationship
+        restricts all relation interface:groups to Configuration_and_Information_Interface_Groups
+        restricts all relation interface:permitsSOA to Configuration_and_Information_Interface_Permits_SOA
     ]
 
     @rdfs:label "Configuration and Information Interface Permits Functional Interaction"
-    concept ConfigurationandInformationInterfacePermitsFunctionalInteraction :> interface:FunctionalInteraction [
+    concept Configuration_and_Information_Interface_Permits_Functional_Interaction :> interface:FunctionalInteraction [
     ]
 
     @rdfs:label "Configuration and Information Interface Permits Input Output"
-    concept ConfigurationandInformationInterfacePermitsInputOutput :> interface:InputOutput [
+    concept Configuration_and_Information_Interface_Permits_Input_Output :> interface:InputOutput [
     ]
 
     @rdfs:label "Configuration and Information Interface Permits Architectural Relationship"
-    concept ConfigurationandInformationInterfacePermitsArchitecturalRelationship :> interface:ArchitecturalRelationship [
+    concept Configuration_and_Information_Interface_Permits_Architectural_Relationship :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "Configuration and Information Interface Groups"
-    concept ConfigurationandInformationInterfaceGroups :> interface:Port [
+    concept Configuration_and_Information_Interface_Groups :> interface:Port [
     ]
 
     @rdfs:label "Configuration and Information Interface Permits SOA"
-    concept ConfigurationandInformationInterfacePermitsSOA :> interface:SystemOfAccess [
+    concept Configuration_and_Information_Interface_Permits_SOA :> interface:SystemOfAccess [
     ]
 
     @rdfs:label "CO.2"
-    concept CO.2 :> interface:Port, ConfigurationandInformationInterfaceGroups, InternationalPowerConverterInteractsThrough [
-        restricts all relation interface:isUsedDuring to CO.2IsUsedDuring
-        restricts all relation interface:isFacilitatedBy to CO.2IsFacilitatedBy
-        restricts all relation interface:isLinkedBy to CO.2IsLinkedBy
+    concept CO.2 :> interface:Port, Configuration_and_Information_Interface_Groups, International_Power_Converter_Interacts_Through [
+        restricts all relation interface:isUsedDuring to CO.2_Is_Used_During
+        restricts all relation interface:isFacilitatedBy to CO.2_Is_Facilitated_By
+        restricts all relation interface:isLinkedBy to CO.2_Is_Linked_By
     ]
 
     @rdfs:label "CO.2 Is Used During"
-    concept CO.2IsUsedDuring :> interface:FunctionalInteraction [
+    concept CO.2_Is_Used_During :> interface:FunctionalInteraction [
     ]
 
     @rdfs:label "CO.2 Is Facilitated By"
-    concept CO.2IsFacilitatedBy :> interface:SystemOfAccess [
+    concept CO.2_Is_Facilitated_By :> interface:SystemOfAccess [
     ]
 
     @rdfs:label "CO.2 Is Linked By"
-    concept CO.2IsLinkedBy :> interface:ArchitecturalRelationship [
+    concept CO.2_Is_Linked_By :> interface:ArchitecturalRelationship [
     ]
 
-    @rdfs:label "Handle Device"
-    concept HandleDevice :> interface:FunctionalInteraction, UHO.1IsUsedDuring, HandlingInterfacePermitsFunctionalInteraction, HI.1IsUsedDuring [
+    @rdfs:label "Handle Device []"
+    concept Handle_Device_ :> interface:FunctionalInteraction, UHO.1_Is_Used_During, Handling_Interface_Permits_Functional_Interaction, HI.1_Is_Used_During [
     ]
 
     @rdfs:label "Handling Force"
-    concept HandlingForce :> interface:InputOutput, HandlingInterfacePermitsInputOutput [
-        restricts all relation interface:exemplifies to HandlingForceExemplifies
+    concept Handling_Force :> interface:InputOutput, Handling_Interface_Permits_Input_Output [
+        restricts all relation interface:exemplifies to Handling_Force_Exemplifies
     ]
 
     @rdfs:label "Handling Force Exemplifies"
-    concept HandlingForceExemplifies :> interface:ArchitecturalRelationship [
+    concept Handling_Force_Exemplifies :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "UHO.1"
-    concept UHO.1 :> interface:Port, DeviceandConverterUserInteractsThrough [
-        restricts all relation interface:isUsedDuring to UHO.1IsUsedDuring
-        restricts all relation interface:isFacilitatedBy to UHO.1IsFacilitatedBy
-        restricts all relation interface:isLinkedBy to UHO.1IsLinkedBy
+    concept UHO.1 :> interface:Port, Device_and_Converter_User_Interacts_Through [
+        restricts all relation interface:isUsedDuring to UHO.1_Is_Used_During
+        restricts all relation interface:isFacilitatedBy to UHO.1_Is_Facilitated_By
+        restricts all relation interface:isLinkedBy to UHO.1_Is_Linked_By
     ]
 
     @rdfs:label "UHO.1 Is Used During"
-    concept UHO.1IsUsedDuring :> interface:FunctionalInteraction [
+    concept UHO.1_Is_Used_During :> interface:FunctionalInteraction [
     ]
 
     @rdfs:label "UHO.1 Is Facilitated By"
-    concept UHO.1IsFacilitatedBy :> interface:SystemOfAccess [
+    concept UHO.1_Is_Facilitated_By :> interface:SystemOfAccess [
     ]
 
     @rdfs:label "UHO.1 Is Linked By"
-    concept UHO.1IsLinkedBy :> interface:ArchitecturalRelationship [
+    concept UHO.1_Is_Linked_By :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "Handle"
-    concept Handle :> interface:SystemOfAccess, UHO.1IsFacilitatedBy, HandlingInterfacePermitsSOA, HI.1IsFacilitatedBy [
+    concept Handle :> interface:SystemOfAccess, UHO.1_Is_Facilitated_By, Handling_Interface_Permits_SOA, HI.1_Is_Facilitated_By [
     ]
 
     @rdfs:label "Handling Interface"
-    concept HandlingInterface :> interface:Interface, InternationalPowerConverterProvidesInterface [
-        restricts all relation interface:permitsFunctionalInteraction to HandlingInterfacePermitsFunctionalInteraction
-        restricts all relation interface:permitsInputOutput to HandlingInterfacePermitsInputOutput
-        restricts all relation interface:permitsArchitecturalRelationship to HandlingInterfacePermitsArchitecturalRelationship
-        restricts all relation interface:groups to HandlingInterfaceGroups
-        restricts all relation interface:permitsSOA to HandlingInterfacePermitsSOA
+    concept Handling_Interface :> interface:Interface, International_Power_Converter_Provides_Interface [
+        restricts all relation interface:permitsFunctionalInteraction to Handling_Interface_Permits_Functional_Interaction
+        restricts all relation interface:permitsInputOutput to Handling_Interface_Permits_Input_Output
+        restricts all relation interface:permitsArchitecturalRelationship to Handling_Interface_Permits_Architectural_Relationship
+        restricts all relation interface:groups to Handling_Interface_Groups
+        restricts all relation interface:permitsSOA to Handling_Interface_Permits_SOA
     ]
 
     @rdfs:label "Handling Interface Permits Functional Interaction"
-    concept HandlingInterfacePermitsFunctionalInteraction :> interface:FunctionalInteraction [
+    concept Handling_Interface_Permits_Functional_Interaction :> interface:FunctionalInteraction [
     ]
 
     @rdfs:label "Handling Interface Permits Input Output"
-    concept HandlingInterfacePermitsInputOutput :> interface:InputOutput [
+    concept Handling_Interface_Permits_Input_Output :> interface:InputOutput [
     ]
 
     @rdfs:label "Handling Interface Permits Architectural Relationship"
-    concept HandlingInterfacePermitsArchitecturalRelationship :> interface:ArchitecturalRelationship [
+    concept Handling_Interface_Permits_Architectural_Relationship :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "Handling Interface Groups"
-    concept HandlingInterfaceGroups :> interface:Port [
+    concept Handling_Interface_Groups :> interface:Port [
     ]
 
     @rdfs:label "Handling Interface Permits SOA"
-    concept HandlingInterfacePermitsSOA :> interface:SystemOfAccess [
+    concept Handling_Interface_Permits_SOA :> interface:SystemOfAccess [
     ]
 
     @rdfs:label "HI.1"
-    concept HI.1 :> interface:Port, HandlingInterfaceGroups, InternationalPowerConverterInteractsThrough [
-        restricts all relation interface:isUsedDuring to HI.1IsUsedDuring
-        restricts all relation interface:isFacilitatedBy to HI.1IsFacilitatedBy
-        restricts all relation interface:isLinkedBy to HI.1IsLinkedBy
+    concept HI.1 :> interface:Port, Handling_Interface_Groups, International_Power_Converter_Interacts_Through [
+        restricts all relation interface:isUsedDuring to HI.1_Is_Used_During
+        restricts all relation interface:isFacilitatedBy to HI.1_Is_Facilitated_By
+        restricts all relation interface:isLinkedBy to HI.1_Is_Linked_By
     ]
 
     @rdfs:label "HI.1 Is Used During"
-    concept HI.1IsUsedDuring :> interface:FunctionalInteraction [
+    concept HI.1_Is_Used_During :> interface:FunctionalInteraction [
     ]
 
     @rdfs:label "HI.1 Is Facilitated By"
-    concept HI.1IsFacilitatedBy :> interface:SystemOfAccess [
+    concept HI.1_Is_Facilitated_By :> interface:SystemOfAccess [
     ]
 
     @rdfs:label "HI.1 Is Linked By"
-    concept HI.1IsLinkedBy :> interface:ArchitecturalRelationship [
+    concept HI.1_Is_Linked_By :> interface:ArchitecturalRelationship [
     ]
 
-    @rdfs:label "Resist Contamination"
-    concept ResistContamination :> interface:FunctionalInteraction, EnvironmentalInterfacePermitsFunctionalInteraction, EN.3IsUsedDuring, ENV.1IsUsedDuring [
+    @rdfs:label "Resist Contamination []"
+    concept Resist_Contamination_ :> interface:FunctionalInteraction, Environmental_Interface_Permits_Functional_Interaction, EN.3_Is_Used_During, ENV.1_Is_Used_During [
     ]
 
     @rdfs:label "Contaminants"
-    concept Contaminants :> interface:InputOutput, EnvironmentalInterfacePermitsInputOutput [
-        restricts all relation interface:exemplifies to ContaminantsExemplifies
+    concept Contaminants :> interface:InputOutput, Environmental_Interface_Permits_Input_Output [
+        restricts all relation interface:exemplifies to Contaminants_Exemplifies
     ]
 
     @rdfs:label "Contaminants Exemplifies"
-    concept ContaminantsExemplifies :> interface:ArchitecturalRelationship [
+    concept Contaminants_Exemplifies :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "EN.3"
-    concept EN.3 :> interface:Port, EnvironmentalInterfaceGroups, InternationalPowerConverterInteractsThrough [
-        restricts all relation interface:isUsedDuring to EN.3IsUsedDuring
-        restricts all relation interface:isFacilitatedBy to EN.3IsFacilitatedBy
-        restricts all relation interface:isLinkedBy to EN.3IsLinkedBy
+    concept EN.3 :> interface:Port, Environmental_Interface_Groups, International_Power_Converter_Interacts_Through [
+        restricts all relation interface:isUsedDuring to EN.3_Is_Used_During
+        restricts all relation interface:isFacilitatedBy to EN.3_Is_Facilitated_By
+        restricts all relation interface:isLinkedBy to EN.3_Is_Linked_By
     ]
 
     @rdfs:label "EN.3 Is Used During"
-    concept EN.3IsUsedDuring :> interface:FunctionalInteraction [
+    concept EN.3_Is_Used_During :> interface:FunctionalInteraction [
     ]
 
     @rdfs:label "EN.3 Is Facilitated By"
-    concept EN.3IsFacilitatedBy :> interface:SystemOfAccess [
+    concept EN.3_Is_Facilitated_By :> interface:SystemOfAccess [
     ]
 
     @rdfs:label "EN.3 Is Linked By"
-    concept EN.3IsLinkedBy :> interface:ArchitecturalRelationship [
+    concept EN.3_Is_Linked_By :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "Airborne Particulates"
-    concept AirborneParticulates :> interface:SystemOfAccess, EnvironmentalInterfacePermitsSOA, EN.3IsFacilitatedBy, ENV.1IsFacilitatedBy [
+    concept Airborne_Particulates :> interface:SystemOfAccess, Environmental_Interface_Permits_SOA, EN.3_Is_Facilitated_By, ENV.1_Is_Facilitated_By [
     ]
 
     @rdfs:label "ENV.1"
-    concept ENV.1 :> interface:Port, LocalEnvironmentInteractsThrough [
-        restricts all relation interface:isUsedDuring to ENV.1IsUsedDuring
-        restricts all relation interface:isFacilitatedBy to ENV.1IsFacilitatedBy
-        restricts all relation interface:isLinkedBy to ENV.1IsLinkedBy
+    concept ENV.1 :> interface:Port, Local_Environment_Interacts_Through [
+        restricts all relation interface:isUsedDuring to ENV.1_Is_Used_During
+        restricts all relation interface:isFacilitatedBy to ENV.1_Is_Facilitated_By
+        restricts all relation interface:isLinkedBy to ENV.1_Is_Linked_By
     ]
 
     @rdfs:label "ENV.1 Is Used During"
-    concept ENV.1IsUsedDuring :> interface:FunctionalInteraction [
+    concept ENV.1_Is_Used_During :> interface:FunctionalInteraction [
     ]
 
     @rdfs:label "ENV.1 Is Facilitated By"
-    concept ENV.1IsFacilitatedBy :> interface:SystemOfAccess [
+    concept ENV.1_Is_Facilitated_By :> interface:SystemOfAccess [
     ]
 
     @rdfs:label "ENV.1 Is Linked By"
-    concept ENV.1IsLinkedBy :> interface:ArchitecturalRelationship [
+    concept ENV.1_Is_Linked_By :> interface:ArchitecturalRelationship [
     ]
 
-    @rdfs:label "Set Configuration"
-    concept SetConfiguration :> interface:FunctionalInteraction, UCO.1IsUsedDuring, ConfigurationandInformationInterfacePermitsFunctionalInteraction, CI.1IsUsedDuring [
+    @rdfs:label "Set Configuration []"
+    concept Set_Configuration_ :> interface:FunctionalInteraction, UCO.1_Is_Used_During, Configuration_and_Information_Interface_Permits_Functional_Interaction, CI.1_Is_Used_During [
     ]
 
     @rdfs:label "Configuration Setting"
-    concept ConfigurationSetting :> interface:InputOutput, ConfigurationandInformationInterfacePermitsInputOutput [
-        restricts all relation interface:exemplifies to ConfigurationSettingExemplifies
+    concept Configuration_Setting :> interface:InputOutput, Configuration_and_Information_Interface_Permits_Input_Output [
+        restricts all relation interface:exemplifies to Configuration_Setting_Exemplifies
     ]
 
     @rdfs:label "Configuration Setting Exemplifies"
-    concept ConfigurationSettingExemplifies :> interface:ArchitecturalRelationship [
+    concept Configuration_Setting_Exemplifies :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "UCO.1"
-    concept UCO.1 :> interface:Port, DeviceandConverterUserInteractsThrough [
-        restricts all relation interface:isUsedDuring to UCO.1IsUsedDuring
-        restricts all relation interface:isFacilitatedBy to UCO.1IsFacilitatedBy
-        restricts all relation interface:isLinkedBy to UCO.1IsLinkedBy
+    concept UCO.1 :> interface:Port, Device_and_Converter_User_Interacts_Through [
+        restricts all relation interface:isUsedDuring to UCO.1_Is_Used_During
+        restricts all relation interface:isFacilitatedBy to UCO.1_Is_Facilitated_By
+        restricts all relation interface:isLinkedBy to UCO.1_Is_Linked_By
     ]
 
     @rdfs:label "UCO.1 Is Used During"
-    concept UCO.1IsUsedDuring :> interface:FunctionalInteraction [
+    concept UCO.1_Is_Used_During :> interface:FunctionalInteraction [
     ]
 
     @rdfs:label "UCO.1 Is Facilitated By"
-    concept UCO.1IsFacilitatedBy :> interface:SystemOfAccess [
+    concept UCO.1_Is_Facilitated_By :> interface:SystemOfAccess [
     ]
 
     @rdfs:label "UCO.1 Is Linked By"
-    concept UCO.1IsLinkedBy :> interface:ArchitecturalRelationship [
+    concept UCO.1_Is_Linked_By :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "HMI Buttons"
-    concept HMIButtons :> interface:SystemOfAccess, UCO.1IsFacilitatedBy, ConfigurationandInformationInterfacePermitsSOA, CI.1IsFacilitatedBy [
+    concept HMI_Buttons :> interface:SystemOfAccess, UCO.1_Is_Facilitated_By, Configuration_and_Information_Interface_Permits_SOA, CI.1_Is_Facilitated_By [
     ]
 
     @rdfs:label "CI.1"
-    concept CI.1 :> interface:Port, ConfigurationandInformationInterfaceGroups, InternationalPowerConverterInteractsThrough [
-        restricts all relation interface:isUsedDuring to CI.1IsUsedDuring
-        restricts all relation interface:isFacilitatedBy to CI.1IsFacilitatedBy
-        restricts all relation interface:isLinkedBy to CI.1IsLinkedBy
+    concept CI.1 :> interface:Port, Configuration_and_Information_Interface_Groups, International_Power_Converter_Interacts_Through [
+        restricts all relation interface:isUsedDuring to CI.1_Is_Used_During
+        restricts all relation interface:isFacilitatedBy to CI.1_Is_Facilitated_By
+        restricts all relation interface:isLinkedBy to CI.1_Is_Linked_By
     ]
 
     @rdfs:label "CI.1 Is Used During"
-    concept CI.1IsUsedDuring :> interface:FunctionalInteraction [
+    concept CI.1_Is_Used_During :> interface:FunctionalInteraction [
     ]
 
     @rdfs:label "CI.1 Is Facilitated By"
-    concept CI.1IsFacilitatedBy :> interface:SystemOfAccess [
+    concept CI.1_Is_Facilitated_By :> interface:SystemOfAccess [
     ]
 
     @rdfs:label "CI.1 Is Linked By"
-    concept CI.1IsLinkedBy :> interface:ArchitecturalRelationship [
+    concept CI.1_Is_Linked_By :> interface:ArchitecturalRelationship [
     ]
 
-    @rdfs:label "Tolerate Moisture"
-    concept TolerateMoisture :> interface:FunctionalInteraction, EnvironmentalInterfacePermitsFunctionalInteraction, EN.4IsUsedDuring, ENV.2IsUsedDuring [
+    @rdfs:label "Tolerate Moisture []"
+    concept Tolerate_Moisture_ :> interface:FunctionalInteraction, Environmental_Interface_Permits_Functional_Interaction, EN.4_Is_Used_During, ENV.2_Is_Used_During [
     ]
 
     @rdfs:label "Moisture"
-    concept Moisture :> interface:InputOutput, EnvironmentalInterfacePermitsInputOutput [
-        restricts all relation interface:exemplifies to MoistureExemplifies
+    concept Moisture :> interface:InputOutput, Environmental_Interface_Permits_Input_Output [
+        restricts all relation interface:exemplifies to Moisture_Exemplifies
     ]
 
     @rdfs:label "Moisture Exemplifies"
-    concept MoistureExemplifies :> interface:ArchitecturalRelationship [
+    concept Moisture_Exemplifies :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "EN.4"
-    concept EN.4 :> interface:Port, EnvironmentalInterfaceGroups, InternationalPowerConverterInteractsThrough [
-        restricts all relation interface:isUsedDuring to EN.4IsUsedDuring
-        restricts all relation interface:isFacilitatedBy to EN.4IsFacilitatedBy
-        restricts all relation interface:isLinkedBy to EN.4IsLinkedBy
+    concept EN.4 :> interface:Port, Environmental_Interface_Groups, International_Power_Converter_Interacts_Through [
+        restricts all relation interface:isUsedDuring to EN.4_Is_Used_During
+        restricts all relation interface:isFacilitatedBy to EN.4_Is_Facilitated_By
+        restricts all relation interface:isLinkedBy to EN.4_Is_Linked_By
     ]
 
     @rdfs:label "EN.4 Is Used During"
-    concept EN.4IsUsedDuring :> interface:FunctionalInteraction [
+    concept EN.4_Is_Used_During :> interface:FunctionalInteraction [
     ]
 
     @rdfs:label "EN.4 Is Facilitated By"
-    concept EN.4IsFacilitatedBy :> interface:SystemOfAccess [
+    concept EN.4_Is_Facilitated_By :> interface:SystemOfAccess [
     ]
 
     @rdfs:label "EN.4 Is Linked By"
-    concept EN.4IsLinkedBy :> interface:ArchitecturalRelationship [
+    concept EN.4_Is_Linked_By :> interface:ArchitecturalRelationship [
     ]
 
     @rdfs:label "Airborne Moisture Condensation"
-    concept AirborneMoistureCondensation :> interface:SystemOfAccess, EnvironmentalInterfacePermitsSOA, EN.4IsFacilitatedBy, ENV.2IsFacilitatedBy [
+    concept Airborne_Moisture_Condensation :> interface:SystemOfAccess, Environmental_Interface_Permits_SOA, EN.4_Is_Facilitated_By, ENV.2_Is_Facilitated_By [
     ]
 
     @rdfs:label "ENV.2"
-    concept ENV.2 :> interface:Port, LocalEnvironmentInteractsThrough [
-        restricts all relation interface:isUsedDuring to ENV.2IsUsedDuring
-        restricts all relation interface:isFacilitatedBy to ENV.2IsFacilitatedBy
-        restricts all relation interface:isLinkedBy to ENV.2IsLinkedBy
+    concept ENV.2 :> interface:Port, Local_Environment_Interacts_Through [
+        restricts all relation interface:isUsedDuring to ENV.2_Is_Used_During
+        restricts all relation interface:isFacilitatedBy to ENV.2_Is_Facilitated_By
+        restricts all relation interface:isLinkedBy to ENV.2_Is_Linked_By
     ]
 
     @rdfs:label "ENV.2 Is Used During"
-    concept ENV.2IsUsedDuring :> interface:FunctionalInteraction [
+    concept ENV.2_Is_Used_During :> interface:FunctionalInteraction [
     ]
 
     @rdfs:label "ENV.2 Is Facilitated By"
-    concept ENV.2IsFacilitatedBy :> interface:SystemOfAccess [
+    concept ENV.2_Is_Facilitated_By :> interface:SystemOfAccess [
     ]
 
     @rdfs:label "ENV.2 Is Linked By"
-    concept ENV.2IsLinkedBy :> interface:ArchitecturalRelationship [
+    concept ENV.2_Is_Linked_By :> interface:ArchitecturalRelationship [
     ]
 
 }

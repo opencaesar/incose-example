@@ -36,7 +36,11 @@ class Concept
   end
 
   def label_to_name(label)
-    label.gsub(/\s+/, '')
+    label.gsub(/[\[\]\s]+/, '_')
+  end
+
+  def self.make_label(s)
+    s
   end
 
   def to_s
@@ -65,13 +69,13 @@ table.each do |row|
 
   ia_c = nil
   if (ia_cell = row['Configured Interaction Name'])
-    ia_label = ia_cell.to_s.split('::').last.gsub(/ \[.*\z/, '')
+    ia_label = Concept.make_label(ia_cell)
     ia_c = cs.fetch(ia_label) { |k| cs[k] = Concept.new(ia_label, 'interface:FunctionalInteraction') }
   end
 
   sy_c = provides_if_rest_c = int_thr_rest_c = nil
   if (role_cell = row['Configured Role Name'])
-    role_label = role_cell.to_s.split('::').last.gsub(/ \[.*\z/, '')
+    role_label = Concept.make_label(role_cell)
     sy_c = cs.fetch(role_label) { |k| cs[k] = Concept.new(role_label, 'interface:System') }
 
     provides_if_rest_label = "#{role_label} Provides Interface"
@@ -85,7 +89,7 @@ table.each do |row|
 
   if_c = permits_fi_rest_c = permits_io_rest_c = permits_ar_rest_c = groups_rest_c = permits_soa_rest_c = nil
   if (if_cell = row['Configured Interface Name'])
-    if_label = if_cell.to_s.split('::').last.gsub(/ \[.*\z/, '')
+    if_label = Concept.make_label(if_cell)
     if_c = cs.fetch(if_label) { |k| cs[k] = Concept.new(if_label, 'interface:Interface') }
 
     permits_fi_rest_label = "#{if_label} Permits Functional Interaction"
@@ -111,7 +115,7 @@ table.each do |row|
 
   io_c = exemplifies_rest_c = nil
   if (io_cell = row['Configured Input Output Name'])
-    io_label = io_cell.to_s.split('::').last.gsub(/ \[.*\z/, '')
+    io_label = Concept.make_label(io_cell)
     io_c = cs.fetch(io_label) { |k| cs[k] = Concept.new(io_label, 'interface:InputOutput') }
 
     exemplifies_rest_label = "#{io_label} Exemplifies"
@@ -121,7 +125,7 @@ table.each do |row|
 
   port_c = is_used_during_rest_c = is_facilitated_by_rest_c = is_linked_by_rest_c = nil
   if (port_cell = row['Configured Port Name'])
-    port_label = port_cell.to_s.split('::').last.gsub(/ \[.*\z/, '')
+    port_label = Concept.make_label(port_cell)
     port_c = cs.fetch(port_label) { |k| cs[k] = Concept.new(port_label, 'interface:Port') }
 
     is_used_during_rest_label = "#{port_label} Is Used During"
@@ -139,19 +143,19 @@ table.each do |row|
 
   soa_c = nil
   if (soa_cell = row['Configured SOA Name'])
-    soa_label = soa_cell.to_s.split('::').last.gsub(/ \[.*\z/, '')
+    soa_label = Concept.make_label(soa_cell)
     soa_c = cs.fetch(soa_label) { |k| cs[k] = Concept.new(soa_label, 'interface:SystemOfAccess') }
   end
 
   ar_c = nil
   if (ar_cell = row['Configured Arch Relat Name'])
-    ar_label = ar_cell.to_s.split('::').last.gsub(/ \[.*\z/, '')
+    ar_label = Concept.make_label(ar_cell)
     ar_c = cs.fetch(ar_label) { |k| cs[k] = Concept.new(ar_label, 'interface:ArchitecturalRelationship') }
   end
 
   arr_c = nil
   if (arr_cell = row['Configured Arch Relat Role Name'])
-    arr_label = arr_cell.to_s.split('::').last.gsub(/ \[.*\z/, '')
+    arr_label = Concept.make_label(arr_cell)
     cs.fetch(arr_label) { |k| cs[k] = Concept.new(arr_label, 'interface:ArchitecturalRelationshipRole') }
   end
 
