@@ -79,41 +79,59 @@ table.each do |row|
 
   next unless (if_cell = row['Configured Interface Name'])
 
+  # Interaction
+
   ia_cell = row['Configured Interaction Name']
   ia_label = ConceptInstance.make_label(ia_cell)
   ia_type = ConceptInstance.label_to_type(ia_label)
   ia_ci = cis.fetch(ia_label) { |k| cis[k] = ConceptInstance.new(ia_label, "power-converter:#{ia_type}") }
+
+  # Role (System)
 
   role_cell = row['Configured Role Name']
   role_label = ConceptInstance.make_label(role_cell)
   role_type = ConceptInstance.label_to_type(role_label)
   role_ci = cis.fetch(role_label) { |k| cis[k] = ConceptInstance.new(role_label, "power-converter:#{role_type}") }
 
+  # Interface
+
   if_label = ConceptInstance.make_label(if_cell)
   if_type = ConceptInstance.label_to_type(if_label)
   if_ci = cis.fetch(if_label) { |k| cis[k] = ConceptInstance.new(if_label, "power-converter:#{if_type}") }
+
+  # Input/Output
 
   io_cell = row['Configured Input Output Name']
   io_label = ConceptInstance.make_label(io_cell)
   io_type = ConceptInstance.label_to_type(io_label)
   io_ci = cis.fetch(io_label) { |k| cis[k] = ConceptInstance.new(io_label, "power-converter:#{io_type}") }
 
+  # Port
+
   port_cell = row['Configured Port Name']
   port_label = ConceptInstance.make_label(port_cell)
   port_type = ConceptInstance.label_to_type(port_label)
   port_ci = cis.fetch(port_label) { |k| cis[k] = ConceptInstance.new(port_label, "power-converter:#{port_type}") }
 
+  # Port Direction
+
   pd_cell = row['Port Direction']
+
+  # System of Access
 
   soa_cell = row['Configured SOA Name']
   soa_label = ConceptInstance.make_label(soa_cell)
   soa_type = ConceptInstance.label_to_type(soa_label)
   soa_ci = cis.fetch(soa_label) { |k| cis[k] = ConceptInstance.new(soa_label, "power-converter:#{soa_type}") }
 
+  # Architectural Relationship
+
   if (ar_cell = row['Configured Arch Relat Name'])
     ar_label = ConceptInstance.make_label(ar_cell)
     ar_type = ConceptInstance.label_to_type(ar_label)
     ar_ci = cis.fetch(ar_label) { |k| cis[k] = ConceptInstance.new(ar_label, "power-converter:#{ar_type}") }
+
+    # Architectural Relationship Role
 
     arr_cell = row['Configured Arch Relat Role Name']
     arr_label = ConceptInstance.make_label(arr_cell)
@@ -123,8 +141,12 @@ table.each do |row|
     ar_ci = nil
   end
 
+  # System properties
+
   role_ci.properties['interface:providesInterface'] << if_ci.name
   role_ci.properties['interface:interactsThrough'] << port_ci.name
+
+  # Interface properties
 
   if_ci.properties['interface:permitsFunctionalInteraction'] << ia_ci.name
   if_ci.properties['interface:permitsInputOutput'] << io_ci.name
@@ -132,10 +154,14 @@ table.each do |row|
   if_ci.properties['interface:permitsSOA'] << soa_ci.name
   if_ci.properties['interface:permitsArchitecturalRelationship'] << ar_ci.name if ar_ci
 
+  # Port properties
+
   port_ci.properties['interface:isUsedDuring'] << ia_ci.name
   port_ci.properties[exchanges[pd_cell]] << io_ci.name
   port_ci.properties['interface:isFacilitatedBy'] << soa_ci.name
   port_ci.properties['interface:isLinkedBy'] << ar_ci.name if ar_ci
+
+  # Architectural Relationship properties
 
   if ar_ci
     io_ci.properties['interface:exemplifies'] << ar_ci.name

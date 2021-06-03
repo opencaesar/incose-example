@@ -71,6 +71,8 @@ table = CSV.new(ARGF, headers: true)
 cs = vocab.concepts
 table.each do |row|
 
+  # Interaction
+
   ia_c = nil
   if (ia_cell = row['Configured Interaction Name'])
     ia_label = Concept.make_label(ia_cell)
@@ -82,6 +84,10 @@ table.each do |row|
     end
   end
 
+  #
+  # Role (System)
+  #
+
   sy_c = provides_if_rest_c = int_thr_rest_c = nil
   if (role_cell = row['Configured Role Name'])
     role_label = Concept.make_label(role_cell)
@@ -92,6 +98,8 @@ table.each do |row|
       sy_c.types << sc.name
     end
 
+    # Restrictions
+
     provides_if_rest_label = "#{role_label} Provides Interface"
     provides_if_rest_c = cs.fetch(provides_if_rest_label) { |k| cs[k] = Concept.new(provides_if_rest_label, 'interface:Interface') }
     sy_c.rest_all['interface:providesInterface'] = provides_if_rest_c.name
@@ -100,6 +108,10 @@ table.each do |row|
     int_thr_rest_c = cs.fetch(int_thr_rest_label) { |k| cs[k] = Concept.new(int_thr_rest_label, 'interface:Port') }
     sy_c.rest_all['interface:interactsThrough'] = int_thr_rest_c.name
   end
+
+  #
+  # Interface
+  #
 
   if_c = permits_fi_rest_c = permits_io_rest_c = permits_ar_rest_c = groups_rest_c = permits_soa_rest_c = nil
   if (if_cell = row['Configured Interface Name'])
@@ -110,6 +122,8 @@ table.each do |row|
       sc = cs.fetch(sc_label) { |k| cs[k] = Concept.new(sc_label, 'interface:Interface') }
       if_c.types << sc.name
     end
+
+    # Restrictions
 
     permits_fi_rest_label = "#{if_label} Permits Functional Interaction"
     permits_fi_rest_c = cs.fetch(permits_fi_rest_label) { |k| cs[k] = Concept.new(permits_fi_rest_label, 'interface:FunctionalInteraction') }
@@ -132,6 +146,10 @@ table.each do |row|
     if_c.rest_all['interface:permitsSOA'] = permits_soa_rest_c.name
   end
 
+  #
+  # Input/Output
+  #
+
   io_c = exemplifies_rest_c = nil
   if (io_cell = row['Configured Input Output Name'])
     io_label = Concept.make_label(io_cell)
@@ -142,10 +160,16 @@ table.each do |row|
       io_c.types << sc.name
     end
 
+    # Restrictions
+
     exemplifies_rest_label = "#{io_label} Exemplifies"
     exemplifies_rest_c = cs.fetch(exemplifies_rest_label) { |k| cs[k] = Concept.new(exemplifies_rest_label, 'interface:ArchitecturalRelationship') }
     io_c.rest_all['interface:exemplifies'] = exemplifies_rest_c.name
   end
+
+  #
+  # Port
+  #
 
   port_c = sends_rest_c = is_used_during_rest_c = is_facilitated_by_rest_c = is_linked_by_rest_c = nil
   if (port_cell = row['Configured Port Name'])
@@ -156,6 +180,8 @@ table.each do |row|
       sc = cs.fetch(sc_label) { |k| cs[k] = Concept.new(sc_label, 'interface:Port') }
       port_c.types << sc.name
     end
+
+    # Restrictions
 
     sends_rest_label = "#{port_label} Sends"
     sends_rest_c = cs.fetch(sends_rest_label) { |k| cs[k] = Concept.new(sends_rest_label, 'interface:InputOutput') }
@@ -178,7 +204,15 @@ table.each do |row|
     port_c.rest_all['interface:isLinkedBy'] = is_linked_by_rest_c.name
   end
 
+  #
+  # Port Direction
+  #
+
   pd = row['Port Direction']
+
+  #
+  # System of Access
+  #
 
   soa_c = nil
   if (soa_cell = row['Configured SOA Name'])
@@ -191,6 +225,10 @@ table.each do |row|
     end
   end
 
+  #
+  # Architectural Relationship
+  #
+
   ar_c = has_role_rest_c = nil
   if (ar_cell = row['Configured Arch Relat Name'])
     ar_label = Concept.make_label(ar_cell)
@@ -201,10 +239,16 @@ table.each do |row|
       ar_c.types << sc.name
     end
 
+    # Restrictions
+
     has_role_rest_label = "#{ar_label} Has Role"
     has_role_rest_c = cs.fetch(has_role_rest_label) { |k| cs[k] = Concept.new(has_role_rest_label, 'interface:ArchitecturalRelationshipRole') }
     ar_c.rest_all['interface:hasRole'] = has_role_rest_c.name
   end
+
+  #
+  # Architectural Relationship Role
+  #
 
   arr_c = nil
   if (arr_cell = row['Configured Arch Relat Role Name'])
@@ -217,14 +261,20 @@ table.each do |row|
     end
   end
 
+  # Add interaction to restriction classes.
+
   if ia_c
     ia_c.types << permits_fi_rest_c.name if permits_fi_rest_c
     ia_c.types << is_used_during_rest_c.name if is_used_during_rest_c
   end
 
+  # Add interface to restriction classes.
+
   if if_c
     if_c.types << provides_if_rest_c.name if provides_if_rest_c
   end
+
+  # Add input/output to restriction classes.
 
   if io_c
     io_c.types << permits_io_rest_c.name if permits_io_rest_c
@@ -232,21 +282,29 @@ table.each do |row|
     io_c.types << receives_rest_c.name if receives_rest_c && pd == 'In'
   end
 
-  if ar_c
-    ar_c.types << permits_ar_rest_c.name if permits_ar_rest_c
-    ar_c.types << exemplifies_rest_c.name if exemplifies_rest_c
-    ar_c.types << is_linked_by_rest_c.name if is_linked_by_rest_c
-  end
+  # Add port to restriction classes.
 
   if port_c
     port_c.types << groups_rest_c.name if groups_rest_c
     port_c.types << int_thr_rest_c.name if int_thr_rest_c
   end
 
+  # Add system of access to restriction classes.
+
   if soa_c
     soa_c.types << permits_soa_rest_c.name if permits_soa_rest_c
     soa_c.types << is_facilitated_by_rest_c.name if is_facilitated_by_rest_c
   end
+
+  # Add architectural relationship to restriction classes.
+
+  if ar_c
+    ar_c.types << permits_ar_rest_c.name if permits_ar_rest_c
+    ar_c.types << exemplifies_rest_c.name if exemplifies_rest_c
+    ar_c.types << is_linked_by_rest_c.name if is_linked_by_rest_c
+  end
+
+  # Add architectural relationship role to restriction classes.
 
   if arr_c
     arr_c.types << has_role_rest_c.name if has_role_rest_c
