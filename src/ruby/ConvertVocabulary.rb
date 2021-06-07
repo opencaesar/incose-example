@@ -1,5 +1,14 @@
 require 'csv'
 require 'set'
+require 'json'
+
+json_opts = {
+  array_nl: "\n",
+  object_nl: "\n",
+  indent: '  ',
+  space_before: ' ',
+  space: ' '
+}
 
 class Vocabulary
 
@@ -22,16 +31,27 @@ class Vocabulary
     lines.join("\n")
   end
 
+  def to_json(*args)
+    {
+      JSON.create_id => self.class.name,
+      'iri' => @iri,
+      'prefix' => @prefix,
+      'with' => @with,
+      'extends' => @extends.to_a,
+      'concepts' => @concepts.to_a
+    }.to_json(*args)
+  end
+
 end
 
 class Concept
 
-  attr_reader :label, :name, :types, :rest_all
+  attr_reader :label, :name, :superclasses, :rest_all
 
-  def initialize(label, types = Set.new)
+  def initialize(label, superclasses = Set.new)
     @label = label
     @name = label_to_name(label)
-    @types = types.respond_to?(:each) ? types : Set.new([types])
+    @superclasses = superclasses.respond_to?(:each) ? superclasses : Set.new([superclasses])
     @rest_all = {}
   end
 
@@ -50,13 +70,24 @@ class Concept
   def to_s
     lines = []
     lines << %(    @rdfs:label "#{@label}")
-    lines << "    concept #{@name} :> #{@types.to_a.join(', ')} ["
+    lines << "    concept #{@name} :> #{@superclasses.to_a.join(', ')} ["
     @rest_all.each do |prop, range|
       lines << "        restricts all relation #{prop} to #{range}"
     end
     lines << "    ]\n"
     lines.join("\n")
   end
+
+  def to_json(*args)
+    {
+      JSON.create_id => self.class.name,
+      'name' => @name,
+      'label' => @label,
+      'superclasses' => @superclasses.to_a,
+      'all_values_from' => @rest_all
+    }.to_json(*args)
+  end
+
 end
 
 vocab = Vocabulary.new(
@@ -80,7 +111,7 @@ table.each do |row|
 
     if (sc_label = Concept.label_to_superclass(ia_label)) != ia_label
       sc = cs.fetch(sc_label) { |k| cs[k] = Concept.new(sc_label, 'interface:FunctionalInteraction') }
-      ia_c.types << sc.name
+      ia_c.superclasses << sc.name
     end
   end
 
@@ -95,7 +126,7 @@ table.each do |row|
 
     if (sc_label = Concept.label_to_superclass(role_label)) != role_label
       sc = cs.fetch(sc_label) { |k| cs[k] = Concept.new(sc_label, 'interface:System') }
-      sy_c.types << sc.name
+      sy_c.superclasses << sc.name
     end
 
     # Restrictions
@@ -120,7 +151,7 @@ table.each do |row|
 
     if (sc_label = Concept.label_to_superclass(if_label)) != if_label
       sc = cs.fetch(sc_label) { |k| cs[k] = Concept.new(sc_label, 'interface:Interface') }
-      if_c.types << sc.name
+      if_c.superclasses << sc.name
     end
 
     # Restrictions
@@ -157,7 +188,7 @@ table.each do |row|
 
     if (sc_label = Concept.label_to_superclass(io_label)) != io_label
       sc = cs.fetch(sc_label) { |k| cs[k] = Concept.new(sc_label, 'interface:InputOutput') }
-      io_c.types << sc.name
+      io_c.superclasses << sc.name
     end
 
     # Restrictions
@@ -178,7 +209,7 @@ table.each do |row|
 
     if (sc_label = Concept.label_to_superclass(port_label)) != port_label
       sc = cs.fetch(sc_label) { |k| cs[k] = Concept.new(sc_label, 'interface:Port') }
-      port_c.types << sc.name
+      port_c.superclasses << sc.name
     end
 
     # Restrictions
@@ -221,7 +252,7 @@ table.each do |row|
 
     if (sc_label = Concept.label_to_superclass(soa_label)) != soa_label
       sc = cs.fetch(sc_label) { |k| cs[k] = Concept.new(sc_label, 'interface:SystemOfAccess') }
-      soa_c.types << sc.name
+      soa_c.superclasses << sc.name
     end
   end
 
@@ -236,7 +267,7 @@ table.each do |row|
 
     if (sc_label = Concept.label_to_superclass(ar_label)) != ar_label
       sc = cs.fetch(sc_label) { |k| cs[k] = Concept.new(sc_label, 'interface:ArchitecturalRelationship') }
-      ar_c.types << sc.name
+      ar_c.superclasses << sc.name
     end
 
     # Restrictions
@@ -257,60 +288,61 @@ table.each do |row|
 
     if (sc_label = Concept.label_to_superclass(arr_label)) != arr_label
       sc = cs.fetch(sc_label) { |k| cs[k] = Concept.new(sc_label, 'interface:ArchitecturalRelationshipRole') }
-      arr_c.types << sc.name
+      arr_c.superclasses << sc.name
     end
   end
 
   # Add interaction to restriction classes.
 
   if ia_c
-    ia_c.types << permits_fi_rest_c.name if permits_fi_rest_c
-    ia_c.types << is_used_during_rest_c.name if is_used_during_rest_c
+    ia_c.superclasses << permits_fi_rest_c.name if permits_fi_rest_c
+    ia_c.superclasses << is_used_during_rest_c.name if is_used_during_rest_c
   end
 
   # Add interface to restriction classes.
 
   if if_c
-    if_c.types << provides_if_rest_c.name if provides_if_rest_c
+    if_c.superclasses << provides_if_rest_c.name if provides_if_rest_c
   end
 
   # Add input/output to restriction classes.
 
   if io_c
-    io_c.types << permits_io_rest_c.name if permits_io_rest_c
-    io_c.types << sends_rest_c.name if sends_rest_c && pd == 'Out'
-    io_c.types << receives_rest_c.name if receives_rest_c && pd == 'In'
+    io_c.superclasses << permits_io_rest_c.name if permits_io_rest_c
+    io_c.superclasses << sends_rest_c.name if sends_rest_c && pd == 'Out'
+    io_c.superclasses << receives_rest_c.name if receives_rest_c && pd == 'In'
   end
 
   # Add port to restriction classes.
 
   if port_c
-    port_c.types << groups_rest_c.name if groups_rest_c
-    port_c.types << int_thr_rest_c.name if int_thr_rest_c
+    port_c.superclasses << groups_rest_c.name if groups_rest_c
+    port_c.superclasses << int_thr_rest_c.name if int_thr_rest_c
   end
 
   # Add system of access to restriction classes.
 
   if soa_c
-    soa_c.types << permits_soa_rest_c.name if permits_soa_rest_c
-    soa_c.types << is_facilitated_by_rest_c.name if is_facilitated_by_rest_c
+    soa_c.superclasses << permits_soa_rest_c.name if permits_soa_rest_c
+    soa_c.superclasses << is_facilitated_by_rest_c.name if is_facilitated_by_rest_c
   end
 
   # Add architectural relationship to restriction classes.
 
   if ar_c
-    ar_c.types << permits_ar_rest_c.name if permits_ar_rest_c
-    ar_c.types << exemplifies_rest_c.name if exemplifies_rest_c
-    ar_c.types << is_linked_by_rest_c.name if is_linked_by_rest_c
+    ar_c.superclasses << permits_ar_rest_c.name if permits_ar_rest_c
+    ar_c.superclasses << exemplifies_rest_c.name if exemplifies_rest_c
+    ar_c.superclasses << is_linked_by_rest_c.name if is_linked_by_rest_c
   end
 
   # Add architectural relationship role to restriction classes.
 
   if arr_c
-    arr_c.types << has_role_rest_c.name if has_role_rest_c
+    arr_c.superclasses << has_role_rest_c.name if has_role_rest_c
   end
 
 end
 
 puts vocab.to_s
+# puts JSON.generate(vocab, json_opts)
 

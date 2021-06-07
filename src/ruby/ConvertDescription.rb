@@ -1,10 +1,19 @@
 require 'csv'
 require 'set'
+require 'json'
 
 exchanges = {
   'In' => 'interface:receives',
   'Out' => 'interface:sends',
   'Bi' => 'interface:exchanges'
+}
+
+json_opts = {
+  array_nl: "\n",
+  object_nl: "\n",
+  indent: '  ',
+  space_before: ' ',
+  space: ' '
 }
 
 class Description
@@ -23,9 +32,19 @@ class Description
     lines = []
     lines << "description <#{@iri}> with #{@with} as #{@prefix} {\n"
     @uses.each { |u| lines << "    uses <#{u}>\n" }
-    @concept_instances.values.each { |ci| lines << ci.to_s }
+    @concept_instances.each_value { |ci| lines << ci.to_s }
     lines << '}'
     lines.join("\n")
+  end
+
+  def to_json(*args)
+    {
+      JSON.create_id => self.class.name,
+      'iri' => @iri,
+      'prefix' => @prefix,
+      'with' => @with,
+      'concept_instances' => @concept_instances
+    }.to_json(*args)
   end
 
 end
@@ -63,6 +82,16 @@ class ConceptInstance
     lines << "    ]\n"
     lines.join("\n")
   end
+
+  def to_json(*args)
+    {
+      JSON.create_id => self.class.name,
+      'label' => @label,
+      'types' => @types.to_a,
+      'properties' => @properties.transform_values { |v| v.to_a }
+   }.to_json(*args)
+  end
+
 end
 
 desc = Description.new(
@@ -171,3 +200,4 @@ table.each do |row|
 end
 
 puts desc.to_s
+# puts JSON.generate(desc, json_opts)
