@@ -86,6 +86,7 @@ class ConceptInstance
   def to_json(*args)
     {
       JSON.create_id => self.class.name,
+      'name' => @name,
       'label' => @label,
       'types' => @types.to_a,
       'properties' => @properties.transform_values { |v| v.to_a }
