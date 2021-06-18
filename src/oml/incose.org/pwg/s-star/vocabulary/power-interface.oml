@@ -71,7 +71,7 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as p
 
 	concept DisplayStatusAndInformation :> ConfigurationAndInformationFunctionalInteraction
 
-	concept HandlingFunctionalInteraction :> interface:Interface
+	concept HandlingFunctionalInteraction :> interface:FunctionalInteraction
 
 	concept HandleDevice :> HandlingFunctionalInteraction
 
