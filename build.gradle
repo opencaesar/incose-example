@@ -1,6 +1,7 @@
 /* 
  * The Maven coordinates for the project artifact
  */
+ext.title = "INCOSE Example"
 description='The INCOSE example project'
 group = 'io.opencaesar.ontologies'
 version = '1.0.0'
