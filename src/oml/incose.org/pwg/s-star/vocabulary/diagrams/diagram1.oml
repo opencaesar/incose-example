@@ -1,6 +1,8 @@
 vocabulary <http://incose.org/pwg/s-star/vocabulary/diagrams/diagram1> with # as diagram1 {
 
-    extends <http://incose.org/pwg/s-star/vocabulary/power-interface>
+    extends <http://incose.org/pwg/s-star/vocabulary/power-interface> as power-interface
+
+	extends <http://incose.org/pwg/s-star/vocabulary/interface> as interface
 
     ref concept interface:Interface
 

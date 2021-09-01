@@ -1,79 +1,81 @@
 description <http://incose.org/pwg/s-star/description/power-converter> with # as power-converter {
-	
-	uses <http://www.w3.org/2000/01/rdf-schema>
-	
-	uses <http://incose.org/pwg/s-star/vocabulary/power-interface>
-	
+			
 	// Systems
 	
+	uses <http://www.w3.org/2000/01/rdf-schema> as rdfs
+
+	uses <http://incose.org/pwg/s-star/vocabulary/interface> as interface
+
+	uses <http://incose.org/pwg/s-star/vocabulary/power-interface> as power-interface
+
 	@rdfs:label "Local Power Distribution System"
-	ci lpds: interface:System
+	ci lpds : interface:System
 	
 	@rdfs:label "International Power Converter"
-	ci ipc: interface:System
+	ci ipc : interface:System
 	
 	@rdfs:label "Externally-Powered Device"
-	ci epd: interface:System
+	ci epd : interface:System
 	
 	@rdfs:label "Device and Converter User"
-	ci dcu: interface:System
+	ci dcu : interface:System
 	
 	@rdfs:label "Local Environment"
-	ci le: interface:System
+	ci le : interface:System
 	
 	// Interfaces
 	
 	@rdfs:label "Local Power Output Interface"
-	ci lpds_po: power-interface:ElectricalPowerOutputInterface
+	ci lpds_po : power-interface:ElectricalPowerOutputInterface
 	
 	@rdfs:label "International Power Converter Power Input Interface"
-	ci ipc_pi: power-interface:ElectricalPowerInputInterface
+	ci ipc_pi : power-interface:ElectricalPowerInputInterface
 	
 	@rdfs:label "International Power Converter Power Output Interface"
-	ci ipc_po: power-interface:ElectricalPowerOutputInterface
+	ci ipc_po : power-interface:ElectricalPowerOutputInterface
 	
 	@rdfs:label "Externally Powered Device Power Input Interface"
-	ci epd_pi: power-interface:ElectricalPowerInputInterface
+	ci epd_pi : power-interface:ElectricalPowerInputInterface
 	
 	// Input/Outputs
 	
 	@rdfs:label "Input Power"
-	ci ip: power-interface:ElectricalPower
+	ci ip : power-interface:ElectricalPower
 	
 	@rdfs:label "Output Power"
-	ci op: power-interface:ElectricalPower
+	ci op : power-interface:ElectricalPower
 	
 	// Interactions
 	
 	@rdfs:label "Transfer Input Electrical Power"
-	ci tip: power-interface:TransferElectricalPower
+	ci tip : power-interface:TransferElectricalPower
 	
 	@rdfs:label "Transfer Output Electrical Power"
-	ci top: power-interface:TransferElectricalPower
+	ci top : power-interface:TransferElectricalPower
 	
 	// Systems of Access
 	
 	@rdfs:label "Local Power to Converter SOA"
-	ci lpds_ipc: power-interface:PowerDistributionSystemOfAccess
+	ci lpds_ipc : power-interface:PowerDistributionSystemOfAccess
 	
 	@rdfs:label "Converter to Externally-Powered Device SOA"
-	ci ipc_epd: power-interface:PowerDistributionSystemOfAccess
+	ci ipc_epd : power-interface:PowerDistributionSystemOfAccess
 	
 	// Ports
 	
 	@rdfs:label "PI.1"
-	ci pi_1: interface:Port
+	ci pi_1 : interface:Port
 	
 	@rdfs:label "PO.1"
-	ci po_1: interface:Port
+	ci po_1 : interface:Port
 	
 	// Architectural Relationships
 	
 	@rdfs:label "AR.1"
-	ci ar_1: interface:ArchitecturalRelationship
+	ci ar_1 : interface:ArchitecturalRelationship
 	
 	@rdfs:label "AR.2"
-	ci ar_2: interface:ArchitecturalRelationship
+	ci ar_2 : interface:ArchitecturalRelationship
 	
 	// System relations
 	

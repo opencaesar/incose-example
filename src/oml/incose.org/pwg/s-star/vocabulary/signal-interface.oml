@@ -1,6 +1,6 @@
 vocabulary <http://incose.org/pwg/s-star/vocabulary/signal-interface> with # as signal-interface {
 	
-	extends <http://incose.org/pwg/s-star/vocabulary/interface>
+	extends <http://incose.org/pwg/s-star/vocabulary/interface> as interface
 	
 	concept ElectricalSignalInterface :> interface:Interface
 	concept ElectricalSignalInputInterface :> ElectricalSignalInterface

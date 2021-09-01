@@ -1,6 +1,6 @@
 vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface> with # as power-interface {
 
-	extends <http://incose.org/pwg/s-star/vocabulary/interface>
+	extends <http://incose.org/pwg/s-star/vocabulary/interface> as interface
 
 	// Interfaces
 	concept ElectricalPowerInterface :> interface:Interface [
