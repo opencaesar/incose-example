@@ -1,12 +1,12 @@
-description <http://incose.org/pwg/s-star/description/power-converter> with # as power-converter {
+description <http://incose.org/pwg/s-star/description/power-converter#> as power-converter {
 			
 	// Systems
 	
-	uses <http://www.w3.org/2000/01/rdf-schema> as rdfs
+	uses <http://www.w3.org/2000/01/rdf-schema#> as rdfs
 
-	uses <http://incose.org/pwg/s-star/vocabulary/interface> as interface
+	uses <http://incose.org/pwg/s-star/vocabulary/interface#> as interface
 
-	uses <http://incose.org/pwg/s-star/vocabulary/power-interface> as power-interface
+	uses <http://incose.org/pwg/s-star/vocabulary/power-interface#> as power-interface
 
 	@rdfs:label "Local Power Distribution System"
 	ci lpds : interface:System

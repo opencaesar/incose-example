@@ -1,8 +1,8 @@
 # Each S*Input/Output associated with an S*Interface must be associated with one S*Functional Interaction also associated with that S*Interface
 
-prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-prefix interface: <http://incose.org/pwg/s-star/vocabulary/interface#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema##>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema##>
+prefix interface: <http://incose.org/pwg/s-star/vocabulary/interface##>
 
 select distinct ?if ?if_l ?io ?io_l ?ok
 where {

@@ -1,8 +1,8 @@
 @dc:title "S*Metamodel Interface Pattern"
 
-vocabulary <http://incose.org/pwg/s-star/vocabulary/interface> with # as interface {
+vocabulary <http://incose.org/pwg/s-star/vocabulary/interface#> as interface {
 
-	extends <http://purl.org/dc/elements/1.1> with / as dc
+	extends <http://purl.org/dc/elements/1.1/> as dc
 
     @dc:description "An Interface is an association of Input/Outputs, Functional Interactions, Systems of Access (SOAs), and Architectural Relationships through which a system interacts with other systems. Each interface is owned by that system."
     concept Interface
