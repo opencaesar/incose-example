@@ -1,7 +1,7 @@
 # An S*Interface must have at least one associated S*Functional Interaction
 
-prefix rdfs: <http://www.w3.org/2000/01/rdf-schema##>
-prefix interface: <http://incose.org/pwg/s-star/vocabulary/interface##>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix interface: <http://incose.org/pwg/s-star/vocabulary/interface#>
 
 select distinct ?if ?if_l ?ok
 where {

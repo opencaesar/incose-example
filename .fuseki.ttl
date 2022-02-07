@@ -15,7 +15,7 @@
     fuseki:endpoint 	[ fuseki:operation fuseki:shacl ;	fuseki:name "shacl" ] ;		# SHACL query service
     fuseki:dataset      <#dataset> .
 
-## In memory TDB with union graph.
+# In memory TDB with union graph.
 <#dataset> rdf:type   tdb:DatasetTDB ;
   tdb:location "--mem--" ;
   # Query timeout on this dataset (1s, 1000 milliseconds)
