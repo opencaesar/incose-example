@@ -16,10 +16,10 @@ buildscript {
 	dependencies {
 		classpath 'io.opencaesar.owl:owl-fuseki-gradle:+'
 		classpath 'io.opencaesar.owl:owl-query-gradle:+'
-		classpath 'io.opencaesar.owl:owl-load-gradle:0.9.1+'
+		classpath 'io.opencaesar.owl:owl-load-gradle:+'
 		classpath 'io.opencaesar.owl:owl-reason-gradle:+'
-		classpath 'io.opencaesar.adapters:oml2owl-gradle:0.8.+'
-		classpath 'io.opencaesar.oml:oml-merge-gradle:0.8.+'
+		classpath 'io.opencaesar.oml:oml-merge-gradle:1.1.+'
+		classpath 'io.opencaesar.adapters:oml2owl-gradle:1.0.+'
 	}
 }
 
@@ -27,7 +27,7 @@ buildscript {
  * Dependency versions
  */
 ext { 
-	coreVersion = '2.+'
+	coreVersion = '3.+'
 }
 
 /*
