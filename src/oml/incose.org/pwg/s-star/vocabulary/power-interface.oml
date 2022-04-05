@@ -1,4 +1,4 @@
-vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-converter {
+vocabulary <http://incose.org/pwg/s-star/vocabulary/power-interface#> as power-interface {
 
 	extends <http://www.w3.org/2000/01/rdf-schema#> as rdfs
 
