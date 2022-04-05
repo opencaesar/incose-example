@@ -1,5 +1,5 @@
-vocabulary bundle <http://incose.org/pwg/s-star/vocabulary/power-converter-bundle> with # as power-converter-bundle {
+vocabulary bundle <http://incose.org/pwg/s-star/vocabulary/power-converter-bundle#> as power-converter-bundle {
 	
-	includes <http://incose.org/pwg/s-star/vocabulary/power-converter>
+	includes <http://incose.org/pwg/s-star/vocabulary/power-converter#>
 	
 }

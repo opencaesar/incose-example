@@ -1,8 +1,9 @@
 @dc:title "S*Metamodel Interface Pattern"
 
-vocabulary <http://incose.org/pwg/s-star/vocabulary/interface> with # as interface {
+vocabulary <http://incose.org/pwg/s-star/vocabulary/interface#> as interface {
 
-    extends <http://www.w3.org/2001/XMLSchema.oml>
+ 	extends <http://purl.org/dc/elements/1.1/> as dc
+	extends <http://www.w3.org/2001/XMLSchema#> as xsd
 
 	@dc:^description "An Identified has an identifier."
 	aspect Identified

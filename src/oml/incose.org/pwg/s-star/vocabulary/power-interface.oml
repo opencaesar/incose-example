@@ -1,8 +1,8 @@
-vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter> with # as power-converter {
+vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-converter {
 
-    extends <http://www.w3.org/2000/01/rdf-schema>
+	extends <http://www.w3.org/2000/01/rdf-schema#> as rdfs
 
-    extends <http://incose.org/pwg/s-star/vocabulary/interface>
+    extends <http://incose.org/pwg/s-star/vocabulary/interface#> as interface
 
     @rdfs:label "Convert Electrical Power [Power Output 1]"
     concept Convert_Electrical_Power_Power_Output_1_ :> interface:FunctionalInteraction, Convert_Electrical_Power, DPI.1_Is_Used_During, Environmental_Interface_Permits_Functional_Interaction, EN.2_Is_Used_During, EN.1_Is_Used_During, Power_Input_Interface_Permits_Functional_Interaction, PI.1_Is_Used_During, Power_Output_Interface_Power_Output_1_Permits_Functional_Interaction, PO.1_Power_Output_1_Is_Used_During, ENV.3_Is_Used_During, ENV.4_Is_Used_During, LPO.1_Is_Used_During [
