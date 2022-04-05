@@ -4,10 +4,10 @@ prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix interface: <http://incose.org/pwg/s-star/vocabulary/interface#>
 
-select distinct ?if ?if_l ?ar ?ar_l ?ok
+select distinct ?if_l ?ar_l ?ok
 where {
-	?if a interface:Interface ; rdfs:label ?if_l ; interface:permitsArchitecturalRelationship ?ar .
-    ?ar rdfs:label ?ar_l .
+	?if a interface:Interface ; interface:hasIdentifier ?if_l ; interface:permitsArchitecturalRelationship ?ar .
+    ?ar interface:hasIdentifier ?ar_l .
 	bind ( exists {
         ?if interface:permitsInputOutput ?io .
         { ?io interface:exemplifies ?ar } union { ?ar interface:emergesFrom ?io }

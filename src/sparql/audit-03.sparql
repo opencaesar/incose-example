@@ -3,9 +3,9 @@
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix interface: <http://incose.org/pwg/s-star/vocabulary/interface#>
 
-select distinct ?if ?if_l ?ok
+select distinct ?if_l ?ok
 where {
-	?if a interface:Interface ; rdfs:label ?if_l .
+	?if a interface:Interface ; interface:hasIdentifier ?if_l .
 	bind(exists { ?if interface:permitsInputOutput [ a interface:InputOutput ] } as ?ok)
 }
 	
