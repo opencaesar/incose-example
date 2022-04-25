@@ -11,21 +11,26 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/interface#> as interface {
 	scalar property hasIdentifier [
 		domain Identified
 		range xsd:string
+		functional
 	]
 	
 	aspect ModeledClass
 	
-    @dc:^description "An Interface is an association of Input/Outputs, Functional Interactions, Systems of Access (SOAs), and Architectural Relationships through which a system interacts with other systems. Each interface is owned by that system."
-    concept Interface :> Identified [
-    	key hasIdentifier
-    ]
+    @dc:^description """An Interface is an association of Input/Outputs, Functional Interactions, Systems of Access (SOAs),
+						and Architectural Relationships through which a system interacts with other systems. Each interface
+						is owned by that system."""
+	concept Interface :> Identified [
+		key hasIdentifier
+	]
 
-    @dc:^description "A system is a collection of interacting components.  A component can itself be a System, called a sub-system.  Information about the purpose or configuration of a system is encoded into the metaclasses associated with the System (e.g., Feature)."
+    @dc:^description """A system is a collection of interacting components.  A component can itself be a System, called a
+						sub-system.  Information about the purpose or configuration of a system is encoded into the
+						metaclasses associated with the System (e.g., Feature)."""
     concept System :> Identified [
     	key hasIdentifier
     ]
 
-    @dc:^description "An Input/Output is that which is exchanged between interacting systems."
+    @dc:^description """An Input/Output is that which is exchanged between interacting systems."""
     concept InputOutput :> Identified [
     	key hasIdentifier
     ]
@@ -36,41 +41,55 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/interface#> as interface {
     @dc:^description ""
 //    concept InternalInputOutput :> InputOutput
 
-    @dc:^description "A Functional Interaction is an interaction of two or more Systems.  Interaction means that one system affects the state of another system.  All interactions are relationships between systems, expressing the externally visible behavioral outcome (requirement) of the interactions.  A Functional Interaction is also sometimes called a Collaboration."
+    @dc:^description """A Functional Interaction is an interaction of two or more Systems.  Interaction means that one system
+						affects the state of another system.  All interactions are relationships between systems, expressing
+						the externally visible behavioral outcome (requirement) of the interactions.  A Functional Interaction
+						is also sometimes called a Collaboration."""
     concept FunctionalInteraction :> Identified [
     	key hasIdentifier
     ]
 
-    @dc:^description "A System of Access (SOA) is the system which allows other systems to interact (impact each other’s state)."
+    @dc:^description """A System of Access (SOA) is the system which allows other systems to interact (impact each other’s state)."""
     concept SystemOfAccess :> System
 
-    @dc:^description "A Physical System is System defined based upon its identity or physical compositions, but not its behavior.  Physical systems may be given proper names, such as names of commercial products, corporate systems, people, organizations, buildings, etc.  Physical Systems are Design Components that fulfill the Functional Roles (Logical Systems) allocated to them through an Allocation Decision."
+    @dc:^description """A Physical System is System defined based upon its identity or physical compositions, but not its behavior.
+    					Physical systems may be given proper names, such as names of commercial products, corporate systems, people,
+    					organizations, buildings, etc.  Physical Systems are Design Components that fulfill the Functional Roles
+    					(Logical Systems) allocated to them through an Allocation Decision."""
     concept PhysicalSystem :> System
 
-    @dc:^description "A Modeled Attribute is a modeled property or characteristic of any of the metaclasses, which might take on different attribute values to describe the various instances of that class.  An attribute may belong to any metaclass, including another Attribute."
+    @dc:^description """A Modeled Attribute is a modeled property or characteristic of any of the metaclasses, which might take on
+						different attribute values to describe the various instances of that class.  An attribute may belong to
+						any metaclass, including another Attribute."""
     concept ModeledAttribute
 
-    @dc:^description "A Port is the coincidence of an Input/Output and System border.  A Port is a specific relationship between a received and sent Input/Output, internal and external Systems of Access (SOAs), internal and external Architectural Relationship, and a Functional Interaction."
+    @dc:^description """A Port is the coincidence of an Input/Output and System border.  A Port is a specific relationship between
+						a received and sent Input/Output, internal and external Systems of Access (SOAs), internal and external
+						Architectural Relationship, and a Functional Interaction."""
     concept Port :> Identified [
     	key hasIdentifier
     ]
 
-    @dc:^description "A Domain is an environmental system.  The components and relationships of this system establish an overall environment (domain) for a subject system.  A domain establishes the domain knowledge relevant to a subject system."
+    @dc:^description """A Domain is an environmental system.  The components and relationships of this system establish an overall
+						environment (domain) for a subject system.  A domain establishes the domain knowledge relevant to a
+						subject system."""
     concept Domain :> Identified [
     	key hasIdentifier
     ]
 
-    @dc:^description "An Architectural Relationship is a relationship that summarizes the architectural significance of a set of interactions between systems."
+    @dc:^description """An Architectural Relationship is a relationship that summarizes the architectural significance of a set
+						of interactions between systems."""
     concept ArchitecturalRelationship :> Identified [
     	key hasIdentifier
     ]
 
-    @dc:^description "An Architectural Relationship Role is a role defined within an Architectural Relationship that is played by a System."
+    @dc:^description """An Architectural Relationship Role is a role defined within an Architectural Relationship that is played
+						by a System."""
     concept ArchitecturalRelationshipRole :> Identified [
     	key hasIdentifier
     ]
     
-    @dc:^description "The Provides relationship links an Interface to a System."
+    @dc:^description """The Provides relationship links an Interface to a System."""
     relation entity ProvidesInterface [
         from System
         to Interface
@@ -78,49 +97,53 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/interface#> as interface {
         inverse functional
     ]
 
-    @dc:^description "The Permits Functional Interaction relationship links an Interface to the allowed Functional Interactions for which its Ports can be used."
+    @dc:^description """The Permits Functional Interaction relationship links an Interface to the allowed Functional Interactions
+						for which its Ports can be used."""
     relation entity PermitsFunctionalInteraction [
         from Interface
         to FunctionalInteraction
         forward permitsFunctionalInteraction
     ]
 
-    @dc:^description "The Permits Input-Output relationship links an Interface to the allowed Input/Outputs to which its Ports can link."
+    @dc:^description """The Permits Input-Output relationship links an Interface to the allowed Input/Outputs to which its Ports
+						can link."""
     relation entity PermitsInputOutput [
         from Interface
         to InputOutput
         forward permitsInputOutput
     ]
 
-    @dc:^description "The Permits Architectural Relationship relationship links an Interface to the allowed Architectural Relationships with which its Ports can be linked."
+    @dc:^description """The Permits Architectural Relationship relationship links an Interface to the allowed Architectural
+						Relationships with which its Ports can be linked."""
     relation entity PermitsArchitecturalRelationship [
         from Interface
         to ArchitecturalRelationship
         forward permitsArchitecturalRelationship
     ]
 
-    @dc:^description "The Groups relationship links an Interface to the set of Ports it is used to group or manage."
+    @dc:^description """The Groups relationship links an Interface to the set of Ports it is used to group or manage."""
     relation entity Groups [
         from Interface
         to Port
         forward groups
     ]
 
-    @dc:^description "The Permits SOA relationship links an Interface to the allowed Systems of Access (SOAs) to which its Ports can link."
+    @dc:^description """The Permits SOA relationship links an Interface to the allowed Systems of Access (SOAs) to which its Ports
+						can link."""
     relation entity PermitsSOA [
         from Interface
         to SystemOfAccess
         forward permitsSOA
     ]
 
-    @dc:^description "The Has Attribute relationship links a Modeled Attribute to any Class that has that Attribute."
+    @dc:^description """The Has Attribute relationship links a Modeled Attribute to any Class that has that Attribute."""
     relation entity HasAttribute [
         from ModeledClass
         to ModeledAttribute
         forward hasAttribute
     ]
 
-    @dc:^description "The Interacts Through relationship links a System to one of its Ports."
+    @dc:^description """The Interacts Through relationship links a System to one of its Ports."""
     relation entity InteractsThrough [
         from System
         to Port
@@ -128,105 +151,115 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/interface#> as interface {
         inverse functional
     ]
 
-    @dc:^description "The Has Subject relationship links a Domain to a System that is the focus of attention and is being specified."
+    @dc:^description """The Has Subject relationship links a Domain to a System that is the focus of attention and is being specified."""
     relation entity HasSubject [
         from Domain
         to System
         forward hasSubject
     ]
 
-    @dc:^description "The Allocated To relationship assigns a Class to a Modeled Relationship Role in a Modeled Relationship."
+    @dc:^description """The Allocated To relationship assigns a Class to a Modeled Relationship Role in a Modeled Relationship."""
 //    relation entity AllocatedTo [
 //        from ?
 //        to ?
 //        forward allocatedTo
 //    ]
 
-    @dc:^description "The Exemplifies relationship links an Architectural Relationship to its Input/Outputs that are used to refer to the full set of Input/Outputs summarized by the Architectural Relationship."
+    @dc:^description """The Exemplifies relationship links an Architectural Relationship to its Input/Outputs that are used to refer
+						to the full set of Input/Outputs summarized by the Architectural Relationship."""
     relation entity Exemplifies [
         from InputOutput
         to ArchitecturalRelationship
         forward exemplifies
     ]
 
-    @dc:^description "The Emerges From relationship links an Architectural Relationship with its summarized Input/Outputs."
+    @dc:^description """The Emerges From relationship links an Architectural Relationship with its summarized Input/Outputs."""
     relation entity EmergesFrom [
         from ArchitecturalRelationship
         to InputOutput // summarized?
         forward emergesFrom
     ]
 
-    @dc:^description "The Exchanges relationship links an external Input/Output to an output Port or an internal Input/Output to an input Port."
+    @dc:^description """The Exchanges relationship links an external Input/Output to an output Port or an internal Input/Output
+						to an input Port."""
     relation entity Exchanges [
         from Port
         to InputOutput
         forward exchanges
     ]
 
-    @dc:^description "The Sends relationship links an external Input/Output to an output Port or an internal Input/Output to an input Port."
+    @dc:^description """The Sends relationship links an external Input/Output to an output Port or an internal Input/Output
+						to an input Port."""
     relation entity Sends :> Exchanges [
         from Port
         to InputOutput
         forward sends
     ]
 
-    @dc:^description "The Receives relationship links an internal Input/Output to an output Port or an external Input/Output to an input Port."
+    @dc:^description """The Receives relationship links an internal Input/Output to an output Port or an external Input/Output
+						to an input Port."""
     relation entity Receives :> Exchanges [
         from Port
         to InputOutput
         forward receives
     ]
 
-    @dc:^description "The Is Used During relationship explains for which Functional Interaction a Port is used by a System."
+    @dc:^description """The Is Used During relationship explains for which Functional Interaction a Port is used by a System."""
     relation entity IsUsedDuring [
         from Port
         to FunctionalInteraction
         forward isUsedDuring
     ]
 
-    @dc:^description "The Is Facilitated By relationship links a Port to the System of Access that it uses inside or outside of the System boundary."
+    @dc:^description """The Is Facilitated By relationship links a Port to the System of Access that it uses inside or outside
+						of the System boundary."""
     relation entity IsFacilitatedBy [
         from Port
         to SystemOfAccess
         forward isFacilitatedBy
     ]
 
-    @dc:^description "The Is Facilitated By Externally relationship links a Port to the System of Access that it uses outside of the System boundary."
+    @dc:^description """The Is Facilitated By Externally relationship links a Port to the System of Access that it uses outside
+						of the System boundary."""
     relation entity IsFacilitatedByExternally :> IsFacilitatedBy [
         from Port
         to SystemOfAccess
         forward isFacilitatedByExternally
     ]
 
-   @dc:^description "The Is Facilitated By Internally relationship links a Port to the System of Access that it uses inside of the System boundary."
+   @dc:^description """The Is Facilitated By Internally relationship links a Port to the System of Access that it uses inside
+						of the System boundary."""
     relation entity IsFacilitatedByInternally :> IsFacilitatedBy [
         from Port
         to SystemOfAccess
         forward isFacilitatedByInternally
     ]
 
-    @dc:^description "The Is Linked By relationship links a Port to the Architectural Relationship that it uses inside or outside of the System boundary."
+    @dc:^description """The Is Linked By relationship links a Port to the Architectural Relationship that it uses inside or
+						outside of the System boundary."""
     relation entity IsLinkedBy [
         from Port
         to ArchitecturalRelationship
         forward isLinkedBy
     ]
 
-    @dc:^description "The Is Linked By Externally relationship links a Port to the Architectural Relationship that it uses outside of the System boundary."
+    @dc:^description """The Is Linked By Externally relationship links a Port to the Architectural Relationship that it uses outside
+						of the System boundary."""
     relation entity IsLinkedByExternally :> IsLinkedBy [
         from Port
         to ArchitecturalRelationship
         forward isLinkedByExternally
     ]
 
-    @dc:^description "The Is Linked By Internally relationship links a Port to the Architectural Relationship that it uses inside of the System boundary."
+    @dc:^description """The Is Linked By Internally relationship links a Port to the Architectural Relationship that it uses inside
+						of the System boundary."""
     relation entity IsLinkedByInternally :> IsLinkedBy [
         from Port
         to ArchitecturalRelationship
         forward isLinkedByInternally
     ]
 
-    @dc:^description "The Has Role relationship connects a relationship to the roles of described in that relationship."
+    @dc:^description """The Has Role relationship connects a relationship to the roles of described in that relationship."""
     relation entity HasRole [
         from ArchitecturalRelationship
         to ArchitecturalRelationshipRole
