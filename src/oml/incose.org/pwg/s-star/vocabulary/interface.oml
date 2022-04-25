@@ -35,10 +35,10 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/interface#> as interface {
     	key hasIdentifier
     ]
 
-    @dc:^description ""
+//    @dc:^description ""
 //    concept ExternalInputOutput :> InputOutput
 
-    @dc:^description ""
+//    @dc:^description ""
 //    concept InternalInputOutput :> InputOutput
 
     @dc:^description """A Functional Interaction is an interaction of two or more Systems.  Interaction means that one system
@@ -158,7 +158,7 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/interface#> as interface {
         forward hasSubject
     ]
 
-    @dc:^description """The Allocated To relationship assigns a Class to a Modeled Relationship Role in a Modeled Relationship."""
+//    @dc:^description """The Allocated To relationship assigns a Class to a Modeled Relationship Role in a Modeled Relationship."""
 //    relation entity AllocatedTo [
 //        from ?
 //        to ?
