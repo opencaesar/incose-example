@@ -1,23 +1,40 @@
 vocabulary <http://incose.org/pwg/s-star/vocabulary/signal-interface#> as signal-interface {
 	
+	extends <http://www.w3.org/2000/01/rdf-schema#> as rdfs
+
 	extends <http://incose.org/pwg/s-star/vocabulary/interface#> as interface
 	
+	@rdfs:label "Electrical Signal Interface"
 	concept ElectricalSignalInterface :> interface:Interface
+	
+	@rdfs:label "Electrical Signal Input Interface"
 	concept ElectricalSignalInputInterface :> ElectricalSignalInterface
+	
+	@rdfs:label "Electrical Signal Output Interface"
 	concept ElectricalSignalOutputInterface :> ElectricalSignalInterface
 	
+	@rdfs:label "Configuration and Information Interface"
 	concept ConfigurationAndInformationInterface :> interface:Interface
+	
+	@rdfs:label "Handling Interface"
 	concept HandlingInterface :> interface:Interface
 	
+	@rdfs:label "Environmental Interface"
 	concept EnvironmentalInterface :> interface:Interface
 	
+	@rdfs:label "Electrical Signal"
 	concept ElectricalSignal :> interface:InputOutput
 	
+	@rdfs:label "Signal Functional Interaction"
 	concept SignalFunctionalInteraction :> interface:FunctionalInteraction
+	
+	@rdfs:label "Transfer Electrical Signal"
 	concept TransferElectricalSignal :> SignalFunctionalInteraction
 	
+	@rdfs:label "Signal Distribution System of Access"
 	concept SignalDistributionSystemOfAccess :> interface:SystemOfAccess
 	
+	@rdfs:label "Electrical Signal Interface"
 	ref concept ElectricalSignalInterface [
 		restricts all relation interface:permitsInputOutput to ElectricalSignal
 		restricts all relation interface:permitsFunctionalInteraction to SignalFunctionalInteraction

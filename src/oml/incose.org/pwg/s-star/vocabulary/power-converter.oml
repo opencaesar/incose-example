@@ -5,7 +5,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     extends <http://incose.org/pwg/s-star/vocabulary/interface#> as interface
 
     @rdfs:label "Convert Electrical Power [Power Output 1]"
-    concept Convert_Electrical_Power_Power_Output_1_ :> interface:FunctionalInteraction, Convert_Electrical_Power, DPI.1_Is_Used_During, Environmental_Interface_Permits_Functional_Interaction, EN.2_Is_Used_During, EN.1_Is_Used_During, Power_Input_Interface_Permits_Functional_Interaction, PI.1_Is_Used_During, Power_Output_Interface_Power_Output_1_Permits_Functional_Interaction, PO.1_Power_Output_1_Is_Used_During, ENV.3_Is_Used_During, ENV.4_Is_Used_During, LPO.1_Is_Used_During [
+    concept Convert_Electrical_Power_Power_Output_1_ :> interface:FunctionalInteraction, Convert_Electrical_Power,
+    		DPI.1_Is_Used_During, Environmental_Interface_Permits_Functional_Interaction, EN.2_Is_Used_During,
+    		EN.1_Is_Used_During, Power_Input_Interface_Permits_Functional_Interaction, PI.1_Is_Used_During,
+    		Power_Output_Interface_Power_Output_1_Permits_Functional_Interaction, PO.1_Power_Output_1_Is_Used_During,
+    		ENV.3_Is_Used_During, ENV.4_Is_Used_During, LPO.1_Is_Used_During [
     ]
 
     @rdfs:label "Convert Electrical Power"
@@ -31,7 +35,8 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     ]
 
     @rdfs:label "Output Power [Power Output 1]"
-    concept Output_Power_Power_Output_1_ :> interface:InputOutput, Output_Power, DPI.1_Receives, Power_Output_Interface_Power_Output_1_Permits_Input_Output, PO.1_Power_Output_1_Sends [
+    concept Output_Power_Power_Output_1_ :> interface:InputOutput, Output_Power, DPI.1_Receives,
+    		Power_Output_Interface_Power_Output_1_Permits_Input_Output, PO.1_Power_Output_1_Sends [
         restricts all relation interface:exemplifies to Output_Power_Power_Output_1_Exemplifies
     ]
 
@@ -44,7 +49,9 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     ]
 
     @rdfs:label "DPI.1"
-    concept DPI.1 :> interface:Port, Electrically_Powered_Device_Power_Output_1_Interacts_Through, Electrically_Powered_Device_Power_Output_2_Interacts_Through, Electrically_Powered_Device_Power_Output_3_Interacts_Through [
+    concept DPI.1 :> interface:Port, Electrically_Powered_Device_Power_Output_1_Interacts_Through,
+    		Electrically_Powered_Device_Power_Output_2_Interacts_Through,
+    		Electrically_Powered_Device_Power_Output_3_Interacts_Through [
         restricts all relation interface:sends to DPI.1_Sends
         restricts all relation interface:receives to DPI.1_Receives
         restricts all relation interface:isUsedDuring to DPI.1_Is_Used_During
@@ -73,7 +80,8 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     ]
 
     @rdfs:label "Device Power Connector [Power Output 1]"
-    concept Device_Power_Connector_Power_Output_1_ :> interface:SystemOfAccess, Device_Power_Connector, DPI.1_Is_Facilitated_By, Power_Output_Interface_Power_Output_1_Permits_SOA, PO.1_Power_Output_1_Is_Facilitated_By [
+    concept Device_Power_Connector_Power_Output_1_ :> interface:SystemOfAccess, Device_Power_Connector, DPI.1_Is_Facilitated_By,
+    		Power_Output_Interface_Power_Output_1_Permits_SOA, PO.1_Power_Output_1_Is_Facilitated_By [
     ]
 
     @rdfs:label "Device Power Connector"
@@ -81,7 +89,12 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     ]
 
     @rdfs:label "Converts Electrical Power"
-    concept Converts_Electrical_Power :> interface:ArchitecturalRelationship, Output_Power_Power_Output_1_Exemplifies, DPI.1_Is_Linked_By, Power_Input_Interface_Permits_Architectural_Relationship, Input_Power_Exemplifies, PI.1_Is_Linked_By, Power_Output_Interface_Power_Output_1_Permits_Architectural_Relationship, PO.1_Power_Output_1_Is_Linked_By, LPO.1_Is_Linked_By, Output_Power_Power_Output_2_Exemplifies, Power_Output_Interface_Power_Output_2_Permits_Architectural_Relationship, PO.1_Power_Output_2_Is_Linked_By, Output_Power_Power_Output_3_Exemplifies, Power_Output_Interface_Power_Output_3_Permits_Architectural_Relationship, PO.1_Power_Output_3_Is_Linked_By [
+    concept Converts_Electrical_Power :> interface:ArchitecturalRelationship, Output_Power_Power_Output_1_Exemplifies,
+    	DPI.1_Is_Linked_By, Power_Input_Interface_Permits_Architectural_Relationship, Input_Power_Exemplifies, PI.1_Is_Linked_By,
+    	Power_Output_Interface_Power_Output_1_Permits_Architectural_Relationship, PO.1_Power_Output_1_Is_Linked_By, LPO.1_Is_Linked_By,
+    	Output_Power_Power_Output_2_Exemplifies, Power_Output_Interface_Power_Output_2_Permits_Architectural_Relationship,
+    	PO.1_Power_Output_2_Is_Linked_By, Output_Power_Power_Output_3_Exemplifies,
+    	Power_Output_Interface_Power_Output_3_Permits_Architectural_Relationship, PO.1_Power_Output_3_Is_Linked_By [
         restricts all relation interface:hasRole to Converts_Electrical_Power_Has_Role
     ]
 
@@ -179,7 +192,8 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     ]
 
     @rdfs:label "EMI Radiation"
-    concept EMI_Radiation :> interface:SystemOfAccess, Environmental_Interface_Permits_SOA, EN.2_Is_Facilitated_By, ENV.3_Is_Facilitated_By [
+    concept EMI_Radiation :> interface:SystemOfAccess, Environmental_Interface_Permits_SOA, EN.2_Is_Facilitated_By,
+    		ENV.3_Is_Facilitated_By [
     ]
 
     @rdfs:label "Heat"
@@ -221,7 +235,8 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     ]
 
     @rdfs:label "Airspace Thermal Conduction"
-    concept Airspace_Thermal_Conduction :> interface:SystemOfAccess, Environmental_Interface_Permits_SOA, EN.1_Is_Facilitated_By, ENV.4_Is_Facilitated_By [
+    concept Airspace_Thermal_Conduction :> interface:SystemOfAccess, Environmental_Interface_Permits_SOA,
+    		EN.1_Is_Facilitated_By, ENV.4_Is_Facilitated_By [
     ]
 
     @rdfs:label "Power Input Interface"
@@ -333,7 +348,8 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     ]
 
     @rdfs:label "PO.1 [Power Output 1]"
-    concept PO.1_Power_Output_1_ :> interface:Port, PO.1, Power_Output_Interface_Power_Output_1_Groups, International_Power_Converter_Interacts_Through [
+    concept PO.1_Power_Output_1_ :> interface:Port, PO.1, Power_Output_Interface_Power_Output_1_Groups,
+    	International_Power_Converter_Interacts_Through [
         restricts all relation interface:sends to PO.1_Power_Output_1_Sends
         restricts all relation interface:receives to PO.1_Power_Output_1_Receives
         restricts all relation interface:isUsedDuring to PO.1_Power_Output_1_Is_Used_During
@@ -485,7 +501,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     ]
 
     @rdfs:label "Convert Electrical Power [Power Output 2]"
-    concept Convert_Electrical_Power_Power_Output_2_ :> interface:FunctionalInteraction, Convert_Electrical_Power, DPI.1_Is_Used_During, Environmental_Interface_Permits_Functional_Interaction, EN.2_Is_Used_During, EN.1_Is_Used_During, Power_Input_Interface_Permits_Functional_Interaction, PI.1_Is_Used_During, Power_Output_Interface_Power_Output_2_Permits_Functional_Interaction, PO.1_Power_Output_2_Is_Used_During, ENV.4_Is_Used_During, ENV.3_Is_Used_During, LPO.1_Is_Used_During [
+    concept Convert_Electrical_Power_Power_Output_2_ :> interface:FunctionalInteraction, Convert_Electrical_Power, DPI.1_Is_Used_During,
+    		Environmental_Interface_Permits_Functional_Interaction, EN.2_Is_Used_During, EN.1_Is_Used_During,
+    		Power_Input_Interface_Permits_Functional_Interaction, PI.1_Is_Used_During,
+    		Power_Output_Interface_Power_Output_2_Permits_Functional_Interaction,
+    		PO.1_Power_Output_2_Is_Used_During, ENV.4_Is_Used_During, ENV.3_Is_Used_During, LPO.1_Is_Used_During [
     ]
 
     @rdfs:label "Electrically Powered Device [Power Output 2]"
@@ -503,7 +523,8 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     ]
 
     @rdfs:label "Output Power [Power Output 2]"
-    concept Output_Power_Power_Output_2_ :> interface:InputOutput, Output_Power, DPI.1_Receives, Power_Output_Interface_Power_Output_2_Permits_Input_Output, PO.1_Power_Output_2_Sends [
+    concept Output_Power_Power_Output_2_ :> interface:InputOutput, Output_Power, DPI.1_Receives,
+    		Power_Output_Interface_Power_Output_2_Permits_Input_Output, PO.1_Power_Output_2_Sends [
         restricts all relation interface:exemplifies to Output_Power_Power_Output_2_Exemplifies
     ]
 
@@ -512,7 +533,8 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     ]
 
     @rdfs:label "Device Power Connector [Power Output 2]"
-    concept Device_Power_Connector_Power_Output_2_ :> interface:SystemOfAccess, Device_Power_Connector, DPI.1_Is_Facilitated_By, Power_Output_Interface_Power_Output_2_Permits_SOA, PO.1_Power_Output_2_Is_Facilitated_By [
+    concept Device_Power_Connector_Power_Output_2_ :> interface:SystemOfAccess, Device_Power_Connector, DPI.1_Is_Facilitated_By,
+    		Power_Output_Interface_Power_Output_2_Permits_SOA, PO.1_Power_Output_2_Is_Facilitated_By [
     ]
 
     @rdfs:label "Sink [Power Output 2]"
@@ -578,7 +600,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     ]
 
     @rdfs:label "Convert Electrical Power [Power Output 3]"
-    concept Convert_Electrical_Power_Power_Output_3_ :> interface:FunctionalInteraction, Convert_Electrical_Power, DPI.1_Is_Used_During, Environmental_Interface_Permits_Functional_Interaction, EN.2_Is_Used_During, EN.1_Is_Used_During, Power_Input_Interface_Permits_Functional_Interaction, PI.1_Is_Used_During, Power_Output_Interface_Power_Output_3_Permits_Functional_Interaction, PO.1_Power_Output_3_Is_Used_During, ENV.3_Is_Used_During, ENV.4_Is_Used_During, LPO.1_Is_Used_During [
+    concept Convert_Electrical_Power_Power_Output_3_ :> interface:FunctionalInteraction, Convert_Electrical_Power, DPI.1_Is_Used_During,
+    		Environmental_Interface_Permits_Functional_Interaction, EN.2_Is_Used_During, EN.1_Is_Used_During,
+    		Power_Input_Interface_Permits_Functional_Interaction, PI.1_Is_Used_During,
+    		Power_Output_Interface_Power_Output_3_Permits_Functional_Interaction,
+    		PO.1_Power_Output_3_Is_Used_During, ENV.3_Is_Used_During, ENV.4_Is_Used_During, LPO.1_Is_Used_During [
     ]
 
     @rdfs:label "Electrically Powered Device [Power Output 3]"
@@ -596,7 +622,8 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     ]
 
     @rdfs:label "Output Power [Power Output 3]"
-    concept Output_Power_Power_Output_3_ :> interface:InputOutput, Output_Power, DPI.1_Receives, Power_Output_Interface_Power_Output_3_Permits_Input_Output, PO.1_Power_Output_3_Sends [
+    concept Output_Power_Power_Output_3_ :> interface:InputOutput, Output_Power, DPI.1_Receives,
+    		Power_Output_Interface_Power_Output_3_Permits_Input_Output, PO.1_Power_Output_3_Sends [
         restricts all relation interface:exemplifies to Output_Power_Power_Output_3_Exemplifies
     ]
 
@@ -605,7 +632,8 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     ]
 
     @rdfs:label "Device Power Connector [Power Output 3]"
-    concept Device_Power_Connector_Power_Output_3_ :> interface:SystemOfAccess, Device_Power_Connector, DPI.1_Is_Facilitated_By, Power_Output_Interface_Power_Output_3_Permits_SOA, PO.1_Power_Output_3_Is_Facilitated_By [
+    concept Device_Power_Connector_Power_Output_3_ :> interface:SystemOfAccess, Device_Power_Connector, DPI.1_Is_Facilitated_By,
+    		Power_Output_Interface_Power_Output_3_Permits_SOA, PO.1_Power_Output_3_Is_Facilitated_By [
     ]
 
     @rdfs:label "Sink [Power Output 3]"
@@ -671,7 +699,8 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     ]
 
     @rdfs:label "Display Status and Information []"
-    concept Display_Status_and_Information_ :> interface:FunctionalInteraction, Display_Status_and_Information, UC1.1_Is_Used_During, Configuration_and_Information_Interface_Permits_Functional_Interaction, CO.2_Is_Used_During [
+    concept Display_Status_and_Information_ :> interface:FunctionalInteraction, Display_Status_and_Information, UC1.1_Is_Used_During,
+    		Configuration_and_Information_Interface_Permits_Functional_Interaction, CO.2_Is_Used_During [
     ]
 
     @rdfs:label "Display Status and Information"
@@ -693,7 +722,8 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     ]
 
     @rdfs:label "Device Status and Information"
-    concept Device_Status_and_Information :> interface:InputOutput, UC1.1_Receives, Configuration_and_Information_Interface_Permits_Input_Output, CO.2_Sends [
+    concept Device_Status_and_Information :> interface:InputOutput, UC1.1_Receives,
+    		Configuration_and_Information_Interface_Permits_Input_Output, CO.2_Sends [
         restricts all relation interface:exemplifies to Device_Status_and_Information_Exemplifies
     ]
 
@@ -731,7 +761,8 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     ]
 
     @rdfs:label "HMI Display"
-    concept HMI_Display :> interface:SystemOfAccess, UC1.1_Is_Facilitated_By, Configuration_and_Information_Interface_Permits_SOA, CO.2_Is_Facilitated_By [
+    concept HMI_Display :> interface:SystemOfAccess, UC1.1_Is_Facilitated_By,
+    		Configuration_and_Information_Interface_Permits_SOA, CO.2_Is_Facilitated_By [
     ]
 
     @rdfs:label "Configuration and Information Interface"
@@ -793,7 +824,8 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     ]
 
     @rdfs:label "Handle Device []"
-    concept Handle_Device_ :> interface:FunctionalInteraction, Handle_Device, UHO.1_Is_Used_During, Handling_Interface_Permits_Functional_Interaction, HI.1_Is_Used_During [
+    concept Handle_Device_ :> interface:FunctionalInteraction, Handle_Device, UHO.1_Is_Used_During,
+    		Handling_Interface_Permits_Functional_Interaction, HI.1_Is_Used_During [
     ]
 
     @rdfs:label "Handle Device"
@@ -901,7 +933,8 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     ]
 
     @rdfs:label "Resist Contamination []"
-    concept Resist_Contamination_ :> interface:FunctionalInteraction, Resist_Contamination, Environmental_Interface_Permits_Functional_Interaction, EN.3_Is_Used_During, ENV.1_Is_Used_During [
+    concept Resist_Contamination_ :> interface:FunctionalInteraction, Resist_Contamination,
+    		Environmental_Interface_Permits_Functional_Interaction, EN.3_Is_Used_During, ENV.1_Is_Used_During [
     ]
 
     @rdfs:label "Resist Contamination"
@@ -947,7 +980,8 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     ]
 
     @rdfs:label "Airborne Particulates"
-    concept Airborne_Particulates :> interface:SystemOfAccess, Environmental_Interface_Permits_SOA, EN.3_Is_Facilitated_By, ENV.1_Is_Facilitated_By [
+    concept Airborne_Particulates :> interface:SystemOfAccess, Environmental_Interface_Permits_SOA,
+    		EN.3_Is_Facilitated_By, ENV.1_Is_Facilitated_By [
     ]
 
     @rdfs:label "ENV.1"
@@ -980,7 +1014,8 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     ]
 
     @rdfs:label "Set Configuration []"
-    concept Set_Configuration_ :> interface:FunctionalInteraction, Set_Configuration, UCO.1_Is_Used_During, Configuration_and_Information_Interface_Permits_Functional_Interaction, CI.1_Is_Used_During [
+    concept Set_Configuration_ :> interface:FunctionalInteraction, Set_Configuration, UCO.1_Is_Used_During,
+    		Configuration_and_Information_Interface_Permits_Functional_Interaction, CI.1_Is_Used_During [
     ]
 
     @rdfs:label "Set Configuration"
@@ -988,7 +1023,8 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     ]
 
     @rdfs:label "Configuration Setting"
-    concept Configuration_Setting :> interface:InputOutput, UCO.1_Sends, Configuration_and_Information_Interface_Permits_Input_Output, CI.1_Receives [
+    concept Configuration_Setting :> interface:InputOutput, UCO.1_Sends,
+    		Configuration_and_Information_Interface_Permits_Input_Output, CI.1_Receives [
         restricts all relation interface:exemplifies to Configuration_Setting_Exemplifies
     ]
 
@@ -1026,11 +1062,13 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     ]
 
     @rdfs:label "HMI Buttons"
-    concept HMI_Buttons :> interface:SystemOfAccess, UCO.1_Is_Facilitated_By, Configuration_and_Information_Interface_Permits_SOA, CI.1_Is_Facilitated_By [
+    concept HMI_Buttons :> interface:SystemOfAccess, UCO.1_Is_Facilitated_By,
+    		Configuration_and_Information_Interface_Permits_SOA, CI.1_Is_Facilitated_By [
     ]
 
     @rdfs:label "CI.1"
-    concept CI.1 :> interface:Port, Configuration_and_Information_Interface_Groups, International_Power_Converter_Interacts_Through [
+    concept CI.1 :> interface:Port, Configuration_and_Information_Interface_Groups,
+    		International_Power_Converter_Interacts_Through [
         restricts all relation interface:sends to CI.1_Sends
         restricts all relation interface:receives to CI.1_Receives
         restricts all relation interface:isUsedDuring to CI.1_Is_Used_During
@@ -1059,7 +1097,8 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     ]
 
     @rdfs:label "Tolerate Moisture []"
-    concept Tolerate_Moisture_ :> interface:FunctionalInteraction, Tolerate_Moisture, Environmental_Interface_Permits_Functional_Interaction, EN.4_Is_Used_During, ENV.2_Is_Used_During [
+    concept Tolerate_Moisture_ :> interface:FunctionalInteraction, Tolerate_Moisture,
+    		Environmental_Interface_Permits_Functional_Interaction, EN.4_Is_Used_During, ENV.2_Is_Used_During [
     ]
 
     @rdfs:label "Tolerate Moisture"
@@ -1067,7 +1106,8 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     ]
 
     @rdfs:label "Moisture"
-    concept Moisture :> interface:InputOutput, Environmental_Interface_Permits_Input_Output, EN.4_Receives, ENV.2_Sends [
+    concept Moisture :> interface:InputOutput, Environmental_Interface_Permits_Input_Output, EN.4_Receives,
+    		ENV.2_Sends [
         restricts all relation interface:exemplifies to Moisture_Exemplifies
     ]
 
@@ -1105,7 +1145,8 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     ]
 
     @rdfs:label "Airborne Moisture Condensation"
-    concept Airborne_Moisture_Condensation :> interface:SystemOfAccess, Environmental_Interface_Permits_SOA, EN.4_Is_Facilitated_By, ENV.2_Is_Facilitated_By [
+    concept Airborne_Moisture_Condensation :> interface:SystemOfAccess, Environmental_Interface_Permits_SOA,
+    		EN.4_Is_Facilitated_By, ENV.2_Is_Facilitated_By [
     ]
 
     @rdfs:label "ENV.2"
