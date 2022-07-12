@@ -1,6 +1,0 @@
-vocabulary bundle <http://incose.org/pwg/s-star/vocabulary/power-signal-bundle#> as power-signal-bundle {
-	
-	includes <http://incose.org/pwg/s-star/vocabulary/power-interface#>
-	includes <http://incose.org/pwg/s-star/vocabulary/signal-interface#>
-	
-}
