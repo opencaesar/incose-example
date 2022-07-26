@@ -13,6 +13,8 @@ The purpose of the ST4SE Project is to demonstrate:
 * with both tasks performed by a systems engineer aided by contemporary modeling languages and
 tooling, bridging semantic technologies and MBSE.
 
+![](src/png/Figure1.png)
+
 ### Why is this of value?
 
 * Generating models that conform to a pre-existing pattern (for a product line, an architectural
@@ -48,6 +50,7 @@ patterns for system interfaces, based on an earlier Patterns Working Group Inter
 	* `csv` output files from pattern generator
 	* `ruby` conversion scripts to generate OML from pattern generator output
 	* `sparql` SPARQL source files for interface pattern audits
+	* `png` figures
 * `build` (populated by executing operations below)
 	* `frames` results of audit queries in TSV format
 	* `oml` imported vocabularies
