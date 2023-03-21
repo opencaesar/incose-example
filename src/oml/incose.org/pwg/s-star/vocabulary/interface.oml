@@ -19,38 +19,38 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/interface#> as interface {
     @dc:^description """An Interface is an association of Input/Outputs, Functional Interactions, Systems of Access (SOAs),
 						and Architectural Relationships through which a system interacts with other systems. Each interface
 						is owned by that system."""
-	concept Interface :> Identified [
+	concept Interface [
 		key hasIdentifier
-	]
+	] < Identified
 
     @dc:^description """A system is a collection of interacting components.  A component can itself be a System, called a
 						sub-system.  Information about the purpose or configuration of a system is encoded into the
 						metaclasses associated with the System (e.g., Feature)."""
-    concept System :> Identified [
+    concept System [
     	key hasIdentifier
-    ]
+    ] < Identified 
 
     @dc:^description """An Input/Output is that which is exchanged between interacting systems."""
-    concept InputOutput :> Identified [
+    concept InputOutput [
     	key hasIdentifier
-    ]
+    ] < Identified 
 
     @dc:^description """A Functional Interaction is an interaction of two or more Systems.  Interaction means that one system
 						affects the state of another system.  All interactions are relationships between systems, expressing
 						the externally visible behavioral outcome (requirement) of the interactions.  A Functional Interaction
 						is also sometimes called a Collaboration."""
-    concept FunctionalInteraction :> Identified [
+    concept FunctionalInteraction [
     	key hasIdentifier
-    ]
+    ] < Identified 
 
     @dc:^description """A System of Access (SOA) is the system which allows other systems to interact (impact each other’s state)."""
-    concept SystemOfAccess :> System
+    concept SystemOfAccess < System
 
     @dc:^description """A Physical System is System defined based upon its identity or physical compositions, but not its behavior.
     					Physical systems may be given proper names, such as names of commercial products, corporate systems, people,
     					organizations, buildings, etc.  Physical Systems are Design Components that fulfill the Functional Roles
     					(Logical Systems) allocated to them through an Allocation Decision."""
-    concept PhysicalSystem :> System
+    concept PhysicalSystem < System
 
     @dc:^description """A Modeled Attribute is a modeled property or characteristic of any of the metaclasses, which might take on
 						different attribute values to describe the various instances of that class.  An attribute may belong to
@@ -60,28 +60,28 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/interface#> as interface {
     @dc:^description """A Port is the coincidence of an Input/Output and System border.  A Port is a specific relationship between
 						a received and sent Input/Output, internal and external Systems of Access (SOAs), internal and external
 						Architectural Relationship, and a Functional Interaction."""
-    concept Port :> Identified [
+    concept Port [
     	key hasIdentifier
-    ]
+    ] < Identified 
 
     @dc:^description """A Domain is an environmental system.  The components and relationships of this system establish an overall
 						environment (domain) for a subject system.  A domain establishes the domain knowledge relevant to a
 						subject system."""
-    concept Domain :> Identified [
+    concept Domain [
     	key hasIdentifier
-    ]
+    ] < Identified 
 
     @dc:^description """An Architectural Relationship is a relationship that summarizes the architectural significance of a set
 						of interactions between systems."""
-    concept ArchitecturalRelationship :> Identified [
+    concept ArchitecturalRelationship [
     	key hasIdentifier
-    ]
+    ] < Identified 
 
     @dc:^description """An Architectural Relationship Role is a role defined within an Architectural Relationship that is played
 						by a System."""
-    concept ArchitecturalRelationshipRole :> Identified [
+    concept ArchitecturalRelationshipRole [
     	key hasIdentifier
-    ]
+    ] < Identified 
     
     @dc:^description """The Provides relationship links an Interface to a System."""
     relation entity ProvidesInterface [
@@ -177,19 +177,19 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/interface#> as interface {
 
     @dc:^description """The Sends relationship links an external Input/Output to an output Port or an internal Input/Output
 						to an input Port."""
-    relation entity Sends :> Exchanges [
+    relation entity Sends [
         from Port
         to InputOutput
         forward sends
-    ]
+    ] < Exchanges 
 
     @dc:^description """The Receives relationship links an internal Input/Output to an output Port or an external Input/Output
 						to an input Port."""
-    relation entity Receives :> Exchanges [
+    relation entity Receives [
         from Port
         to InputOutput
         forward receives
-    ]
+    ] < Exchanges 
 
     @dc:^description """The Is Used During relationship explains for which Functional Interaction a Port is used by a System."""
     relation entity IsUsedDuring [
@@ -208,19 +208,19 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/interface#> as interface {
 
     @dc:^description """The Is Facilitated By Externally relationship links a Port to the System of Access that it uses outside
 						of the System boundary."""
-    relation entity IsFacilitatedByExternally :> IsFacilitatedBy [
+    relation entity IsFacilitatedByExternally [
         from Port
         to SystemOfAccess
         forward isFacilitatedByExternally
-    ]
+    ] < IsFacilitatedBy 
 
    @dc:^description """The Is Facilitated By Internally relationship links a Port to the System of Access that it uses inside
 						of the System boundary."""
-    relation entity IsFacilitatedByInternally :> IsFacilitatedBy [
+    relation entity IsFacilitatedByInternally [
         from Port
         to SystemOfAccess
         forward isFacilitatedByInternally
-    ]
+    ] < IsFacilitatedBy 
 
     @dc:^description """The Is Linked By relationship links a Port to the Architectural Relationship that it uses inside or
 						outside of the System boundary."""
@@ -232,19 +232,19 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/interface#> as interface {
 
     @dc:^description """The Is Linked By Externally relationship links a Port to the Architectural Relationship that it uses outside
 						of the System boundary."""
-    relation entity IsLinkedByExternally :> IsLinkedBy [
+    relation entity IsLinkedByExternally [
         from Port
         to ArchitecturalRelationship
         forward isLinkedByExternally
-    ]
+    ] < IsLinkedBy 
 
     @dc:^description """The Is Linked By Internally relationship links a Port to the Architectural Relationship that it uses inside
 						of the System boundary."""
-    relation entity IsLinkedByInternally :> IsLinkedBy [
+    relation entity IsLinkedByInternally [
         from Port
         to ArchitecturalRelationship
         forward isLinkedByInternally
-    ]
+    ] < IsLinkedBy 
 
     @dc:^description """The Has Role relationship connects a relationship to the roles of described in that relationship."""
     relation entity HasRole [

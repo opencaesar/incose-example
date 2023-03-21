@@ -3,53 +3,53 @@
  */
 description='The INCOSE example project'
 group = 'io.opencaesar.ontologies'
-version = '1.0.0'
+version = '2.0.0'
 
 /* 
  * The Gradle task dependencies 
  */
 buildscript {
-	repositories {
-		mavenLocal()
-		mavenCentral()
-	}
-	dependencies {
-		classpath 'io.opencaesar.owl:owl-fuseki-gradle:+'
-		classpath 'io.opencaesar.owl:owl-query-gradle:+'
-		classpath 'io.opencaesar.owl:owl-load-gradle:+'
-		classpath 'io.opencaesar.owl:owl-reason-gradle:+'
-		classpath 'io.opencaesar.oml:oml-merge-gradle:1.+'
-		classpath 'io.opencaesar.adapters:oml2owl-gradle:1+'
-	}
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'io.opencaesar.owl:owl-fuseki-gradle:+'
+        classpath 'io.opencaesar.owl:owl-query-gradle:+'
+        classpath 'io.opencaesar.owl:owl-load-gradle:+'
+        classpath 'io.opencaesar.owl:owl-reason-gradle:+'
+        classpath 'io.opencaesar.oml:oml-merge-gradle:1.+'
+        classpath 'io.opencaesar.adapters:oml2owl-gradle:1+'
+    }
 }
 
 /*
  * Dependency versions
  */
 ext { 
-	coreVersion = '3.+'
+    coreVersion = '5.+'
 }
 
 /*
  * The configuration of OML dependencies
  */
 configurations {
-	oml
+    oml
 }
 
 /*
  * The repositories to look up OML dependencies in
  */
 repositories {
-	mavenLocal()
-	mavenCentral()
+    mavenLocal()
+    mavenCentral()
 }
 
 /*
  * The OML dependencies
  */
 dependencies {
-	oml "io.opencaesar.ontologies:core-vocabularies:$coreVersion"
+    oml "io.opencaesar.ontologies:core-vocabularies:$coreVersion"
 }
 
 /*
@@ -64,78 +64,79 @@ task downloadDependencies(type:io.opencaesar.oml.merge.OmlMergeTask) {
  * A task to convert the OML catalog to OWL catalog
  */
 task omlToOwl(type:io.opencaesar.oml2owl.Oml2OwlTask, dependsOn: downloadDependencies) {
-	// OML catalog
-	inputCatalogPath = file('catalog.xml')
-	// OWL catalog
-	outputCatalogPath = file('build/owl/catalog.xml')
+    // OML catalog
+    inputCatalogPath = file('catalog.xml')
+    // OWL catalog
+    outputCatalogPath = file('build/owl/catalog.xml')
 }
 
 /*
  * A task to run the Openllet reasoner on the OWL catalog
  */
 task owlReason(type:io.opencaesar.owl.reason.OwlReasonTask, dependsOn: omlToOwl) {
-	// OWL catalog
-	catalogPath = file('build/owl/catalog.xml')
-	// Input ontology IRI to reason on
-	inputOntologyIri = 'http://incose.org/pwg/s-star/description/power-converter-bundle'
-	// Entailment statements to generate and the ontologies to persist them in
-	specs = [
-		'http://incose.org/pwg/s-star/bundle/classes = ALL_SUBCLASS',
-		'http://incose.org/pwg/s-star/bundle/properties = INVERSE_PROPERTY | ALL_SUBPROPERTY',
-		'http://incose.org/pwg/s-star/bundle/individuals = ALL_INSTANCE | DATA_PROPERTY_VALUE | OBJECT_PROPERTY_VALUE | SAME_AS'
-	]
-	// Junit error report
-	reportPath = file('build/reports/reasoning.xml')
+    // OWL catalog
+    catalogPath = file('build/owl/catalog.xml')
+    // Input ontology IRI to reason on
+    inputOntologyIri = 'http://incose.org/pwg/s-star/description/power-converter-bundle'
+    // Entailment statements to generate and the ontologies to persist them in
+    specs = [
+        'http://incose.org/pwg/s-star/bundle/classes = ALL_SUBCLASS',
+        'http://incose.org/pwg/s-star/bundle/properties = INVERSE_PROPERTY | ALL_SUBPROPERTY',
+        'http://incose.org/pwg/s-star/bundle/individuals = ALL_INSTANCE | DATA_PROPERTY_VALUE | OBJECT_PROPERTY_VALUE | SAME_AS'
+    ]
+    // Junit error report
+    reportPath = file('build/reports/reasoning.xml')
 }
 
 /*
  * Start and stop the Fuseki server
  */
 task startFuseki(type: io.opencaesar.owl.fuseki.StartFusekiTask) {
-	configurationPath = file('.fuseki.ttl')
-	outputFolderPath = file('.fuseki')
+    configurationPath = file('.fuseki.ttl')
+    outputFolderPath = file('.fuseki')
 }
 
 task stopFuseki(type: io.opencaesar.owl.fuseki.StopFusekiTask) {
-	outputFolderPath = file('.fuseki')
+    outputFolderPath = file('.fuseki')
 }
 
 /*
  * A task to load an OWL catalog to a Fuseki dataset endpoint
  */
 task owlLoad(type:io.opencaesar.owl.load.OwlLoadTask, dependsOn: owlReason) {
-	catalogPath = file('build/owl/catalog.xml')
-	endpointURL = 'http://localhost:3030/incose'
+    inputs.files(startFuseki.outputFolderPath) // rerun when fuseki restarts
+    catalogPath = file('build/owl/catalog.xml')
+    endpointURL = 'http://localhost:3030/incose'
     fileExtensions = ['owl', 'ttl']
-	iris = [
-		'http://incose.org/pwg/s-star/bundle/classes',
-	    'http://incose.org/pwg/s-star/bundle/properties',
-	    'http://incose.org/pwg/s-star/bundle/individuals'
- 	]
+    iris = [
+        'http://incose.org/pwg/s-star/bundle/classes',
+        'http://incose.org/pwg/s-star/bundle/properties',
+        'http://incose.org/pwg/s-star/bundle/individuals'
+     ]
 }
 
 /*
  * A task to run a set of SPARQL queries on a Fuseki dataset endpoint
  */
 task owlQuery(type:io.opencaesar.owl.query.OwlQueryTask, dependsOn: owlLoad) {
-	endpointURL = 'http://localhost:3030/incose'
-	queryPath = file('src/sparql')
-	resultPath = file('build/frames')
-	format = 'tsv'
+    endpointURL = 'http://localhost:3030/incose'
+    queryPath = file('src/sparql')
+    resultPath = file('build/frames')
+    format = 'tsv'
 }
 
 /*
  * A task to build the project, which executes several tasks together
  */
 task build() {
-	dependsOn owlReason
+    dependsOn owlReason
 }
 
 /*
  * A task to delete the build artifacts
  */
 task clean(type: Delete) {
-	delete 'build'
+    delete 'build'
 }
 
 /*
@@ -144,18 +145,18 @@ task clean(type: Delete) {
 apply plugin: 'maven-publish'
 
 task omlZip(type: Zip) {
-	from file('src/oml')
-	include "**/*.oml"
-	destinationDirectory = file('build/libs')
-	archiveBaseName = project.name
-	archiveVersion = project.version
+    from file('src/oml')
+    include "**/*.oml"
+    destinationDirectory = file('build/libs')
+    archiveBaseName = project.name
+    archiveVersion = project.version
 }
 
 publishing {
     publications {
         maven(MavenPublication) {
             artifact omlZip
-			pom.withXml {
+            pom.withXml {
                 def dependencies = asNode().appendNode('dependencies')
                 configurations.oml.allDependencies.stream().each {
                     def dependency = dependencies.appendNode('dependency')
