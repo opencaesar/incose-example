@@ -14,10 +14,10 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'io.opencaesar.owl:owl-fuseki-gradle:+'
-        classpath 'io.opencaesar.owl:owl-query-gradle:+'
-        classpath 'io.opencaesar.owl:owl-load-gradle:+'
-        classpath 'io.opencaesar.owl:owl-reason-gradle:+'
+        classpath 'io.opencaesar.owl:owl-fuseki-gradle:2.+'
+        classpath 'io.opencaesar.owl:owl-query-gradle:2.+'
+        classpath 'io.opencaesar.owl:owl-load-gradle:2.+'
+        classpath 'io.opencaesar.owl:owl-reason-gradle:2.+'
         classpath 'io.opencaesar.oml:oml-merge-gradle:2.+'
         classpath 'io.opencaesar.adapters:oml2owl-gradle:2.+'
     }
