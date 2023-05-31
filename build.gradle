@@ -24,13 +24,6 @@ buildscript {
 }
 
 /*
- * Dependency versions
- */
-ext { 
-    coreVersion = '5.+'
-}
-
-/*
  * The configuration of OML dependencies
  */
 configurations {
@@ -49,7 +42,7 @@ repositories {
  * The OML dependencies
  */
 dependencies {
-    oml "io.opencaesar.ontologies:core-vocabularies:$coreVersion"
+    oml "io.opencaesar.ontologies:core-vocabularies:4.+"
 }
 
 /*
