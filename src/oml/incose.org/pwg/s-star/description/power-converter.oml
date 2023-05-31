@@ -5,11 +5,11 @@ description <http://incose.org/pwg/s-star/description/power-converter#> as ipc {
     uses <http://incose.org/pwg/s-star/vocabulary/interface#> as interface
     uses <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-converter
 
-    ci convert_electrical_power_power_output_1_ : power-converter:Convert_Electrical_Power_Power_Output_1_ [
+    instance convert_electrical_power_power_output_1_ : power-converter:Convert_Electrical_Power_Power_Output_1_ [
         interface:hasIdentifier "Convert Electrical Power [Power Output 1]"
     ]
 
-    ci international_power_converter : power-converter:International_Power_Converter [
+    instance international_power_converter : power-converter:International_Power_Converter [
         interface:hasIdentifier "International Power Converter"
         interface:providesInterface environmental_interface
         interface:providesInterface power_input_interface
@@ -31,7 +31,7 @@ description <http://incose.org/pwg/s-star/description/power-converter#> as ipc {
         interface:interactsThrough en.4
     ]
 
-    ci environmental_interface : power-converter:Environmental_Interface [
+    instance environmental_interface : power-converter:Environmental_Interface [
         interface:hasIdentifier "Environmental Interface"
         interface:permitsFunctionalInteraction convert_electrical_power_power_output_1_
         interface:permitsFunctionalInteraction convert_electrical_power_power_output_2_
@@ -52,11 +52,11 @@ description <http://incose.org/pwg/s-star/description/power-converter#> as ipc {
         interface:permitsSOA airborne_moisture_condensation
     ]
 
-    ci emi : power-converter:EMI [
+    instance emi : power-converter:EMI [
         interface:hasIdentifier "EMI"
     ]
 
-    ci en.2 : power-converter:EN.2 [
+    instance en.2 : power-converter:EN.2 [
         interface:hasIdentifier "EN.2"
         interface:isUsedDuring convert_electrical_power_power_output_1_
         interface:isUsedDuring convert_electrical_power_power_output_2_
@@ -65,15 +65,15 @@ description <http://incose.org/pwg/s-star/description/power-converter#> as ipc {
         interface:isFacilitatedBy emi_radiation
     ]
 
-    ci emi_radiation : power-converter:EMI_Radiation [
+    instance emi_radiation : power-converter:EMI_Radiation [
         interface:hasIdentifier "EMI Radiation"
     ]
 
-    ci heat : power-converter:Heat [
+    instance heat : power-converter:Heat [
         interface:hasIdentifier "Heat"
     ]
 
-    ci en.1 : power-converter:EN.1 [
+    instance en.1 : power-converter:EN.1 [
         interface:hasIdentifier "EN.1"
         interface:isUsedDuring convert_electrical_power_power_output_1_
         interface:isUsedDuring convert_electrical_power_power_output_2_
@@ -82,11 +82,11 @@ description <http://incose.org/pwg/s-star/description/power-converter#> as ipc {
         interface:isFacilitatedBy airspace_thermal_conduction
     ]
 
-    ci airspace_thermal_conduction : power-converter:Airspace_Thermal_Conduction [
+    instance airspace_thermal_conduction : power-converter:Airspace_Thermal_Conduction [
         interface:hasIdentifier "Airspace Thermal Conduction"
     ]
 
-    ci power_input_interface : power-converter:Power_Input_Interface [
+    instance power_input_interface : power-converter:Power_Input_Interface [
         interface:hasIdentifier "Power Input Interface"
         interface:permitsFunctionalInteraction convert_electrical_power_power_output_1_
         interface:permitsFunctionalInteraction convert_electrical_power_power_output_2_
@@ -97,12 +97,12 @@ description <http://incose.org/pwg/s-star/description/power-converter#> as ipc {
         interface:permitsArchitecturalRelationship converts_electrical_power
     ]
 
-    ci input_power : power-converter:Input_Power [
+    instance input_power : power-converter:Input_Power [
         interface:hasIdentifier "Input Power"
         interface:exemplifies converts_electrical_power
     ]
 
-    ci pi.1 : power-converter:PI.1 [
+    instance pi.1 : power-converter:PI.1 [
         interface:hasIdentifier "PI.1"
         interface:isUsedDuring convert_electrical_power_power_output_1_
         interface:isUsedDuring convert_electrical_power_power_output_2_
@@ -112,20 +112,20 @@ description <http://incose.org/pwg/s-star/description/power-converter#> as ipc {
         interface:isLinkedBy converts_electrical_power
     ]
 
-    ci local_power_connector : power-converter:Local_Power_Connector [
+    instance local_power_connector : power-converter:Local_Power_Connector [
         interface:hasIdentifier "Local Power Connector"
     ]
 
-    ci converts_electrical_power : power-converter:Converts_Electrical_Power [
+    instance converts_electrical_power : power-converter:Converts_Electrical_Power [
         interface:hasIdentifier "Converts Electrical Power"
         interface:hasRole converter
     ]
 
-    ci converter : power-converter:Converter [
+    instance converter : power-converter:Converter [
         interface:hasIdentifier "Converter"
     ]
 
-    ci power_output_interface_power_output_1_ : power-converter:Power_Output_Interface_Power_Output_1_ [
+    instance power_output_interface_power_output_1_ : power-converter:Power_Output_Interface_Power_Output_1_ [
         interface:hasIdentifier "Power Output Interface [Power Output 1]"
         interface:permitsFunctionalInteraction convert_electrical_power_power_output_1_
         interface:permitsInputOutput output_power_power_output_1_
@@ -134,12 +134,12 @@ description <http://incose.org/pwg/s-star/description/power-converter#> as ipc {
         interface:permitsArchitecturalRelationship converts_electrical_power
     ]
 
-    ci output_power_power_output_1_ : power-converter:Output_Power_Power_Output_1_ [
+    instance output_power_power_output_1_ : power-converter:Output_Power_Power_Output_1_ [
         interface:hasIdentifier "Output Power [Power Output 1]"
         interface:exemplifies converts_electrical_power
     ]
 
-    ci po.1_power_output_1_ : power-converter:PO.1_Power_Output_1_ [
+    instance po.1_power_output_1_ : power-converter:PO.1_Power_Output_1_ [
         interface:hasIdentifier "PO.1 [Power Output 1]"
         interface:isUsedDuring convert_electrical_power_power_output_1_
         interface:sends output_power_power_output_1_
@@ -147,15 +147,15 @@ description <http://incose.org/pwg/s-star/description/power-converter#> as ipc {
         interface:isLinkedBy converts_electrical_power
     ]
 
-    ci device_power_connector_power_output_1_ : power-converter:Device_Power_Connector_Power_Output_1_ [
+    instance device_power_connector_power_output_1_ : power-converter:Device_Power_Connector_Power_Output_1_ [
         interface:hasIdentifier "Device Power Connector [Power Output 1]"
     ]
 
-    ci convert_electrical_power_power_output_2_ : power-converter:Convert_Electrical_Power_Power_Output_2_ [
+    instance convert_electrical_power_power_output_2_ : power-converter:Convert_Electrical_Power_Power_Output_2_ [
         interface:hasIdentifier "Convert Electrical Power [Power Output 2]"
     ]
 
-    ci power_output_interface_power_output_2_ : power-converter:Power_Output_Interface_Power_Output_2_ [
+    instance power_output_interface_power_output_2_ : power-converter:Power_Output_Interface_Power_Output_2_ [
         interface:hasIdentifier "Power Output Interface [Power Output 2]"
         interface:permitsFunctionalInteraction convert_electrical_power_power_output_2_
         interface:permitsInputOutput output_power_power_output_2_
@@ -164,12 +164,12 @@ description <http://incose.org/pwg/s-star/description/power-converter#> as ipc {
         interface:permitsArchitecturalRelationship converts_electrical_power
     ]
 
-    ci output_power_power_output_2_ : power-converter:Output_Power_Power_Output_2_ [
+    instance output_power_power_output_2_ : power-converter:Output_Power_Power_Output_2_ [
         interface:hasIdentifier "Output Power [Power Output 2]"
         interface:exemplifies converts_electrical_power
     ]
 
-    ci po.1_power_output_2_ : power-converter:PO.1_Power_Output_2_ [
+    instance po.1_power_output_2_ : power-converter:PO.1_Power_Output_2_ [
         interface:hasIdentifier "PO.1 [Power Output 2]"
         interface:isUsedDuring convert_electrical_power_power_output_2_
         interface:sends output_power_power_output_2_
@@ -177,15 +177,15 @@ description <http://incose.org/pwg/s-star/description/power-converter#> as ipc {
         interface:isLinkedBy converts_electrical_power
     ]
 
-    ci device_power_connector_power_output_2_ : power-converter:Device_Power_Connector_Power_Output_2_ [
+    instance device_power_connector_power_output_2_ : power-converter:Device_Power_Connector_Power_Output_2_ [
         interface:hasIdentifier "Device Power Connector [Power Output 2]"
     ]
 
-    ci convert_electrical_power_power_output_3_ : power-converter:Convert_Electrical_Power_Power_Output_3_ [
+    instance convert_electrical_power_power_output_3_ : power-converter:Convert_Electrical_Power_Power_Output_3_ [
         interface:hasIdentifier "Convert Electrical Power [Power Output 3]"
     ]
 
-    ci power_output_interface_power_output_3_ : power-converter:Power_Output_Interface_Power_Output_3_ [
+    instance power_output_interface_power_output_3_ : power-converter:Power_Output_Interface_Power_Output_3_ [
         interface:hasIdentifier "Power Output Interface [Power Output 3]"
         interface:permitsFunctionalInteraction convert_electrical_power_power_output_3_
         interface:permitsInputOutput output_power_power_output_3_
@@ -194,12 +194,12 @@ description <http://incose.org/pwg/s-star/description/power-converter#> as ipc {
         interface:permitsArchitecturalRelationship converts_electrical_power
     ]
 
-    ci output_power_power_output_3_ : power-converter:Output_Power_Power_Output_3_ [
+    instance output_power_power_output_3_ : power-converter:Output_Power_Power_Output_3_ [
         interface:hasIdentifier "Output Power [Power Output 3]"
         interface:exemplifies converts_electrical_power
     ]
 
-    ci po.1_power_output_3_ : power-converter:PO.1_Power_Output_3_ [
+    instance po.1_power_output_3_ : power-converter:PO.1_Power_Output_3_ [
         interface:hasIdentifier "PO.1 [Power Output 3]"
         interface:isUsedDuring convert_electrical_power_power_output_3_
         interface:sends output_power_power_output_3_
@@ -207,15 +207,15 @@ description <http://incose.org/pwg/s-star/description/power-converter#> as ipc {
         interface:isLinkedBy converts_electrical_power
     ]
 
-    ci device_power_connector_power_output_3_ : power-converter:Device_Power_Connector_Power_Output_3_ [
+    instance device_power_connector_power_output_3_ : power-converter:Device_Power_Connector_Power_Output_3_ [
         interface:hasIdentifier "Device Power Connector [Power Output 3]"
     ]
 
-    ci display_status_and_information_ : power-converter:Display_Status_and_Information_ [
+    instance display_status_and_information_ : power-converter:Display_Status_and_Information_ [
         interface:hasIdentifier "Display Status and Information []"
     ]
 
-    ci configuration_and_information_interface : power-converter:Configuration_and_Information_Interface [
+    instance configuration_and_information_interface : power-converter:Configuration_and_Information_Interface [
         interface:hasIdentifier "Configuration and Information Interface"
         interface:permitsFunctionalInteraction display_status_and_information_
         interface:permitsFunctionalInteraction set_configuration_
@@ -227,26 +227,26 @@ description <http://incose.org/pwg/s-star/description/power-converter#> as ipc {
         interface:permitsSOA hmi_buttons
     ]
 
-    ci device_status_and_information : power-converter:Device_Status_and_Information [
+    instance device_status_and_information : power-converter:Device_Status_and_Information [
         interface:hasIdentifier "Device Status and Information"
     ]
 
-    ci co.2 : power-converter:CO.2 [
+    instance co.2 : power-converter:CO.2 [
         interface:hasIdentifier "CO.2"
         interface:isUsedDuring display_status_and_information_
         interface:sends device_status_and_information
         interface:isFacilitatedBy hmi_display
     ]
 
-    ci hmi_display : power-converter:HMI_Display [
+    instance hmi_display : power-converter:HMI_Display [
         interface:hasIdentifier "HMI Display"
     ]
 
-    ci handle_device_ : power-converter:Handle_Device_ [
+    instance handle_device_ : power-converter:Handle_Device_ [
         interface:hasIdentifier "Handle Device []"
     ]
 
-    ci handling_interface : power-converter:Handling_Interface [
+    instance handling_interface : power-converter:Handling_Interface [
         interface:hasIdentifier "Handling Interface"
         interface:permitsFunctionalInteraction handle_device_
         interface:permitsInputOutput handling_force
@@ -254,75 +254,75 @@ description <http://incose.org/pwg/s-star/description/power-converter#> as ipc {
         interface:permitsSOA handle
     ]
 
-    ci handling_force : power-converter:Handling_Force [
+    instance handling_force : power-converter:Handling_Force [
         interface:hasIdentifier "Handling Force"
     ]
 
-    ci hi.1 : power-converter:HI.1 [
+    instance hi.1 : power-converter:HI.1 [
         interface:hasIdentifier "HI.1"
         interface:isUsedDuring handle_device_
         interface:exchanges handling_force
         interface:isFacilitatedBy handle
     ]
 
-    ci handle : power-converter:Handle [
+    instance handle : power-converter:Handle [
         interface:hasIdentifier "Handle"
     ]
 
-    ci resist_contamination_ : power-converter:Resist_Contamination_ [
+    instance resist_contamination_ : power-converter:Resist_Contamination_ [
         interface:hasIdentifier "Resist Contamination []"
     ]
 
-    ci contaminants : power-converter:Contaminants [
+    instance contaminants : power-converter:Contaminants [
         interface:hasIdentifier "Contaminants"
     ]
 
-    ci en.3 : power-converter:EN.3 [
+    instance en.3 : power-converter:EN.3 [
         interface:hasIdentifier "EN.3"
         interface:isUsedDuring resist_contamination_
         interface:receives contaminants
         interface:isFacilitatedBy airborne_particulates
     ]
 
-    ci airborne_particulates : power-converter:Airborne_Particulates [
+    instance airborne_particulates : power-converter:Airborne_Particulates [
         interface:hasIdentifier "Airborne Particulates"
     ]
 
-    ci set_configuration_ : power-converter:Set_Configuration_ [
+    instance set_configuration_ : power-converter:Set_Configuration_ [
         interface:hasIdentifier "Set Configuration []"
     ]
 
-    ci configuration_setting : power-converter:Configuration_Setting [
+    instance configuration_setting : power-converter:Configuration_Setting [
         interface:hasIdentifier "Configuration Setting"
     ]
 
-    ci ci.1 : power-converter:CI.1 [
+    instance ci.1 : power-converter:CI.1 [
         interface:hasIdentifier "CI.1"
         interface:isUsedDuring set_configuration_
         interface:receives configuration_setting
         interface:isFacilitatedBy hmi_buttons
     ]
 
-    ci hmi_buttons : power-converter:HMI_Buttons [
+    instance hmi_buttons : power-converter:HMI_Buttons [
         interface:hasIdentifier "HMI Buttons"
     ]
 
-    ci tolerate_moisture_ : power-converter:Tolerate_Moisture_ [
+    instance tolerate_moisture_ : power-converter:Tolerate_Moisture_ [
         interface:hasIdentifier "Tolerate Moisture []"
     ]
 
-    ci moisture : power-converter:Moisture [
+    instance moisture : power-converter:Moisture [
         interface:hasIdentifier "Moisture"
     ]
 
-    ci en.4 : power-converter:EN.4 [
+    instance en.4 : power-converter:EN.4 [
         interface:hasIdentifier "EN.4"
         interface:isUsedDuring tolerate_moisture_
         interface:receives moisture
         interface:isFacilitatedBy airborne_moisture_condensation
     ]
 
-    ci airborne_moisture_condensation : power-converter:Airborne_Moisture_Condensation [
+    instance airborne_moisture_condensation : power-converter:Airborne_Moisture_Condensation [
         interface:hasIdentifier "Airborne Moisture Condensation"
     ]
 
