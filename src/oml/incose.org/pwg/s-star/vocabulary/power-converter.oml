@@ -18,8 +18,8 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "Electrically Powered Device [Power Output 1]"
     concept Electrically_Powered_Device_Power_Output_1_ < interface:System, Electrically_Powered_Device [
-        restricts all relation interface:providesInterface to Electrically_Powered_Device_Power_Output_1_Provides_Interface
-        restricts all relation interface:interactsThrough to Electrically_Powered_Device_Power_Output_1_Interacts_Through
+        restricts all interface:providesInterface to Electrically_Powered_Device_Power_Output_1_Provides_Interface
+        restricts all interface:interactsThrough to Electrically_Powered_Device_Power_Output_1_Interacts_Through
     ]
 
     @rdfs:label "Electrically Powered Device"
@@ -37,7 +37,7 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     @rdfs:label "Output Power [Power Output 1]"
     concept Output_Power_Power_Output_1_ < interface:InputOutput, Output_Power, DPI.1_Receives,
     		Power_Output_Interface_Power_Output_1_Permits_Input_Output, PO.1_Power_Output_1_Sends [
-        restricts all relation interface:exemplifies to Output_Power_Power_Output_1_Exemplifies
+        restricts all interface:exemplifies to Output_Power_Power_Output_1_Exemplifies
     ]
 
     @rdfs:label "Output Power"
@@ -52,11 +52,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     concept DPI.1 < interface:Port, Electrically_Powered_Device_Power_Output_1_Interacts_Through,
     		Electrically_Powered_Device_Power_Output_2_Interacts_Through,
     		Electrically_Powered_Device_Power_Output_3_Interacts_Through [
-        restricts all relation interface:sends to DPI.1_Sends
-        restricts all relation interface:receives to DPI.1_Receives
-        restricts all relation interface:isUsedDuring to DPI.1_Is_Used_During
-        restricts all relation interface:isFacilitatedBy to DPI.1_Is_Facilitated_By
-        restricts all relation interface:isLinkedBy to DPI.1_Is_Linked_By
+        restricts all interface:sends to DPI.1_Sends
+        restricts all interface:receives to DPI.1_Receives
+        restricts all interface:isUsedDuring to DPI.1_Is_Used_During
+        restricts all interface:isFacilitatedBy to DPI.1_Is_Facilitated_By
+        restricts all interface:isLinkedBy to DPI.1_Is_Linked_By
     ]
 
     @rdfs:label "DPI.1 Sends"
@@ -95,7 +95,7 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     	Output_Power_Power_Output_2_Exemplifies, Power_Output_Interface_Power_Output_2_Permits_Architectural_Relationship,
     	PO.1_Power_Output_2_Is_Linked_By, Output_Power_Power_Output_3_Exemplifies,
     	Power_Output_Interface_Power_Output_3_Permits_Architectural_Relationship, PO.1_Power_Output_3_Is_Linked_By [
-        restricts all relation interface:hasRole to Converts_Electrical_Power_Has_Role
+        restricts all interface:hasRole to Converts_Electrical_Power_Has_Role
     ]
 
     @rdfs:label "Converts Electrical Power Has Role"
@@ -112,8 +112,8 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "International Power Converter"
     concept International_Power_Converter < interface:System [
-        restricts all relation interface:providesInterface to International_Power_Converter_Provides_Interface
-        restricts all relation interface:interactsThrough to International_Power_Converter_Interacts_Through
+        restricts all interface:providesInterface to International_Power_Converter_Provides_Interface
+        restricts all interface:interactsThrough to International_Power_Converter_Interacts_Through
     ]
 
     @rdfs:label "International Power Converter Provides Interface"
@@ -126,11 +126,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "Environmental Interface"
     concept Environmental_Interface < interface:Interface, International_Power_Converter_Provides_Interface [
-        restricts all relation interface:permitsFunctionalInteraction to Environmental_Interface_Permits_Functional_Interaction
-        restricts all relation interface:permitsInputOutput to Environmental_Interface_Permits_Input_Output
-        restricts all relation interface:permitsArchitecturalRelationship to Environmental_Interface_Permits_Architectural_Relationship
-        restricts all relation interface:groups to Environmental_Interface_Groups
-        restricts all relation interface:permitsSOA to Environmental_Interface_Permits_SOA
+        restricts all interface:permitsFunctionalInteraction to Environmental_Interface_Permits_Functional_Interaction
+        restricts all interface:permitsInputOutput to Environmental_Interface_Permits_Input_Output
+        restricts all interface:permitsArchitecturalRelationship to Environmental_Interface_Permits_Architectural_Relationship
+        restricts all interface:groups to Environmental_Interface_Groups
+        restricts all interface:permitsSOA to Environmental_Interface_Permits_SOA
     ]
 
     @rdfs:label "Environmental Interface Permits Functional Interaction"
@@ -155,7 +155,7 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "EMI"
     concept EMI < interface:InputOutput, Environmental_Interface_Permits_Input_Output, EN.2_Sends, ENV.3_Receives [
-        restricts all relation interface:exemplifies to EMI_Exemplifies
+        restricts all interface:exemplifies to EMI_Exemplifies
     ]
 
     @rdfs:label "EMI Exemplifies"
@@ -164,11 +164,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "EN.2"
     concept EN.2 < interface:Port, Environmental_Interface_Groups, International_Power_Converter_Interacts_Through [
-        restricts all relation interface:sends to EN.2_Sends
-        restricts all relation interface:receives to EN.2_Receives
-        restricts all relation interface:isUsedDuring to EN.2_Is_Used_During
-        restricts all relation interface:isFacilitatedBy to EN.2_Is_Facilitated_By
-        restricts all relation interface:isLinkedBy to EN.2_Is_Linked_By
+        restricts all interface:sends to EN.2_Sends
+        restricts all interface:receives to EN.2_Receives
+        restricts all interface:isUsedDuring to EN.2_Is_Used_During
+        restricts all interface:isFacilitatedBy to EN.2_Is_Facilitated_By
+        restricts all interface:isLinkedBy to EN.2_Is_Linked_By
     ]
 
     @rdfs:label "EN.2 Sends"
@@ -198,7 +198,7 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "Heat"
     concept Heat < interface:InputOutput, Environmental_Interface_Permits_Input_Output, EN.1_Receives, ENV.4_Receives [
-        restricts all relation interface:exemplifies to Heat_Exemplifies
+        restricts all interface:exemplifies to Heat_Exemplifies
     ]
 
     @rdfs:label "Heat Exemplifies"
@@ -207,11 +207,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "EN.1"
     concept EN.1 < interface:Port, Environmental_Interface_Groups, International_Power_Converter_Interacts_Through [
-        restricts all relation interface:sends to EN.1_Sends
-        restricts all relation interface:receives to EN.1_Receives
-        restricts all relation interface:isUsedDuring to EN.1_Is_Used_During
-        restricts all relation interface:isFacilitatedBy to EN.1_Is_Facilitated_By
-        restricts all relation interface:isLinkedBy to EN.1_Is_Linked_By
+        restricts all interface:sends to EN.1_Sends
+        restricts all interface:receives to EN.1_Receives
+        restricts all interface:isUsedDuring to EN.1_Is_Used_During
+        restricts all interface:isFacilitatedBy to EN.1_Is_Facilitated_By
+        restricts all interface:isLinkedBy to EN.1_Is_Linked_By
     ]
 
     @rdfs:label "EN.1 Sends"
@@ -241,11 +241,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "Power Input Interface"
     concept Power_Input_Interface < interface:Interface, International_Power_Converter_Provides_Interface [
-        restricts all relation interface:permitsFunctionalInteraction to Power_Input_Interface_Permits_Functional_Interaction
-        restricts all relation interface:permitsInputOutput to Power_Input_Interface_Permits_Input_Output
-        restricts all relation interface:permitsArchitecturalRelationship to Power_Input_Interface_Permits_Architectural_Relationship
-        restricts all relation interface:groups to Power_Input_Interface_Groups
-        restricts all relation interface:permitsSOA to Power_Input_Interface_Permits_SOA
+        restricts all interface:permitsFunctionalInteraction to Power_Input_Interface_Permits_Functional_Interaction
+        restricts all interface:permitsInputOutput to Power_Input_Interface_Permits_Input_Output
+        restricts all interface:permitsArchitecturalRelationship to Power_Input_Interface_Permits_Architectural_Relationship
+        restricts all interface:groups to Power_Input_Interface_Groups
+        restricts all interface:permitsSOA to Power_Input_Interface_Permits_SOA
     ]
 
     @rdfs:label "Power Input Interface Permits Functional Interaction"
@@ -270,7 +270,7 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "Input Power"
     concept Input_Power < interface:InputOutput, Power_Input_Interface_Permits_Input_Output, PI.1_Receives, LPO.1_Sends [
-        restricts all relation interface:exemplifies to Input_Power_Exemplifies
+        restricts all interface:exemplifies to Input_Power_Exemplifies
     ]
 
     @rdfs:label "Input Power Exemplifies"
@@ -279,11 +279,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "PI.1"
     concept PI.1 < interface:Port, Power_Input_Interface_Groups, International_Power_Converter_Interacts_Through [
-        restricts all relation interface:sends to PI.1_Sends
-        restricts all relation interface:receives to PI.1_Receives
-        restricts all relation interface:isUsedDuring to PI.1_Is_Used_During
-        restricts all relation interface:isFacilitatedBy to PI.1_Is_Facilitated_By
-        restricts all relation interface:isLinkedBy to PI.1_Is_Linked_By
+        restricts all interface:sends to PI.1_Sends
+        restricts all interface:receives to PI.1_Receives
+        restricts all interface:isUsedDuring to PI.1_Is_Used_During
+        restricts all interface:isFacilitatedBy to PI.1_Is_Facilitated_By
+        restricts all interface:isLinkedBy to PI.1_Is_Linked_By
     ]
 
     @rdfs:label "PI.1 Sends"
@@ -316,11 +316,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "Power Output Interface [Power Output 1]"
     concept Power_Output_Interface_Power_Output_1_ < interface:Interface, Power_Output_Interface, International_Power_Converter_Provides_Interface [
-        restricts all relation interface:permitsFunctionalInteraction to Power_Output_Interface_Power_Output_1_Permits_Functional_Interaction
-        restricts all relation interface:permitsInputOutput to Power_Output_Interface_Power_Output_1_Permits_Input_Output
-        restricts all relation interface:permitsArchitecturalRelationship to Power_Output_Interface_Power_Output_1_Permits_Architectural_Relationship
-        restricts all relation interface:groups to Power_Output_Interface_Power_Output_1_Groups
-        restricts all relation interface:permitsSOA to Power_Output_Interface_Power_Output_1_Permits_SOA
+        restricts all interface:permitsFunctionalInteraction to Power_Output_Interface_Power_Output_1_Permits_Functional_Interaction
+        restricts all interface:permitsInputOutput to Power_Output_Interface_Power_Output_1_Permits_Input_Output
+        restricts all interface:permitsArchitecturalRelationship to Power_Output_Interface_Power_Output_1_Permits_Architectural_Relationship
+        restricts all interface:groups to Power_Output_Interface_Power_Output_1_Groups
+        restricts all interface:permitsSOA to Power_Output_Interface_Power_Output_1_Permits_SOA
     ]
 
     @rdfs:label "Power Output Interface"
@@ -350,11 +350,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     @rdfs:label "PO.1 [Power Output 1]"
     concept PO.1_Power_Output_1_ < interface:Port, PO.1, Power_Output_Interface_Power_Output_1_Groups,
     	International_Power_Converter_Interacts_Through [
-        restricts all relation interface:sends to PO.1_Power_Output_1_Sends
-        restricts all relation interface:receives to PO.1_Power_Output_1_Receives
-        restricts all relation interface:isUsedDuring to PO.1_Power_Output_1_Is_Used_During
-        restricts all relation interface:isFacilitatedBy to PO.1_Power_Output_1_Is_Facilitated_By
-        restricts all relation interface:isLinkedBy to PO.1_Power_Output_1_Is_Linked_By
+        restricts all interface:sends to PO.1_Power_Output_1_Sends
+        restricts all interface:receives to PO.1_Power_Output_1_Receives
+        restricts all interface:isUsedDuring to PO.1_Power_Output_1_Is_Used_During
+        restricts all interface:isFacilitatedBy to PO.1_Power_Output_1_Is_Facilitated_By
+        restricts all interface:isLinkedBy to PO.1_Power_Output_1_Is_Linked_By
     ]
 
     @rdfs:label "PO.1"
@@ -383,8 +383,8 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "Local Environment"
     concept Local_Environment < interface:System [
-        restricts all relation interface:providesInterface to Local_Environment_Provides_Interface
-        restricts all relation interface:interactsThrough to Local_Environment_Interacts_Through
+        restricts all interface:providesInterface to Local_Environment_Provides_Interface
+        restricts all interface:interactsThrough to Local_Environment_Interacts_Through
     ]
 
     @rdfs:label "Local Environment Provides Interface"
@@ -397,11 +397,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "ENV.3"
     concept ENV.3 < interface:Port, Local_Environment_Interacts_Through [
-        restricts all relation interface:sends to ENV.3_Sends
-        restricts all relation interface:receives to ENV.3_Receives
-        restricts all relation interface:isUsedDuring to ENV.3_Is_Used_During
-        restricts all relation interface:isFacilitatedBy to ENV.3_Is_Facilitated_By
-        restricts all relation interface:isLinkedBy to ENV.3_Is_Linked_By
+        restricts all interface:sends to ENV.3_Sends
+        restricts all interface:receives to ENV.3_Receives
+        restricts all interface:isUsedDuring to ENV.3_Is_Used_During
+        restricts all interface:isFacilitatedBy to ENV.3_Is_Facilitated_By
+        restricts all interface:isLinkedBy to ENV.3_Is_Linked_By
     ]
 
     @rdfs:label "ENV.3 Sends"
@@ -426,11 +426,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "ENV.4"
     concept ENV.4 < interface:Port, Local_Environment_Interacts_Through [
-        restricts all relation interface:sends to ENV.4_Sends
-        restricts all relation interface:receives to ENV.4_Receives
-        restricts all relation interface:isUsedDuring to ENV.4_Is_Used_During
-        restricts all relation interface:isFacilitatedBy to ENV.4_Is_Facilitated_By
-        restricts all relation interface:isLinkedBy to ENV.4_Is_Linked_By
+        restricts all interface:sends to ENV.4_Sends
+        restricts all interface:receives to ENV.4_Receives
+        restricts all interface:isUsedDuring to ENV.4_Is_Used_During
+        restricts all interface:isFacilitatedBy to ENV.4_Is_Facilitated_By
+        restricts all interface:isLinkedBy to ENV.4_Is_Linked_By
     ]
 
     @rdfs:label "ENV.4 Sends"
@@ -455,8 +455,8 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "Local Power Distribution System"
     concept Local_Power_Distribution_System < interface:System [
-        restricts all relation interface:providesInterface to Local_Power_Distribution_System_Provides_Interface
-        restricts all relation interface:interactsThrough to Local_Power_Distribution_System_Interacts_Through
+        restricts all interface:providesInterface to Local_Power_Distribution_System_Provides_Interface
+        restricts all interface:interactsThrough to Local_Power_Distribution_System_Interacts_Through
     ]
 
     @rdfs:label "Local Power Distribution System Provides Interface"
@@ -469,11 +469,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "LPO.1"
     concept LPO.1 < interface:Port, Local_Power_Distribution_System_Interacts_Through [
-        restricts all relation interface:sends to LPO.1_Sends
-        restricts all relation interface:receives to LPO.1_Receives
-        restricts all relation interface:isUsedDuring to LPO.1_Is_Used_During
-        restricts all relation interface:isFacilitatedBy to LPO.1_Is_Facilitated_By
-        restricts all relation interface:isLinkedBy to LPO.1_Is_Linked_By
+        restricts all interface:sends to LPO.1_Sends
+        restricts all interface:receives to LPO.1_Receives
+        restricts all interface:isUsedDuring to LPO.1_Is_Used_During
+        restricts all interface:isFacilitatedBy to LPO.1_Is_Facilitated_By
+        restricts all interface:isLinkedBy to LPO.1_Is_Linked_By
     ]
 
     @rdfs:label "LPO.1 Sends"
@@ -510,8 +510,8 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "Electrically Powered Device [Power Output 2]"
     concept Electrically_Powered_Device_Power_Output_2_ < interface:System, Electrically_Powered_Device [
-        restricts all relation interface:providesInterface to Electrically_Powered_Device_Power_Output_2_Provides_Interface
-        restricts all relation interface:interactsThrough to Electrically_Powered_Device_Power_Output_2_Interacts_Through
+        restricts all interface:providesInterface to Electrically_Powered_Device_Power_Output_2_Provides_Interface
+        restricts all interface:interactsThrough to Electrically_Powered_Device_Power_Output_2_Interacts_Through
     ]
 
     @rdfs:label "Electrically Powered Device [Power Output 2] Provides Interface"
@@ -525,7 +525,7 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     @rdfs:label "Output Power [Power Output 2]"
     concept Output_Power_Power_Output_2_ < interface:InputOutput, Output_Power, DPI.1_Receives,
     		Power_Output_Interface_Power_Output_2_Permits_Input_Output, PO.1_Power_Output_2_Sends [
-        restricts all relation interface:exemplifies to Output_Power_Power_Output_2_Exemplifies
+        restricts all interface:exemplifies to Output_Power_Power_Output_2_Exemplifies
     ]
 
     @rdfs:label "Output Power [Power Output 2] Exemplifies"
@@ -543,11 +543,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "Power Output Interface [Power Output 2]"
     concept Power_Output_Interface_Power_Output_2_ < interface:Interface, Power_Output_Interface, International_Power_Converter_Provides_Interface [
-        restricts all relation interface:permitsFunctionalInteraction to Power_Output_Interface_Power_Output_2_Permits_Functional_Interaction
-        restricts all relation interface:permitsInputOutput to Power_Output_Interface_Power_Output_2_Permits_Input_Output
-        restricts all relation interface:permitsArchitecturalRelationship to Power_Output_Interface_Power_Output_2_Permits_Architectural_Relationship
-        restricts all relation interface:groups to Power_Output_Interface_Power_Output_2_Groups
-        restricts all relation interface:permitsSOA to Power_Output_Interface_Power_Output_2_Permits_SOA
+        restricts all interface:permitsFunctionalInteraction to Power_Output_Interface_Power_Output_2_Permits_Functional_Interaction
+        restricts all interface:permitsInputOutput to Power_Output_Interface_Power_Output_2_Permits_Input_Output
+        restricts all interface:permitsArchitecturalRelationship to Power_Output_Interface_Power_Output_2_Permits_Architectural_Relationship
+        restricts all interface:groups to Power_Output_Interface_Power_Output_2_Groups
+        restricts all interface:permitsSOA to Power_Output_Interface_Power_Output_2_Permits_SOA
     ]
 
     @rdfs:label "Power Output Interface [Power Output 2] Permits Functional Interaction"
@@ -572,11 +572,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "PO.1 [Power Output 2]"
     concept PO.1_Power_Output_2_ < interface:Port, PO.1, Power_Output_Interface_Power_Output_2_Groups, International_Power_Converter_Interacts_Through [
-        restricts all relation interface:sends to PO.1_Power_Output_2_Sends
-        restricts all relation interface:receives to PO.1_Power_Output_2_Receives
-        restricts all relation interface:isUsedDuring to PO.1_Power_Output_2_Is_Used_During
-        restricts all relation interface:isFacilitatedBy to PO.1_Power_Output_2_Is_Facilitated_By
-        restricts all relation interface:isLinkedBy to PO.1_Power_Output_2_Is_Linked_By
+        restricts all interface:sends to PO.1_Power_Output_2_Sends
+        restricts all interface:receives to PO.1_Power_Output_2_Receives
+        restricts all interface:isUsedDuring to PO.1_Power_Output_2_Is_Used_During
+        restricts all interface:isFacilitatedBy to PO.1_Power_Output_2_Is_Facilitated_By
+        restricts all interface:isLinkedBy to PO.1_Power_Output_2_Is_Linked_By
     ]
 
     @rdfs:label "PO.1 [Power Output 2] Sends"
@@ -609,8 +609,8 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "Electrically Powered Device [Power Output 3]"
     concept Electrically_Powered_Device_Power_Output_3_ < interface:System, Electrically_Powered_Device [
-        restricts all relation interface:providesInterface to Electrically_Powered_Device_Power_Output_3_Provides_Interface
-        restricts all relation interface:interactsThrough to Electrically_Powered_Device_Power_Output_3_Interacts_Through
+        restricts all interface:providesInterface to Electrically_Powered_Device_Power_Output_3_Provides_Interface
+        restricts all interface:interactsThrough to Electrically_Powered_Device_Power_Output_3_Interacts_Through
     ]
 
     @rdfs:label "Electrically Powered Device [Power Output 3] Provides Interface"
@@ -624,7 +624,7 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     @rdfs:label "Output Power [Power Output 3]"
     concept Output_Power_Power_Output_3_ < interface:InputOutput, Output_Power, DPI.1_Receives,
     		Power_Output_Interface_Power_Output_3_Permits_Input_Output, PO.1_Power_Output_3_Sends [
-        restricts all relation interface:exemplifies to Output_Power_Power_Output_3_Exemplifies
+        restricts all interface:exemplifies to Output_Power_Power_Output_3_Exemplifies
     ]
 
     @rdfs:label "Output Power [Power Output 3] Exemplifies"
@@ -642,11 +642,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "Power Output Interface [Power Output 3]"
     concept Power_Output_Interface_Power_Output_3_ < interface:Interface, Power_Output_Interface, International_Power_Converter_Provides_Interface [
-        restricts all relation interface:permitsFunctionalInteraction to Power_Output_Interface_Power_Output_3_Permits_Functional_Interaction
-        restricts all relation interface:permitsInputOutput to Power_Output_Interface_Power_Output_3_Permits_Input_Output
-        restricts all relation interface:permitsArchitecturalRelationship to Power_Output_Interface_Power_Output_3_Permits_Architectural_Relationship
-        restricts all relation interface:groups to Power_Output_Interface_Power_Output_3_Groups
-        restricts all relation interface:permitsSOA to Power_Output_Interface_Power_Output_3_Permits_SOA
+        restricts all interface:permitsFunctionalInteraction to Power_Output_Interface_Power_Output_3_Permits_Functional_Interaction
+        restricts all interface:permitsInputOutput to Power_Output_Interface_Power_Output_3_Permits_Input_Output
+        restricts all interface:permitsArchitecturalRelationship to Power_Output_Interface_Power_Output_3_Permits_Architectural_Relationship
+        restricts all interface:groups to Power_Output_Interface_Power_Output_3_Groups
+        restricts all interface:permitsSOA to Power_Output_Interface_Power_Output_3_Permits_SOA
     ]
 
     @rdfs:label "Power Output Interface [Power Output 3] Permits Functional Interaction"
@@ -671,11 +671,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "PO.1 [Power Output 3]"
     concept PO.1_Power_Output_3_ < interface:Port, PO.1, Power_Output_Interface_Power_Output_3_Groups, International_Power_Converter_Interacts_Through [
-        restricts all relation interface:sends to PO.1_Power_Output_3_Sends
-        restricts all relation interface:receives to PO.1_Power_Output_3_Receives
-        restricts all relation interface:isUsedDuring to PO.1_Power_Output_3_Is_Used_During
-        restricts all relation interface:isFacilitatedBy to PO.1_Power_Output_3_Is_Facilitated_By
-        restricts all relation interface:isLinkedBy to PO.1_Power_Output_3_Is_Linked_By
+        restricts all interface:sends to PO.1_Power_Output_3_Sends
+        restricts all interface:receives to PO.1_Power_Output_3_Receives
+        restricts all interface:isUsedDuring to PO.1_Power_Output_3_Is_Used_During
+        restricts all interface:isFacilitatedBy to PO.1_Power_Output_3_Is_Facilitated_By
+        restricts all interface:isLinkedBy to PO.1_Power_Output_3_Is_Linked_By
     ]
 
     @rdfs:label "PO.1 [Power Output 3] Sends"
@@ -709,8 +709,8 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "Device and Converter User"
     concept Device_and_Converter_User < interface:System [
-        restricts all relation interface:providesInterface to Device_and_Converter_User_Provides_Interface
-        restricts all relation interface:interactsThrough to Device_and_Converter_User_Interacts_Through
+        restricts all interface:providesInterface to Device_and_Converter_User_Provides_Interface
+        restricts all interface:interactsThrough to Device_and_Converter_User_Interacts_Through
     ]
 
     @rdfs:label "Device and Converter User Provides Interface"
@@ -724,7 +724,7 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     @rdfs:label "Device Status and Information"
     concept Device_Status_and_Information < interface:InputOutput, UC1.1_Receives,
     		Configuration_and_Information_Interface_Permits_Input_Output, CO.2_Sends [
-        restricts all relation interface:exemplifies to Device_Status_and_Information_Exemplifies
+        restricts all interface:exemplifies to Device_Status_and_Information_Exemplifies
     ]
 
     @rdfs:label "Device Status and Information Exemplifies"
@@ -733,11 +733,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "UC1.1"
     concept UC1.1 < interface:Port, Device_and_Converter_User_Interacts_Through [
-        restricts all relation interface:sends to UC1.1_Sends
-        restricts all relation interface:receives to UC1.1_Receives
-        restricts all relation interface:isUsedDuring to UC1.1_Is_Used_During
-        restricts all relation interface:isFacilitatedBy to UC1.1_Is_Facilitated_By
-        restricts all relation interface:isLinkedBy to UC1.1_Is_Linked_By
+        restricts all interface:sends to UC1.1_Sends
+        restricts all interface:receives to UC1.1_Receives
+        restricts all interface:isUsedDuring to UC1.1_Is_Used_During
+        restricts all interface:isFacilitatedBy to UC1.1_Is_Facilitated_By
+        restricts all interface:isLinkedBy to UC1.1_Is_Linked_By
     ]
 
     @rdfs:label "UC1.1 Sends"
@@ -767,11 +767,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "Configuration and Information Interface"
     concept Configuration_and_Information_Interface < interface:Interface, International_Power_Converter_Provides_Interface [
-        restricts all relation interface:permitsFunctionalInteraction to Configuration_and_Information_Interface_Permits_Functional_Interaction
-        restricts all relation interface:permitsInputOutput to Configuration_and_Information_Interface_Permits_Input_Output
-        restricts all relation interface:permitsArchitecturalRelationship to Configuration_and_Information_Interface_Permits_Architectural_Relationship
-        restricts all relation interface:groups to Configuration_and_Information_Interface_Groups
-        restricts all relation interface:permitsSOA to Configuration_and_Information_Interface_Permits_SOA
+        restricts all interface:permitsFunctionalInteraction to Configuration_and_Information_Interface_Permits_Functional_Interaction
+        restricts all interface:permitsInputOutput to Configuration_and_Information_Interface_Permits_Input_Output
+        restricts all interface:permitsArchitecturalRelationship to Configuration_and_Information_Interface_Permits_Architectural_Relationship
+        restricts all interface:groups to Configuration_and_Information_Interface_Groups
+        restricts all interface:permitsSOA to Configuration_and_Information_Interface_Permits_SOA
     ]
 
     @rdfs:label "Configuration and Information Interface Permits Functional Interaction"
@@ -796,11 +796,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "CO.2"
     concept CO.2 < interface:Port, Configuration_and_Information_Interface_Groups, International_Power_Converter_Interacts_Through [
-        restricts all relation interface:sends to CO.2_Sends
-        restricts all relation interface:receives to CO.2_Receives
-        restricts all relation interface:isUsedDuring to CO.2_Is_Used_During
-        restricts all relation interface:isFacilitatedBy to CO.2_Is_Facilitated_By
-        restricts all relation interface:isLinkedBy to CO.2_Is_Linked_By
+        restricts all interface:sends to CO.2_Sends
+        restricts all interface:receives to CO.2_Receives
+        restricts all interface:isUsedDuring to CO.2_Is_Used_During
+        restricts all interface:isFacilitatedBy to CO.2_Is_Facilitated_By
+        restricts all interface:isLinkedBy to CO.2_Is_Linked_By
     ]
 
     @rdfs:label "CO.2 Sends"
@@ -834,7 +834,7 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "Handling Force"
     concept Handling_Force < interface:InputOutput, Handling_Interface_Permits_Input_Output [
-        restricts all relation interface:exemplifies to Handling_Force_Exemplifies
+        restricts all interface:exemplifies to Handling_Force_Exemplifies
     ]
 
     @rdfs:label "Handling Force Exemplifies"
@@ -843,11 +843,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "UHO.1"
     concept UHO.1 < interface:Port, Device_and_Converter_User_Interacts_Through [
-        restricts all relation interface:sends to UHO.1_Sends
-        restricts all relation interface:receives to UHO.1_Receives
-        restricts all relation interface:isUsedDuring to UHO.1_Is_Used_During
-        restricts all relation interface:isFacilitatedBy to UHO.1_Is_Facilitated_By
-        restricts all relation interface:isLinkedBy to UHO.1_Is_Linked_By
+        restricts all interface:sends to UHO.1_Sends
+        restricts all interface:receives to UHO.1_Receives
+        restricts all interface:isUsedDuring to UHO.1_Is_Used_During
+        restricts all interface:isFacilitatedBy to UHO.1_Is_Facilitated_By
+        restricts all interface:isLinkedBy to UHO.1_Is_Linked_By
     ]
 
     @rdfs:label "UHO.1 Sends"
@@ -876,11 +876,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "Handling Interface"
     concept Handling_Interface < interface:Interface, International_Power_Converter_Provides_Interface [
-        restricts all relation interface:permitsFunctionalInteraction to Handling_Interface_Permits_Functional_Interaction
-        restricts all relation interface:permitsInputOutput to Handling_Interface_Permits_Input_Output
-        restricts all relation interface:permitsArchitecturalRelationship to Handling_Interface_Permits_Architectural_Relationship
-        restricts all relation interface:groups to Handling_Interface_Groups
-        restricts all relation interface:permitsSOA to Handling_Interface_Permits_SOA
+        restricts all interface:permitsFunctionalInteraction to Handling_Interface_Permits_Functional_Interaction
+        restricts all interface:permitsInputOutput to Handling_Interface_Permits_Input_Output
+        restricts all interface:permitsArchitecturalRelationship to Handling_Interface_Permits_Architectural_Relationship
+        restricts all interface:groups to Handling_Interface_Groups
+        restricts all interface:permitsSOA to Handling_Interface_Permits_SOA
     ]
 
     @rdfs:label "Handling Interface Permits Functional Interaction"
@@ -905,11 +905,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "HI.1"
     concept HI.1 < interface:Port, Handling_Interface_Groups, International_Power_Converter_Interacts_Through [
-        restricts all relation interface:sends to HI.1_Sends
-        restricts all relation interface:receives to HI.1_Receives
-        restricts all relation interface:isUsedDuring to HI.1_Is_Used_During
-        restricts all relation interface:isFacilitatedBy to HI.1_Is_Facilitated_By
-        restricts all relation interface:isLinkedBy to HI.1_Is_Linked_By
+        restricts all interface:sends to HI.1_Sends
+        restricts all interface:receives to HI.1_Receives
+        restricts all interface:isUsedDuring to HI.1_Is_Used_During
+        restricts all interface:isFacilitatedBy to HI.1_Is_Facilitated_By
+        restricts all interface:isLinkedBy to HI.1_Is_Linked_By
     ]
 
     @rdfs:label "HI.1 Sends"
@@ -943,7 +943,7 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "Contaminants"
     concept Contaminants < interface:InputOutput, Environmental_Interface_Permits_Input_Output, EN.3_Receives, ENV.1_Sends [
-        restricts all relation interface:exemplifies to Contaminants_Exemplifies
+        restricts all interface:exemplifies to Contaminants_Exemplifies
     ]
 
     @rdfs:label "Contaminants Exemplifies"
@@ -952,11 +952,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "EN.3"
     concept EN.3 < interface:Port, Environmental_Interface_Groups, International_Power_Converter_Interacts_Through [
-        restricts all relation interface:sends to EN.3_Sends
-        restricts all relation interface:receives to EN.3_Receives
-        restricts all relation interface:isUsedDuring to EN.3_Is_Used_During
-        restricts all relation interface:isFacilitatedBy to EN.3_Is_Facilitated_By
-        restricts all relation interface:isLinkedBy to EN.3_Is_Linked_By
+        restricts all interface:sends to EN.3_Sends
+        restricts all interface:receives to EN.3_Receives
+        restricts all interface:isUsedDuring to EN.3_Is_Used_During
+        restricts all interface:isFacilitatedBy to EN.3_Is_Facilitated_By
+        restricts all interface:isLinkedBy to EN.3_Is_Linked_By
     ]
 
     @rdfs:label "EN.3 Sends"
@@ -986,11 +986,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "ENV.1"
     concept ENV.1 < interface:Port, Local_Environment_Interacts_Through [
-        restricts all relation interface:sends to ENV.1_Sends
-        restricts all relation interface:receives to ENV.1_Receives
-        restricts all relation interface:isUsedDuring to ENV.1_Is_Used_During
-        restricts all relation interface:isFacilitatedBy to ENV.1_Is_Facilitated_By
-        restricts all relation interface:isLinkedBy to ENV.1_Is_Linked_By
+        restricts all interface:sends to ENV.1_Sends
+        restricts all interface:receives to ENV.1_Receives
+        restricts all interface:isUsedDuring to ENV.1_Is_Used_During
+        restricts all interface:isFacilitatedBy to ENV.1_Is_Facilitated_By
+        restricts all interface:isLinkedBy to ENV.1_Is_Linked_By
     ]
 
     @rdfs:label "ENV.1 Sends"
@@ -1025,7 +1025,7 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     @rdfs:label "Configuration Setting"
     concept Configuration_Setting < interface:InputOutput, UCO.1_Sends,
     		Configuration_and_Information_Interface_Permits_Input_Output, CI.1_Receives [
-        restricts all relation interface:exemplifies to Configuration_Setting_Exemplifies
+        restricts all interface:exemplifies to Configuration_Setting_Exemplifies
     ]
 
     @rdfs:label "Configuration Setting Exemplifies"
@@ -1034,11 +1034,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "UCO.1"
     concept UCO.1 < interface:Port, Device_and_Converter_User_Interacts_Through [
-        restricts all relation interface:sends to UCO.1_Sends
-        restricts all relation interface:receives to UCO.1_Receives
-        restricts all relation interface:isUsedDuring to UCO.1_Is_Used_During
-        restricts all relation interface:isFacilitatedBy to UCO.1_Is_Facilitated_By
-        restricts all relation interface:isLinkedBy to UCO.1_Is_Linked_By
+        restricts all interface:sends to UCO.1_Sends
+        restricts all interface:receives to UCO.1_Receives
+        restricts all interface:isUsedDuring to UCO.1_Is_Used_During
+        restricts all interface:isFacilitatedBy to UCO.1_Is_Facilitated_By
+        restricts all interface:isLinkedBy to UCO.1_Is_Linked_By
     ]
 
     @rdfs:label "UCO.1 Sends"
@@ -1069,11 +1069,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     @rdfs:label "CI.1"
     concept CI.1 < interface:Port, Configuration_and_Information_Interface_Groups,
     		International_Power_Converter_Interacts_Through [
-        restricts all relation interface:sends to CI.1_Sends
-        restricts all relation interface:receives to CI.1_Receives
-        restricts all relation interface:isUsedDuring to CI.1_Is_Used_During
-        restricts all relation interface:isFacilitatedBy to CI.1_Is_Facilitated_By
-        restricts all relation interface:isLinkedBy to CI.1_Is_Linked_By
+        restricts all interface:sends to CI.1_Sends
+        restricts all interface:receives to CI.1_Receives
+        restricts all interface:isUsedDuring to CI.1_Is_Used_During
+        restricts all interface:isFacilitatedBy to CI.1_Is_Facilitated_By
+        restricts all interface:isLinkedBy to CI.1_Is_Linked_By
     ]
 
     @rdfs:label "CI.1 Sends"
@@ -1108,7 +1108,7 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
     @rdfs:label "Moisture"
     concept Moisture < interface:InputOutput, Environmental_Interface_Permits_Input_Output, EN.4_Receives,
     		ENV.2_Sends [
-        restricts all relation interface:exemplifies to Moisture_Exemplifies
+        restricts all interface:exemplifies to Moisture_Exemplifies
     ]
 
     @rdfs:label "Moisture Exemplifies"
@@ -1117,11 +1117,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "EN.4"
     concept EN.4 < interface:Port, Environmental_Interface_Groups, International_Power_Converter_Interacts_Through [
-        restricts all relation interface:sends to EN.4_Sends
-        restricts all relation interface:receives to EN.4_Receives
-        restricts all relation interface:isUsedDuring to EN.4_Is_Used_During
-        restricts all relation interface:isFacilitatedBy to EN.4_Is_Facilitated_By
-        restricts all relation interface:isLinkedBy to EN.4_Is_Linked_By
+        restricts all interface:sends to EN.4_Sends
+        restricts all interface:receives to EN.4_Receives
+        restricts all interface:isUsedDuring to EN.4_Is_Used_During
+        restricts all interface:isFacilitatedBy to EN.4_Is_Facilitated_By
+        restricts all interface:isLinkedBy to EN.4_Is_Linked_By
     ]
 
     @rdfs:label "EN.4 Sends"
@@ -1151,11 +1151,11 @@ vocabulary <http://incose.org/pwg/s-star/vocabulary/power-converter#> as power-c
 
     @rdfs:label "ENV.2"
     concept ENV.2 < interface:Port, Local_Environment_Interacts_Through [
-        restricts all relation interface:sends to ENV.2_Sends
-        restricts all relation interface:receives to ENV.2_Receives
-        restricts all relation interface:isUsedDuring to ENV.2_Is_Used_During
-        restricts all relation interface:isFacilitatedBy to ENV.2_Is_Facilitated_By
-        restricts all relation interface:isLinkedBy to ENV.2_Is_Linked_By
+        restricts all interface:sends to ENV.2_Sends
+        restricts all interface:receives to ENV.2_Receives
+        restricts all interface:isUsedDuring to ENV.2_Is_Used_During
+        restricts all interface:isFacilitatedBy to ENV.2_Is_Facilitated_By
+        restricts all interface:isLinkedBy to ENV.2_Is_Linked_By
     ]
 
     @rdfs:label "ENV.2 Sends"
